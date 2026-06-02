@@ -1,0 +1,88 @@
+aid: thanx
+name: Thanx
+description: >-
+  Thanx is a customer engagement, loyalty, and marketing automation platform
+  for restaurants and other offline businesses, built to acquire, engage, and
+  retain best customers and grow customer lifetime value. The platform combines
+  data infrastructure, lifecycle marketing, loyalty and CRM, and digital
+  ordering experiences. Thanx is API-first and publishes a public developer
+  portal documenting a Consumer API for custom consumer experiences, a Partner
+  API for privileged integration use cases, and a Loyalty API for digital
+  ordering and kiosk providers, along with webhooks and data export
+  integrations to warehouses like Snowflake and BigQuery. Thanx serves roughly
+  500 brands and processes over a billion transactions annually.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Restaurant
+  - Loyalty
+  - Guest Engagement
+  - Marketing
+  - CRM
+  - Online Ordering
+  - Webhooks
+url: https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/apis.yml
+created: '2026-06-02'
+modified: '2026-06-02'
+specificationVersion: '0.19'
+apis:
+  - aid: thanx:consumer-api
+    name: Thanx Consumer API
+    description: >-
+      The Thanx Consumer API lets brands integrate Thanx into a custom consumer
+      experience, covering users and authentication, cards, gifts, rewards,
+      purchases, and points or loyalty balances. It powers branded apps and
+      digital experiences built on top of the Thanx loyalty and CRM platform.
+    humanURL: https://docs.thanx.com/overview
+    tags:
+      - Loyalty
+      - Rewards
+      - Users
+      - Gifts
+    properties:
+      - type: Documentation
+        url: https://docs.thanx.com/overview
+  - aid: thanx:partner-api
+    name: Thanx Partner API
+    description: >-
+      The Thanx Partner API provides privileged endpoints supporting custom
+      integration use cases, including campaign management, subscriber
+      handling, and feedback. It is intended for approved partners building
+      deeper integrations with the Thanx engagement and marketing platform.
+    humanURL: https://docs.thanx.com/overview
+    tags:
+      - Campaigns
+      - Subscribers
+      - Marketing
+    properties:
+      - type: Documentation
+        url: https://docs.thanx.com/overview
+  - aid: thanx:loyalty-api
+    name: Thanx Loyalty API
+    description: >-
+      The Thanx Loyalty API supports integrations with digital ordering and
+      kiosk providers, exposing loyalty and points operations such as balance
+      tracking, redemption, and multipliers so external ordering systems can
+      connect to a brand's Thanx loyalty program.
+    humanURL: https://docs.thanx.com/overview
+    tags:
+      - Loyalty
+      - Points
+      - Online Ordering
+    properties:
+      - type: Documentation
+        url: https://docs.thanx.com/overview
+common:
+  - type: Website
+    url: https://www.thanx.com/
+  - type: Documentation
+    url: https://docs.thanx.com/overview
+  - type: Pricing
+    url: https://www.thanx.com/pricing
+  - type: GitHubOrganization
+    url: https://github.com/thanx
+  - type: LLMsTxt
+    url: https://docs.thanx.com/llms.txt
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
