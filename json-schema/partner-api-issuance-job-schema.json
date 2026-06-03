@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IssuanceJob",
+  "description": "IssuanceJob schema from Thanx Partner API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/partner-api-issuance-job-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "state": {
+      "type": "string",
+      "example": "CA"
+    },
+    "requested_count": {
+      "type": "integer",
+      "example": 3
+    },
+    "issued_count": {
+      "type": "integer",
+      "example": 3
+    },
+    "failed_count": {
+      "type": "integer",
+      "example": 3
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2025-06-01T18:02:05Z"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2025-06-01T18:02:05Z"
+    }
+  }
+}

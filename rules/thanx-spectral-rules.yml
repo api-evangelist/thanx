@@ -1,0 +1,296 @@
+# Thanx API Spectral Ruleset
+# Enforces the conventions observed across the Thanx Consumer, Partner, and
+# Loyalty OpenAPI specifications: Title-prefixed metadata, HTTPS servers,
+# snake_case paths/parameters/properties, camelCase verb-prefixed operationIds,
+# Title Case tags, bearer + X-ClientId security, and enveloped JSON responses.
+rules:
+
+  # ── INFO / METADATA ──────────────────────────────────────────────────
+  thanx-info-title:
+    description: Info title should start with "Thanx".
+    severity: warn
+    given: $.info
+    then:
+      field: title
+      function: pattern
+      functionOptions:
+        match: "^Thanx"
+  thanx-info-description:
+    description: Info description is required and should be meaningful.
+    severity: warn
+    given: $.info
+    then:
+      field: description
+      function: truthy
+  thanx-info-version:
+    description: Info version is required.
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+  thanx-info-contact:
+    description: A contact should be present.
+    severity: info
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  thanx-info-license:
+    description: A license should be present.
+    severity: info
+    given: $.info
+    then:
+      field: license
+      function: truthy
+
+  # ── OPENAPI VERSION ──────────────────────────────────────────────────
+  thanx-openapi-3-1:
+    description: Specs should target OpenAPI 3.1.x.
+    severity: warn
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\.1\\."
+
+  # ── SERVERS ──────────────────────────────────────────────────────────
+  thanx-servers-defined:
+    description: At least one server must be defined.
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+  thanx-servers-https:
+    description: Server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*]
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  thanx-servers-description:
+    description: Each server should have a description.
+    severity: info
+    given: $.servers[*]
+    then:
+      field: description
+      function: truthy
+
+  # ── PATHS — NAMING ───────────────────────────────────────────────────
+  thanx-paths-snake-case:
+    description: Path segments should be snake_case (lowercase, underscores), matching Thanx resource paths.
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9_.]+(\\{[a-zA-Z0-9_]+\\})?|/\\{[a-zA-Z0-9_]+\\})+/?$|^/$"
+  thanx-paths-no-trailing-slash:
+    description: Paths should not end with a trailing slash.
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".+/$"
+
+  # ── OPERATIONS ───────────────────────────────────────────────────────
+  thanx-operation-operationId:
+    description: Every operation must have an operationId.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+  thanx-operation-operationId-camel-verb:
+    description: operationId should be camelCase with a verb prefix (get/list/create/update/delete/issue/revoke/activate/finalize/grant/exchange).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: "^(get|list|create|update|delete|issue|revoke|activate|finalize|grant|exchange|upsert|check)[A-Z0-9].*$"
+  thanx-operation-summary:
+    description: Every operation must have a summary.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+  thanx-operation-summary-title-case:
+    description: Operation summary should be Title Case.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]*( [A-Z0-9][A-Za-z0-9]*)*$"
+  thanx-operation-description:
+    description: Every operation should have a description.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+  thanx-operation-tags:
+    description: Every operation must be tagged.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  # ── TAGS ─────────────────────────────────────────────────────────────
+  thanx-global-tags:
+    description: A global tags array should be defined.
+    severity: info
+    given: $
+    then:
+      field: tags
+      function: truthy
+  thanx-tag-description:
+    description: Each global tag should have a description.
+    severity: info
+    given: $.tags[*]
+    then:
+      field: description
+      function: truthy
+  thanx-tag-title-case:
+    description: Tag names should be Title Case.
+    severity: warn
+    given: $.tags[*]
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]*( [A-Z0-9][A-Za-z0-9]*)*$"
+
+  # ── PARAMETERS ───────────────────────────────────────────────────────
+  thanx-parameter-description:
+    description: Parameters should be described.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: description
+      function: truthy
+  thanx-parameter-snake-case:
+    description: Parameter names should be snake_case (array params may end in []).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in)]
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*(\\[\\])?$"
+
+  # ── REQUEST BODIES ───────────────────────────────────────────────────
+  thanx-request-body-json:
+    description: Request bodies should offer application/json.
+    severity: warn
+    given: $.paths[*][post,put,patch].requestBody.content
+    then:
+      field: application/json
+      function: truthy
+
+  # ── RESPONSES ────────────────────────────────────────────────────────
+  thanx-response-success:
+    description: Operations should declare a 2xx response.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            "^2[0-9][0-9]$": true
+          minProperties: 1
+  thanx-response-description:
+    description: Each response must have a description.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses[*]
+    then:
+      field: description
+      function: truthy
+  thanx-error-schema-message:
+    description: The Error schema should expose a message or error field.
+    severity: info
+    given: $.components.schemas.Error.properties
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: [message]
+            - required: [error]
+
+  # ── SCHEMAS — PROPERTY NAMING ────────────────────────────────────────
+  thanx-schema-property-snake-case:
+    description: Schema property names should be snake_case.
+    severity: warn
+    given: $.components.schemas[*].properties[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+  thanx-schema-property-typed:
+    description: Schema properties should declare a type or a $ref.
+    severity: info
+    given: $.components.schemas[*].properties[*]
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: [type]
+            - required: [$ref]
+            - required: [allOf]
+            - required: [oneOf]
+            - required: [anyOf]
+
+  # ── SECURITY ─────────────────────────────────────────────────────────
+  thanx-global-security:
+    description: A global security requirement should be defined.
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: truthy
+  thanx-security-schemes-defined:
+    description: Security schemes must be defined under components.
+    severity: error
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+  thanx-security-bearer:
+    description: A bearer auth scheme should be present (Thanx uses end-user access tokens).
+    severity: info
+    given: $.components.securitySchemes
+    then:
+      field: bearerAuth
+      function: truthy
+
+  # ── HTTP METHOD CONVENTIONS ──────────────────────────────────────────
+  thanx-get-no-body:
+    description: GET operations must not declare a request body.
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy
+  thanx-delete-no-body:
+    description: DELETE operations should not declare a request body.
+    severity: warn
+    given: $.paths[*].delete
+    then:
+      field: requestBody
+      function: falsy

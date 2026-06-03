@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-structure/loyalty-api-basket-item-structure.json",
+  "name": "BasketItem",
+  "description": "BasketItem schema from Thanx Loyalty API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "name": {
+      "type": "string",
+      "example": "Pizza Town Co"
+    },
+    "price": {
+      "type": "double",
+      "example": 9.99
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "double"
+          },
+          "item_base_price": {
+            "type": "double"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Location",
+  "description": "Location schema from Thanx Consumer API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/consumer-api-location-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "merchant_id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "street": {
+      "type": "string",
+      "example": "123 Pizza Lane"
+    },
+    "city": {
+      "type": "string",
+      "example": "Smalltown"
+    },
+    "state": {
+      "type": "string",
+      "example": "CA"
+    },
+    "zip": {
+      "type": "string",
+      "example": "94105"
+    },
+    "name": {
+      "type": "string",
+      "example": "Pizza Town Co"
+    },
+    "phone": {
+      "type": "string",
+      "example": "+14158672345"
+    },
+    "loyalty_redemption_type": {
+      "type": "string",
+      "enum": [
+        "direct",
+        "indirect",
+        "none"
+      ],
+      "example": "direct"
+    }
+  }
+}

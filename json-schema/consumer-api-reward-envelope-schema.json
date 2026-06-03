@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RewardEnvelope",
+  "description": "RewardEnvelope schema from Thanx Consumer API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/consumer-api-reward-envelope-schema.json",
+  "type": "object",
+  "properties": {
+    "reward": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "92b7b0dac4"
+        },
+        "olo_uid": {
+          "type": "string",
+          "example": "92b7b0dac4"
+        },
+        "user_id": {
+          "type": "string",
+          "example": "92b7b0dac4"
+        },
+        "merchant_id": {
+          "type": "string",
+          "example": "92b7b0dac4"
+        },
+        "campaign_id": {
+          "type": "string",
+          "example": "92b7b0dac4"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "available",
+            "active",
+            "used"
+          ],
+          "example": "available"
+        },
+        "earn": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            }
+          }
+        },
+        "redeem": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "detail": {
+              "type": "string"
+            },
+            "window": {
+              "type": "string"
+            },
+            "venue": {
+              "type": "string"
+            }
+          }
+        },
+        "coupon_code": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "display": {
+              "type": "string"
+            }
+          }
+        },
+        "fine_print": {
+          "type": "string",
+          "example": "Free coffee for loyal customers."
+        },
+        "instructions": {
+          "type": "string",
+          "example": "Free coffee for loyal customers."
+        },
+        "available_at": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2025-06-01T18:02:05Z"
+        },
+        "activated_at": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2025-06-01T18:02:05Z"
+        },
+        "retire_at": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2025-06-01T18:02:05Z"
+        },
+        "used_at": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2025-06-01T18:02:05Z"
+        },
+        "uses_dynamic_coupon_codes": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    }
+  }
+}

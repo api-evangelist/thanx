@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-structure/loyalty-api-account-structure.json",
+  "name": "Account",
+  "description": "Account schema from Thanx Loyalty API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "email": {
+      "type": "string",
+      "example": "jane.smith@example.com"
+    },
+    "rewards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "92b7b0dac4"
+          },
+          "value": {
+            "type": "double",
+            "example": 1.0
+          },
+          "label": {
+            "type": "string",
+            "example": "A free hamburger"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "redeemable",
+              "delivered",
+              "active"
+            ],
+            "example": "redeemable"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "amount",
+              "percent",
+              "item"
+            ],
+            "example": "amount"
+          }
+        }
+      }
+    },
+    "points_products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "92b7b0dac4"
+          },
+          "label": {
+            "type": "string",
+            "example": "A free hamburger"
+          },
+          "cost": {
+            "type": "double",
+            "example": 1.0
+          }
+        }
+      }
+    },
+    "points_balances": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "points_experience_id": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "double"
+          }
+        }
+      }
+    }
+  }
+}

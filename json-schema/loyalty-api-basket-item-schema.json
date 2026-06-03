@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BasketItem",
+  "description": "BasketItem schema from Thanx Loyalty API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/loyalty-api-basket-item-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "name": {
+      "type": "string",
+      "example": "Pizza Town Co"
+    },
+    "price": {
+      "type": "number",
+      "format": "double",
+      "example": 9.99
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "item_base_price": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      }
+    }
+  }
+}

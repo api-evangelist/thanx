@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-structure/consumer-api-user-input-structure.json",
+  "name": "UserInput",
+  "description": "UserInput schema from Thanx Consumer API",
+  "required": [
+    "email",
+    "first_name",
+    "last_name"
+  ],
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "example": "jane.smith@example.com"
+    },
+    "phone": {
+      "type": "string",
+      "example": "+14158672345"
+    },
+    "first_name": {
+      "type": "string",
+      "example": "Jane"
+    },
+    "last_name": {
+      "type": "string",
+      "example": "Smith"
+    },
+    "birth_date": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "int32",
+          "example": 1987
+        },
+        "month": {
+          "type": "int32",
+          "example": 8
+        },
+        "day": {
+          "type": "int32",
+          "example": 14
+        }
+      }
+    },
+    "zip_code": {
+      "type": "string",
+      "example": "94105"
+    },
+    "signup_program_id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    }
+  }
+}

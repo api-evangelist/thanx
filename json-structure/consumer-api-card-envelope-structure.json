@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-structure/consumer-api-card-envelope-structure.json",
+  "name": "CardEnvelope",
+  "description": "CardEnvelope schema from Thanx Consumer API",
+  "type": "object",
+  "properties": {
+    "card": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "92b7b0dac4"
+        },
+        "user_id": {
+          "type": "string",
+          "example": "92b7b0dac4"
+        },
+        "last4": {
+          "type": "string",
+          "example": "1234"
+        },
+        "type": {
+          "type": "string",
+          "example": "visa"
+        },
+        "zip_code": {
+          "type": "string",
+          "example": "94105"
+        }
+      }
+    }
+  }
+}

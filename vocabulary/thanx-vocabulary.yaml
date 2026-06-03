@@ -1,0 +1,661 @@
+vocabulary: 1.0.0
+info:
+  provider: Thanx
+  description: Unified taxonomy mapping the operational (OpenAPI) and capability (Naftiko) dimensions of the Thanx Consumer, Partner, and Loyalty APIs.
+  created: '2026-06-03'
+  modified: '2026-06-03'
+operational:
+  apis:
+  - name: Thanx Consumer API
+    namespace: consumer-api
+    version: v4.0
+    baseUrl: https://api.thanx.com
+    status: active
+  - name: Thanx Loyalty API
+    namespace: loyalty-api
+    version: v1
+    baseUrl: https://loyalty.thanx.com
+    status: active
+  - name: Thanx Partner API
+    namespace: partner-api
+    version: v4.0
+    baseUrl: https://api.thanx.com
+    status: active
+  resources:
+  - name: users
+    api: Thanx Consumer API
+    actions:
+    - create
+    - get
+  - name: cards
+    api: Thanx Consumer API
+    actions:
+    - create
+    - delete
+    - get
+  - name: rewards
+    api: Thanx Consumer API
+    actions:
+    - create
+    - get
+  - name: purchases
+    api: Thanx Consumer API
+    actions:
+    - create
+    - get
+  - name: points
+    api: Thanx Consumer API
+    actions:
+    - get
+  - name: locations
+    api: Thanx Consumer API
+    actions:
+    - get
+  - name: gift-cards
+    api: Thanx Consumer API
+    actions:
+    - create
+    - get
+  - name: account
+    api: Thanx Loyalty API
+    actions:
+    - get
+  - name: baskets
+    api: Thanx Loyalty API
+    actions:
+    - create
+  - name: auth
+    api: Thanx Partner API
+    actions:
+    - create
+  - name: campaigns
+    api: Thanx Partner API
+    actions:
+    - create
+    - get
+  - name: issuance-jobs
+    api: Thanx Partner API
+    actions:
+    - create
+    - get
+  - name: subscribers
+    api: Thanx Partner API
+    actions:
+    - create
+  - name: metadata
+    api: Thanx Partner API
+    actions:
+    - get
+  actions:
+  - name: get
+    methods:
+    - GET
+    pattern: read
+  - name: create
+    methods:
+    - POST
+    pattern: write
+  - name: delete
+    methods:
+    - DELETE
+    pattern: destructive
+  schemas:
+    core:
+    - name: UserEnvelope
+      api: Thanx Consumer API
+      properties:
+      - user
+    - name: User
+      api: Thanx Consumer API
+      properties:
+      - id
+      - email
+      - phone
+      - first_name
+      - last_name
+      - birth_date
+      - zip_code
+    - name: UserInput
+      api: Thanx Consumer API
+      properties:
+      - email
+      - phone
+      - first_name
+      - last_name
+      - birth_date
+      - zip_code
+      - signup_program_id
+    - name: BirthDate
+      api: Thanx Consumer API
+      properties:
+      - year
+      - month
+      - day
+    - name: Authorization
+      api: Thanx Consumer API
+      properties:
+      - token_type
+      - scope
+      - created_at
+      - access_token
+      - refresh_token
+    - name: Location
+      api: Thanx Consumer API
+      properties:
+      - id
+      - merchant_id
+      - street
+      - city
+      - state
+      - zip
+      - name
+      - phone
+    - name: Pagination
+      api: Thanx Consumer API
+      properties:
+      - total_page
+      - per_page
+      - current_page
+    - name: Account
+      api: Thanx Loyalty API
+      properties:
+      - id
+      - email
+      - rewards
+      - points_products
+      - points_balances
+    - name: PartnerUser
+      api: Thanx Partner API
+      properties:
+      - id
+      - email
+      - phone
+      - first_name
+      - last_name
+    commerce:
+    - name: CardEnvelope
+      api: Thanx Consumer API
+      properties:
+      - card
+    - name: Card
+      api: Thanx Consumer API
+      properties:
+      - id
+      - user_id
+      - last4
+      - type
+      - zip_code
+    - name: Purchase
+      api: Thanx Consumer API
+      properties:
+      - id
+      - user_id
+      - merchant_id
+      - location_id
+      - purchased_at
+      - amount
+      - order
+    - name: GiftCard
+      api: Thanx Consumer API
+      properties:
+      - id
+      - user_id
+      - balance
+      - code
+    - name: BasketInput
+      api: Thanx Loyalty API
+      properties:
+      - id
+      - state
+      - order_timestamp
+      - location_uid
+      - rewards
+      - points_products
+      - payments
+      - items
+    - name: BasketItem
+      api: Thanx Loyalty API
+      properties:
+      - id
+      - name
+      - price
+      - categories
+      - modifiers
+    - name: Payment
+      api: Thanx Loyalty API
+      properties:
+      - issuer
+      - last4
+      - amount
+      - authorized_at
+    - name: Basket
+      api: Thanx Loyalty API
+      properties:
+      - id
+      - state
+      - discount
+    loyalty:
+    - name: RewardEnvelope
+      api: Thanx Consumer API
+      properties:
+      - reward
+    - name: Reward
+      api: Thanx Consumer API
+      properties:
+      - id
+      - olo_uid
+      - user_id
+      - merchant_id
+      - campaign_id
+      - state
+      - earn
+      - redeem
+    - name: LoyaltyReward
+      api: Thanx Loyalty API
+      properties:
+      - id
+      - value
+      - label
+      - state
+      - type
+    - name: PointsProduct
+      api: Thanx Loyalty API
+      properties:
+      - id
+      - label
+      - cost
+    marketing:
+    - name: CampaignInput
+      api: Thanx Partner API
+      properties:
+      - merchant_id
+      - name
+      - objective
+      - fine_print
+      - start_at
+      - end_at
+      - redeemable_from
+      - redeemable_to
+    - name: CampaignVariantInput
+      api: Thanx Partner API
+      properties:
+      - name
+      - reward_template_id
+    - name: Campaign
+      api: Thanx Partner API
+      properties:
+      - id
+      - name
+      - objective
+      - start_at
+      - end_at
+      - redeemable_from
+      - redeemable_to
+      - time_zone
+    - name: IssuanceJob
+      api: Thanx Partner API
+      properties:
+      - id
+      - state
+      - requested_count
+      - issued_count
+      - failed_count
+      - created_at
+      - updated_at
+  parameters:
+    filters:
+    - redemption_venue
+    - reward_states[]
+    - states[]
+    identifiers:
+    - location_id
+    - merchant_id
+    - user_id
+  enums:
+    states:
+    - active
+    - available
+    - billed
+    - checkout
+    - delivered
+    - open
+    - redeemable
+    - used
+    - validated
+    types:
+    - amount
+    - direct
+    - indirect
+    - item
+    - none
+    - percent
+  authentication:
+  - api: Thanx Consumer API
+    schemes:
+    - bearerAuth
+    - clientId
+  - api: Thanx Loyalty API
+    schemes:
+    - bearerAuth
+    - merchantKey
+  - api: Thanx Partner API
+    schemes:
+    - bearerAuth
+    - clientId
+capability:
+  workflows:
+  - name: Thanx Consumer API — Cards
+    file: capabilities/consumer-api-cards.yaml
+    description: Cards surface of the Thanx Consumer API.
+    toolCount: 3
+    personas:
+    - Integration Developer
+    domains:
+    - Cards
+  - name: Thanx Consumer API — Gift Cards
+    file: capabilities/consumer-api-gift-cards.yaml
+    description: Gift Cards surface of the Thanx Consumer API.
+    toolCount: 2
+    personas:
+    - Integration Developer
+    domains:
+    - Gift Cards
+  - name: Thanx Consumer API — Locations
+    file: capabilities/consumer-api-locations.yaml
+    description: Locations surface of the Thanx Consumer API.
+    toolCount: 1
+    personas:
+    - Integration Developer
+    domains:
+    - Locations
+  - name: Thanx Consumer API — Points
+    file: capabilities/consumer-api-points.yaml
+    description: Points surface of the Thanx Consumer API.
+    toolCount: 1
+    personas:
+    - Integration Developer
+    domains:
+    - Points
+  - name: Thanx Consumer API — Purchases
+    file: capabilities/consumer-api-purchases.yaml
+    description: Purchases surface of the Thanx Consumer API.
+    toolCount: 2
+    personas:
+    - Integration Developer
+    domains:
+    - Purchases
+  - name: Thanx Consumer API — Rewards
+    file: capabilities/consumer-api-rewards.yaml
+    description: Rewards surface of the Thanx Consumer API.
+    toolCount: 4
+    personas:
+    - Integration Developer
+    domains:
+    - Rewards
+  - name: Thanx Consumer API — Users
+    file: capabilities/consumer-api-users.yaml
+    description: Users surface of the Thanx Consumer API.
+    toolCount: 2
+    personas:
+    - Integration Developer
+    domains:
+    - Users
+  - name: Thanx Loyalty API — Account
+    file: capabilities/loyalty-api-account.yaml
+    description: Account surface of the Thanx Loyalty API.
+    toolCount: 1
+    personas:
+    - Ordering / Kiosk Provider
+    domains:
+    - Account
+  - name: Thanx Loyalty API — Baskets
+    file: capabilities/loyalty-api-baskets.yaml
+    description: Baskets surface of the Thanx Loyalty API.
+    toolCount: 1
+    personas:
+    - Ordering / Kiosk Provider
+    domains:
+    - Baskets
+  - name: Thanx Partner API — Auth
+    file: capabilities/partner-api-auth.yaml
+    description: Auth surface of the Thanx Partner API.
+    toolCount: 1
+    personas:
+    - Partner Integrator
+    domains:
+    - Auth
+  - name: Thanx Partner API — Campaigns
+    file: capabilities/partner-api-campaigns.yaml
+    description: Campaigns surface of the Thanx Partner API.
+    toolCount: 4
+    personas:
+    - Partner Integrator
+    domains:
+    - Campaigns
+  - name: Thanx Partner API — Issuance Jobs
+    file: capabilities/partner-api-issuance-jobs.yaml
+    description: Issuance Jobs surface of the Thanx Partner API.
+    toolCount: 2
+    personas:
+    - Partner Integrator
+    domains:
+    - Issuance Jobs
+  - name: Thanx Partner API — Metadata
+    file: capabilities/partner-api-metadata.yaml
+    description: Metadata surface of the Thanx Partner API.
+    toolCount: 3
+    personas:
+    - Partner Integrator
+    domains:
+    - Metadata
+  - name: Thanx Partner API — Subscribers
+    file: capabilities/partner-api-subscribers.yaml
+    description: Subscribers surface of the Thanx Partner API.
+    toolCount: 1
+    personas:
+    - Partner Integrator
+    domains:
+    - Subscribers
+  - name: Thanx Partner API — Users
+    file: capabilities/partner-api-users.yaml
+    description: Users surface of the Thanx Partner API.
+    toolCount: 2
+    personas:
+    - Partner Integrator
+    domains:
+    - Users
+  personas:
+  - name: Integration Developer
+    workflows:
+    - Thanx Consumer API — Cards
+    - Thanx Consumer API — Gift Cards
+    - Thanx Consumer API — Locations
+    - Thanx Consumer API — Points
+    - Thanx Consumer API — Purchases
+    - Thanx Consumer API — Rewards
+    - Thanx Consumer API — Users
+  - name: Ordering / Kiosk Provider
+    workflows:
+    - Thanx Loyalty API — Account
+    - Thanx Loyalty API — Baskets
+  - name: Partner Integrator
+    workflows:
+    - Thanx Partner API — Auth
+    - Thanx Partner API — Campaigns
+    - Thanx Partner API — Issuance Jobs
+    - Thanx Partner API — Metadata
+    - Thanx Partner API — Subscribers
+    - Thanx Partner API — Users
+  domains:
+  - Account
+  - Auth
+  - Baskets
+  - Campaigns
+  - Cards
+  - Gift Cards
+  - Issuance Jobs
+  - Locations
+  - Metadata
+  - Points
+  - Purchases
+  - Rewards
+  - Subscribers
+  - Users
+  namespaces:
+  - consumed: consumer-api-cards
+    rest: consumer-api-cards-rest
+    mcp: consumer-api-cards-mcp
+    mcpPort: 9090
+  - consumed: consumer-api-gift-cards
+    rest: consumer-api-gift-cards-rest
+    mcp: consumer-api-gift-cards-mcp
+    mcpPort: 9090
+  - consumed: consumer-api-locations
+    rest: consumer-api-locations-rest
+    mcp: consumer-api-locations-mcp
+    mcpPort: 9090
+  - consumed: consumer-api-points
+    rest: consumer-api-points-rest
+    mcp: consumer-api-points-mcp
+    mcpPort: 9090
+  - consumed: consumer-api-purchases
+    rest: consumer-api-purchases-rest
+    mcp: consumer-api-purchases-mcp
+    mcpPort: 9090
+  - consumed: consumer-api-rewards
+    rest: consumer-api-rewards-rest
+    mcp: consumer-api-rewards-mcp
+    mcpPort: 9090
+  - consumed: consumer-api-users
+    rest: consumer-api-users-rest
+    mcp: consumer-api-users-mcp
+    mcpPort: 9090
+  - consumed: loyalty-api-account
+    rest: loyalty-api-account-rest
+    mcp: loyalty-api-account-mcp
+    mcpPort: 9090
+  - consumed: loyalty-api-baskets
+    rest: loyalty-api-baskets-rest
+    mcp: loyalty-api-baskets-mcp
+    mcpPort: 9090
+  - consumed: partner-api-auth
+    rest: partner-api-auth-rest
+    mcp: partner-api-auth-mcp
+    mcpPort: 9090
+  - consumed: partner-api-campaigns
+    rest: partner-api-campaigns-rest
+    mcp: partner-api-campaigns-mcp
+    mcpPort: 9090
+  - consumed: partner-api-issuance-jobs
+    rest: partner-api-issuance-jobs-rest
+    mcp: partner-api-issuance-jobs-mcp
+    mcpPort: 9090
+  - consumed: partner-api-metadata
+    rest: partner-api-metadata-rest
+    mcp: partner-api-metadata-mcp
+    mcpPort: 9090
+  - consumed: partner-api-subscribers
+    rest: partner-api-subscribers-rest
+    mcp: partner-api-subscribers-mcp
+    mcpPort: 9090
+  - consumed: partner-api-users
+    rest: partner-api-users-rest
+    mcp: partner-api-users-mcp
+    mcpPort: 9090
+  binds:
+  - THANX_ACCESS_TOKEN
+crossReference:
+- resource: users
+  api: Thanx Consumer API
+  actions:
+  - create
+  - get
+  workflows:
+  - Thanx Consumer API — Users
+  - Thanx Partner API — Users
+- resource: cards
+  api: Thanx Consumer API
+  actions:
+  - create
+  - delete
+  - get
+  workflows:
+  - Thanx Consumer API — Cards
+  - Thanx Consumer API — Gift Cards
+- resource: rewards
+  api: Thanx Consumer API
+  actions:
+  - create
+  - get
+  workflows:
+  - Thanx Consumer API — Rewards
+- resource: purchases
+  api: Thanx Consumer API
+  actions:
+  - create
+  - get
+  workflows:
+  - Thanx Consumer API — Purchases
+- resource: points
+  api: Thanx Consumer API
+  actions:
+  - get
+  workflows:
+  - Thanx Consumer API — Points
+- resource: locations
+  api: Thanx Consumer API
+  actions:
+  - get
+  workflows:
+  - Thanx Consumer API — Locations
+- resource: gift-cards
+  api: Thanx Consumer API
+  actions:
+  - create
+  - get
+  workflows:
+  - Thanx Consumer API — Gift Cards
+- resource: account
+  api: Thanx Loyalty API
+  actions:
+  - get
+  workflows:
+  - Thanx Loyalty API — Account
+- resource: baskets
+  api: Thanx Loyalty API
+  actions:
+  - create
+  workflows:
+  - Thanx Loyalty API — Baskets
+- resource: auth
+  api: Thanx Partner API
+  actions:
+  - create
+  workflows:
+  - Thanx Partner API — Auth
+- resource: campaigns
+  api: Thanx Partner API
+  actions:
+  - create
+  - get
+  workflows:
+  - Thanx Partner API — Campaigns
+- resource: issuance-jobs
+  api: Thanx Partner API
+  actions:
+  - create
+  - get
+  workflows:
+  - Thanx Partner API — Issuance Jobs
+- resource: subscribers
+  api: Thanx Partner API
+  actions:
+  - create
+  workflows:
+  - Thanx Partner API — Subscribers
+- resource: metadata
+  api: Thanx Partner API
+  actions:
+  - get
+  workflows:
+  - Thanx Partner API — Metadata

@@ -1,0 +1,16 @@
+{
+  "id": "92b7b0dac4",
+  "name": "Pizza Town Co",
+  "price": 9.99,
+  "categories": [
+    "example"
+  ],
+  "modifiers": [
+    {
+      "id": "92b7b0dac4",
+      "name": "Pizza Town Co",
+      "price": 9.99,
+      "item_base_price": 9.99
+    }
+  ]
+}

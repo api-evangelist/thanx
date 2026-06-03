@@ -1,0 +1,26 @@
+{
+  "id": "92b7b0dac4",
+  "email": "jane.smith@example.com",
+  "rewards": [
+    {
+      "id": "92b7b0dac4",
+      "value": 1.0,
+      "label": "A free hamburger",
+      "state": "redeemable",
+      "type": "amount"
+    }
+  ],
+  "points_products": [
+    {
+      "id": "92b7b0dac4",
+      "label": "A free hamburger",
+      "cost": 1.0
+    }
+  ],
+  "points_balances": [
+    {
+      "points_experience_id": "92b7b0dac4",
+      "balance": 10.0
+    }
+  ]
+}

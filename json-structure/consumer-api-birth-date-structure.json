@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-structure/consumer-api-birth-date-structure.json",
+  "name": "BirthDate",
+  "description": "BirthDate schema from Thanx Consumer API",
+  "type": "object",
+  "properties": {
+    "year": {
+      "type": "int32",
+      "example": 1987
+    },
+    "month": {
+      "type": "int32",
+      "example": 8
+    },
+    "day": {
+      "type": "int32",
+      "example": 14
+    }
+  }
+}

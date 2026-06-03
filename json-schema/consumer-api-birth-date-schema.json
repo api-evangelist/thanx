@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BirthDate",
+  "description": "BirthDate schema from Thanx Consumer API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/consumer-api-birth-date-schema.json",
+  "type": "object",
+  "properties": {
+    "year": {
+      "type": "integer",
+      "example": 1987
+    },
+    "month": {
+      "type": "integer",
+      "example": 8
+    },
+    "day": {
+      "type": "integer",
+      "example": 14
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-structure/loyalty-api-loyalty-reward-structure.json",
+  "name": "LoyaltyReward",
+  "description": "LoyaltyReward schema from Thanx Loyalty API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "value": {
+      "type": "double",
+      "example": 1.0
+    },
+    "label": {
+      "type": "string",
+      "example": "A free hamburger"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "redeemable",
+        "delivered",
+        "active"
+      ],
+      "example": "redeemable"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "amount",
+        "percent",
+        "item"
+      ],
+      "example": "amount"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "92b7b0dac4",
+  "user_id": "92b7b0dac4",
+  "merchant_id": "92b7b0dac4",
+  "location_id": "92b7b0dac4",
+  "purchased_at": "2025-06-01T18:02:05Z",
+  "amount": 9.99,
+  "order": {
+    "id": "92b7b0dac4",
+    "provider": "OLO"
+  }
+}

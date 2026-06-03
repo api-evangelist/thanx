@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-structure/partner-api-campaign-structure.json",
+  "name": "Campaign",
+  "description": "Campaign schema from Thanx Partner API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "name": {
+      "type": "string",
+      "example": "Pizza Town Co"
+    },
+    "objective": {
+      "type": "string",
+      "example": "Free coffee for loyal customers."
+    },
+    "start_at": {
+      "type": "datetime",
+      "example": "2025-06-01T18:02:05Z"
+    },
+    "end_at": {
+      "type": "datetime",
+      "example": "2025-06-01T18:02:05Z"
+    },
+    "redeemable_from": {
+      "type": "datetime",
+      "example": "2025-06-01T18:02:05Z"
+    },
+    "redeemable_to": {
+      "type": "datetime",
+      "example": "2025-06-01T18:02:05Z"
+    },
+    "time_zone": {
+      "type": "string",
+      "example": "example"
+    },
+    "fine_print": {
+      "type": "string",
+      "example": "Free coffee for loyal customers."
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "reward_template_id": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      }
+    }
+  }
+}

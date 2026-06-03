@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CampaignVariantInput",
+  "description": "CampaignVariantInput schema from Thanx Partner API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/partner-api-campaign-variant-input-schema.json",
+  "required": [
+    "name"
+  ],
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "Pizza Town Co"
+    },
+    "reward_template_id": {
+      "type": "string",
+      "description": "Required for treatment variants, omitted for control.",
+      "example": "92b7b0dac4"
+    }
+  }
+}

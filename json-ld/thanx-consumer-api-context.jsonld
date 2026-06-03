@@ -1,0 +1,243 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "thanx": "https://docs.thanx.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Authorization": "thanx:Authorization",
+    "BirthDate": "thanx:BirthDate",
+    "Card": "thanx:Card",
+    "CardEnvelope": "thanx:CardEnvelope",
+    "GiftCard": "thanx:GiftCard",
+    "Location": "thanx:Location",
+    "Pagination": "thanx:Pagination",
+    "Purchase": "thanx:Purchase",
+    "Reward": "thanx:Reward",
+    "RewardEnvelope": "thanx:RewardEnvelope",
+    "User": "thanx:User",
+    "UserEnvelope": "thanx:UserEnvelope",
+    "UserInput": "thanx:UserInput",
+    "accessToken": {
+      "@id": "thanx:access_token",
+      "@type": "xsd:string"
+    },
+    "activatedAt": {
+      "@id": "thanx:activated_at",
+      "@type": "xsd:dateTime"
+    },
+    "amount": {
+      "@id": "thanx:amount",
+      "@type": "xsd:double"
+    },
+    "availableAt": {
+      "@id": "thanx:available_at",
+      "@type": "xsd:dateTime"
+    },
+    "balance": {
+      "@id": "thanx:balance",
+      "@type": "xsd:double"
+    },
+    "birthDate": {
+      "@id": "thanx:birth_date",
+      "@type": "@id"
+    },
+    "campaignId": {
+      "@id": "thanx:campaign_id",
+      "@type": "xsd:string"
+    },
+    "card": {
+      "@id": "thanx:card",
+      "@type": "@id"
+    },
+    "city": {
+      "@id": "thanx:city",
+      "@type": "xsd:string"
+    },
+    "code": {
+      "@id": "thanx:code",
+      "@type": "xsd:string"
+    },
+    "couponCode": {
+      "@id": "thanx:coupon_code",
+      "@type": "@id"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated"
+    },
+    "currentPage": {
+      "@id": "thanx:current_page",
+      "@type": "xsd:integer"
+    },
+    "day": {
+      "@id": "thanx:day",
+      "@type": "xsd:integer"
+    },
+    "detail": {
+      "@id": "thanx:detail",
+      "@type": "xsd:string"
+    },
+    "display": {
+      "@id": "thanx:display",
+      "@type": "xsd:string"
+    },
+    "earn": {
+      "@id": "thanx:earn",
+      "@type": "@id"
+    },
+    "email": {
+      "@id": "schema:email"
+    },
+    "finePrint": {
+      "@id": "thanx:fine_print",
+      "@type": "xsd:string"
+    },
+    "firstName": {
+      "@id": "thanx:first_name",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "thanx:id",
+      "@type": "xsd:string"
+    },
+    "instructions": {
+      "@id": "thanx:instructions",
+      "@type": "xsd:string"
+    },
+    "last4": {
+      "@id": "thanx:last4",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "thanx:last_name",
+      "@type": "xsd:string"
+    },
+    "locationId": {
+      "@id": "thanx:location_id",
+      "@type": "xsd:string"
+    },
+    "loyaltyRedemptionType": {
+      "@id": "thanx:loyalty_redemption_type",
+      "@type": "xsd:string"
+    },
+    "merchantId": {
+      "@id": "thanx:merchant_id",
+      "@type": "xsd:string"
+    },
+    "month": {
+      "@id": "thanx:month",
+      "@type": "xsd:integer"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "oloUid": {
+      "@id": "thanx:olo_uid",
+      "@type": "xsd:string"
+    },
+    "order": {
+      "@id": "thanx:order",
+      "@type": "@id"
+    },
+    "perPage": {
+      "@id": "thanx:per_page",
+      "@type": "xsd:integer"
+    },
+    "phone": {
+      "@id": "thanx:phone",
+      "@type": "xsd:string"
+    },
+    "provider": {
+      "@id": "thanx:provider",
+      "@type": "xsd:string"
+    },
+    "purchasedAt": {
+      "@id": "thanx:purchased_at",
+      "@type": "xsd:dateTime"
+    },
+    "redeem": {
+      "@id": "thanx:redeem",
+      "@type": "@id"
+    },
+    "refreshToken": {
+      "@id": "thanx:refresh_token",
+      "@type": "xsd:string"
+    },
+    "retireAt": {
+      "@id": "thanx:retire_at",
+      "@type": "xsd:dateTime"
+    },
+    "reward": {
+      "@id": "thanx:reward",
+      "@type": "@id"
+    },
+    "scope": {
+      "@id": "thanx:scope",
+      "@type": "xsd:string"
+    },
+    "signupProgramId": {
+      "@id": "thanx:signup_program_id",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "thanx:state",
+      "@type": "xsd:string"
+    },
+    "street": {
+      "@id": "thanx:street",
+      "@type": "xsd:string"
+    },
+    "text": {
+      "@id": "thanx:text",
+      "@type": "xsd:string"
+    },
+    "tokenType": {
+      "@id": "thanx:token_type",
+      "@type": "xsd:string"
+    },
+    "totalPage": {
+      "@id": "thanx:total_page",
+      "@type": "xsd:integer"
+    },
+    "type": {
+      "@id": "thanx:type",
+      "@type": "xsd:string"
+    },
+    "usedAt": {
+      "@id": "thanx:used_at",
+      "@type": "xsd:dateTime"
+    },
+    "user": {
+      "@id": "thanx:user",
+      "@type": "@id"
+    },
+    "userId": {
+      "@id": "thanx:user_id",
+      "@type": "xsd:string"
+    },
+    "usesDynamicCouponCodes": {
+      "@id": "thanx:uses_dynamic_coupon_codes",
+      "@type": "xsd:boolean"
+    },
+    "venue": {
+      "@id": "thanx:venue",
+      "@type": "xsd:string"
+    },
+    "window": {
+      "@id": "thanx:window",
+      "@type": "xsd:string"
+    },
+    "year": {
+      "@id": "thanx:year",
+      "@type": "xsd:integer"
+    },
+    "zip": {
+      "@id": "thanx:zip",
+      "@type": "xsd:string"
+    },
+    "zipCode": {
+      "@id": "thanx:zip_code",
+      "@type": "xsd:string"
+    }
+  }
+}

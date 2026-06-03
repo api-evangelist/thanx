@@ -1,0 +1,129 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "thanx": "https://docs.thanx.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Account": "thanx:Account",
+    "Basket": "thanx:Basket",
+    "BasketInput": "thanx:BasketInput",
+    "BasketItem": "thanx:BasketItem",
+    "LoyaltyReward": "thanx:LoyaltyReward",
+    "Payment": "thanx:Payment",
+    "PointsProduct": "thanx:PointsProduct",
+    "amount": {
+      "@id": "thanx:amount",
+      "@type": "xsd:double"
+    },
+    "authorizedAt": {
+      "@id": "thanx:authorized_at",
+      "@type": "xsd:dateTime"
+    },
+    "balance": {
+      "@id": "thanx:balance",
+      "@type": "xsd:double"
+    },
+    "categories": {
+      "@id": "thanx:categories",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "cost": {
+      "@id": "thanx:cost",
+      "@type": "xsd:double"
+    },
+    "discount": {
+      "@id": "thanx:discount",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email"
+    },
+    "id": {
+      "@id": "thanx:id",
+      "@type": "xsd:string"
+    },
+    "issuer": {
+      "@id": "thanx:issuer",
+      "@type": "xsd:string"
+    },
+    "itemBasePrice": {
+      "@id": "thanx:item_base_price",
+      "@type": "xsd:double"
+    },
+    "items": {
+      "@id": "thanx:items",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "label": {
+      "@id": "thanx:label",
+      "@type": "xsd:string"
+    },
+    "last4": {
+      "@id": "thanx:last4",
+      "@type": "xsd:string"
+    },
+    "locationUid": {
+      "@id": "thanx:location_uid",
+      "@type": "xsd:string"
+    },
+    "modifiers": {
+      "@id": "thanx:modifiers",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "orderTimestamp": {
+      "@id": "thanx:order_timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "payments": {
+      "@id": "thanx:payments",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "pointsBalances": {
+      "@id": "thanx:points_balances",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "pointsExperienceId": {
+      "@id": "thanx:points_experience_id",
+      "@type": "xsd:string"
+    },
+    "pointsProducts": {
+      "@id": "thanx:points_products",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "price": {
+      "@id": "thanx:price",
+      "@type": "xsd:double"
+    },
+    "rewards": {
+      "@id": "thanx:rewards",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "state": {
+      "@id": "thanx:state",
+      "@type": "xsd:string"
+    },
+    "subtotal": {
+      "@id": "thanx:subtotal",
+      "@type": "xsd:double"
+    },
+    "type": {
+      "@id": "thanx:type",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "thanx:value",
+      "@type": "xsd:decimal"
+    }
+  }
+}

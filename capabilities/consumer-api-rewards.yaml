@@ -1,0 +1,194 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Thanx Consumer API \u2014 Rewards"
+  description: 'Rewards surface of the Thanx Consumer API. 4 operations. Lead operation: Get Rewards. Self-contained Naftiko capability covering one Thanx business surface.'
+  tags:
+  - Thanx
+  - Consumer
+  - Rewards
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    THANX_ACCESS_TOKEN: THANX_ACCESS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: consumer-api-rewards
+    baseUri: https://api.thanx.com
+    description: "Thanx Consumer API \u2014 Rewards business capability. Self-contained, no shared references."
+    authentication:
+      type: bearer
+      token: '{{env.THANX_ACCESS_TOKEN}}'
+    resources:
+    - name: rewards
+      path: /rewards
+      operations:
+      - name: getRewards
+        method: GET
+        description: Get Rewards
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: states[]
+          in: query
+          type: array
+          required: false
+          description: Only rewards in these states are returned.
+        - name: merchant_id
+          in: query
+          type: string
+          required: false
+          description: merchant_id
+        - name: user_id
+          in: query
+          type: string
+          required: false
+          description: user_id
+    - name: rewards-id
+      path: /rewards/{id}
+      operations:
+      - name: getReward
+        method: GET
+        description: Get Reward
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: rewards-id-activate
+      path: /rewards/{id}/activate
+      operations:
+      - name: activateReward
+        method: POST
+        description: Activate Reward
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: rewards-id-finalize
+      path: /rewards/{id}/finalize
+      operations:
+      - name: finalizeReward
+        method: POST
+        description: Finalize Reward
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: consumer-api-rewards-rest
+    port: 8080
+    description: "REST adapter for Thanx Consumer API \u2014 Rewards. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/rewards
+      name: rewards
+      description: REST surface for rewards.
+      operations:
+      - method: GET
+        name: getRewards
+        description: Get Rewards
+        call: consumer-api-rewards.getRewards
+        with:
+          states[]: rest.states[]
+          merchant_id: rest.merchant_id
+          user_id: rest.user_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rewards/{id}
+      name: rewards
+      description: REST surface for rewards.
+      operations:
+      - method: GET
+        name: getReward
+        description: Get Reward
+        call: consumer-api-rewards.getReward
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rewards/{id}/activate
+      name: rewards-activate
+      description: REST surface for rewards-activate.
+      operations:
+      - method: POST
+        name: activateReward
+        description: Activate Reward
+        call: consumer-api-rewards.activateReward
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rewards/{id}/finalize
+      name: rewards-finalize
+      description: REST surface for rewards-finalize.
+      operations:
+      - method: POST
+        name: finalizeReward
+        description: Finalize Reward
+        call: consumer-api-rewards.finalizeReward
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: consumer-api-rewards-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Thanx Consumer API \u2014 Rewards. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: get-rewards
+      description: Get Rewards
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: consumer-api-rewards.getRewards
+      with:
+        states[]: tools.states[]
+        merchant_id: tools.merchant_id
+        user_id: tools.user_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-reward
+      description: Get Reward
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: consumer-api-rewards.getReward
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activate-reward
+      description: Activate Reward
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: consumer-api-rewards.activateReward
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finalize-reward
+      description: Finalize Reward
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: consumer-api-rewards.finalizeReward
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.

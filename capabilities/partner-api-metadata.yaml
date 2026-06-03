@@ -1,0 +1,146 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Thanx Partner API \u2014 Metadata"
+  description: 'Metadata surface of the Thanx Partner API. 3 operations. Lead operation: Get Merchants. Self-contained Naftiko capability covering one Thanx business surface.'
+  tags:
+  - Thanx
+  - Partner
+  - Metadata
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    THANX_ACCESS_TOKEN: THANX_ACCESS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: partner-api-metadata
+    baseUri: https://api.thanx.com
+    description: "Thanx Partner API \u2014 Metadata business capability. Self-contained, no shared references."
+    authentication:
+      type: bearer
+      token: '{{env.THANX_ACCESS_TOKEN}}'
+    resources:
+    - name: partner-metadata-merchants
+      path: /partner/metadata/merchants
+      operations:
+      - name: getMerchants
+        method: GET
+        description: Get Merchants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: partner-metadata-locations
+      path: /partner/metadata/locations
+      operations:
+      - name: getPartnerLocations
+        method: GET
+        description: Get Locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: merchant_id
+          in: query
+          type: string
+          required: false
+          description: merchant_id
+    - name: partner-metadata-scopes
+      path: /partner/metadata/scopes
+      operations:
+      - name: getScopes
+        method: GET
+        description: Get Scopes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: partner-api-metadata-rest
+    port: 8080
+    description: "REST adapter for Thanx Partner API \u2014 Metadata. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/metadata/merchants
+      name: partner-metadata-merchants
+      description: REST surface for partner-metadata-merchants.
+      operations:
+      - method: GET
+        name: getMerchants
+        description: Get Merchants
+        call: partner-api-metadata.getMerchants
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metadata/locations
+      name: partner-metadata-locations
+      description: REST surface for partner-metadata-locations.
+      operations:
+      - method: GET
+        name: getPartnerLocations
+        description: Get Locations
+        call: partner-api-metadata.getPartnerLocations
+        with:
+          merchant_id: rest.merchant_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metadata/scopes
+      name: partner-metadata-scopes
+      description: REST surface for partner-metadata-scopes.
+      operations:
+      - method: GET
+        name: getScopes
+        description: Get Scopes
+        call: partner-api-metadata.getScopes
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: partner-api-metadata-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Thanx Partner API \u2014 Metadata. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: get-merchants
+      description: Get Merchants
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: partner-api-metadata.getMerchants
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-locations
+      description: Get Locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: partner-api-metadata.getPartnerLocations
+      with:
+        merchant_id: tools.merchant_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-scopes
+      description: Get Scopes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: partner-api-metadata.getScopes
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.

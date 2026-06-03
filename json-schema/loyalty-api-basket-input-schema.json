@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BasketInput",
+  "description": "BasketInput schema from Thanx Loyalty API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/loyalty-api-basket-input-schema.json",
+  "required": [
+    "state",
+    "order_timestamp",
+    "location_uid",
+    "items",
+    "subtotal"
+  ],
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "open",
+        "validated",
+        "billed",
+        "checkout"
+      ],
+      "example": "open"
+    },
+    "order_timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2025-06-01T18:02:05Z"
+    },
+    "location_uid": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "rewards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "points_products": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "payments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "issuer": {
+            "type": "string",
+            "example": "example"
+          },
+          "last4": {
+            "type": "string",
+            "example": "1234"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "example": 9.99
+          },
+          "authorized_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-06-01T18:02:05Z"
+          }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "92b7b0dac4"
+          },
+          "name": {
+            "type": "string",
+            "example": "Pizza Town Co"
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "example": 9.99
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "modifiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number",
+                  "format": "double"
+                },
+                "item_base_price": {
+                  "type": "number",
+                  "format": "double"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "subtotal": {
+      "type": "number",
+      "format": "double",
+      "example": 9.99
+    }
+  }
+}

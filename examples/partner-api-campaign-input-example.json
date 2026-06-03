@@ -1,0 +1,16 @@
+{
+  "merchant_id": "92b7b0dac4",
+  "name": "Pizza Town Co",
+  "objective": "Free coffee for loyal customers.",
+  "fine_print": "Free coffee for loyal customers.",
+  "start_at": "2025-06-01T18:02:05Z",
+  "end_at": "2025-06-01T18:02:05Z",
+  "redeemable_from": "2025-06-01T18:02:05Z",
+  "redeemable_to": "2025-06-01T18:02:05Z",
+  "variants": [
+    {
+      "name": "Pizza Town Co",
+      "reward_template_id": "92b7b0dac4"
+    }
+  ]
+}

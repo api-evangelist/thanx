@@ -1,0 +1,63 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Thanx
+providerId: thanx
+created: '2026-06-03'
+modified: '2026-06-03'
+reconciled: false
+tags:
+  - Loyalty
+  - Guest Engagement
+  - Restaurant
+  - CRM
+  - Marketing
+description: >-
+  Thanx does not publish standardized pricing tiers. Pricing is custom and
+  contact-sales, scaled to business factors including restaurant count, average
+  unit volume (AUV), and the platform capabilities selected. The vendor frames
+  cost in terms of ROI rather than published list prices, so the single plan
+  below captures the consultative, custom-quote model. No per-API-call or
+  per-transaction list prices are published; the API surface is included as
+  part of the platform subscription.
+sources:
+  - https://www.thanx.com/pricing
+  - https://www.thanx.com/
+plans:
+  - id: thanx-platform-custom
+    name: Thanx Platform (Custom)
+    type: enterprise
+    description: >-
+      Custom-quoted platform subscription covering loyalty, CRM, lifecycle
+      marketing, digital ordering, and the Consumer, Partner, and Loyalty APIs.
+      Priced per business based on location count, AUV, and selected modules.
+    entries:
+      - label: Platform Subscription
+        name: platform_subscription
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: US
+        unit: '1'
+        price: contact sales
+        userMultiplied: false
+      - label: Per-Location Scaling
+        name: per_location
+        type: tiered
+        metric: varies
+        limit: -1
+        timeFrame: month
+        geo: US
+        unit: '1'
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Customer Loyalty & CRM
+      - name: Lifecycle Marketing Automation
+      - name: Digital Ordering & Pay
+      - name: Consumer API Access
+      - name: Partner API Access
+      - name: Loyalty API Access
+      - name: Webhooks
+      - name: Data Exports (Connex)

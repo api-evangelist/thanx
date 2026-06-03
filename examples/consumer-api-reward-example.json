@@ -1,0 +1,30 @@
+{
+  "id": "92b7b0dac4",
+  "olo_uid": "92b7b0dac4",
+  "user_id": "92b7b0dac4",
+  "merchant_id": "92b7b0dac4",
+  "campaign_id": "92b7b0dac4",
+  "state": "available",
+  "earn": {
+    "type": "example"
+  },
+  "redeem": {
+    "type": "example",
+    "text": "example",
+    "detail": "example",
+    "window": "example",
+    "venue": "example"
+  },
+  "coupon_code": {
+    "code": "example",
+    "type": "example",
+    "display": "example"
+  },
+  "fine_print": "Free coffee for loyal customers.",
+  "instructions": "Free coffee for loyal customers.",
+  "available_at": "2025-06-01T18:02:05Z",
+  "activated_at": "2025-06-01T18:02:05Z",
+  "retire_at": "2025-06-01T18:02:05Z",
+  "used_at": "2025-06-01T18:02:05Z",
+  "uses_dynamic_coupon_codes": true
+}

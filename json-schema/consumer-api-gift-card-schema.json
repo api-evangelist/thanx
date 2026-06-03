@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GiftCard",
+  "description": "GiftCard schema from Thanx Consumer API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/consumer-api-gift-card-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "user_id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "balance": {
+      "type": "number",
+      "format": "double",
+      "example": 10.0
+    },
+    "code": {
+      "type": "string",
+      "example": "FREECOFFEE"
+    }
+  }
+}

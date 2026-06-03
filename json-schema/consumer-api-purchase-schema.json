@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Purchase",
+  "description": "Purchase schema from Thanx Consumer API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/consumer-api-purchase-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "user_id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "merchant_id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "location_id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "purchased_at": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2025-06-01T18:02:05Z"
+    },
+    "amount": {
+      "type": "number",
+      "format": "double",
+      "example": 9.99
+    },
+    "order": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string",
+          "enum": [
+            "OLO",
+            "Toast",
+            "Other"
+          ]
+        }
+      }
+    }
+  }
+}

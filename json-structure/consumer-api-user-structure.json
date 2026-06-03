@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-structure/consumer-api-user-structure.json",
+  "name": "User",
+  "description": "User schema from Thanx Consumer API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "email": {
+      "type": "string",
+      "example": "jane.smith@example.com"
+    },
+    "phone": {
+      "type": "string",
+      "description": "E.164 formatted phone number.",
+      "example": "+14158672345"
+    },
+    "first_name": {
+      "type": "string",
+      "example": "Jane"
+    },
+    "last_name": {
+      "type": "string",
+      "example": "Smith"
+    },
+    "birth_date": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "int32",
+          "example": 1987
+        },
+        "month": {
+          "type": "int32",
+          "example": 8
+        },
+        "day": {
+          "type": "int32",
+          "example": 14
+        }
+      }
+    },
+    "zip_code": {
+      "type": "string",
+      "example": "94105"
+    }
+  }
+}

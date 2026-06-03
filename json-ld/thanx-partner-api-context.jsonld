@@ -1,0 +1,99 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "thanx": "https://docs.thanx.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Campaign": "thanx:Campaign",
+    "CampaignInput": "thanx:CampaignInput",
+    "CampaignVariantInput": "thanx:CampaignVariantInput",
+    "IssuanceJob": "thanx:IssuanceJob",
+    "PartnerUser": "thanx:PartnerUser",
+    "created_at": {
+      "@id": "schema:dateCreated"
+    },
+    "email": {
+      "@id": "schema:email"
+    },
+    "endAt": {
+      "@id": "thanx:end_at",
+      "@type": "xsd:dateTime"
+    },
+    "failedCount": {
+      "@id": "thanx:failed_count",
+      "@type": "xsd:integer"
+    },
+    "finePrint": {
+      "@id": "thanx:fine_print",
+      "@type": "xsd:string"
+    },
+    "firstName": {
+      "@id": "thanx:first_name",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "thanx:id",
+      "@type": "xsd:string"
+    },
+    "issuedCount": {
+      "@id": "thanx:issued_count",
+      "@type": "xsd:integer"
+    },
+    "lastName": {
+      "@id": "thanx:last_name",
+      "@type": "xsd:string"
+    },
+    "merchantId": {
+      "@id": "thanx:merchant_id",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "objective": {
+      "@id": "thanx:objective",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "thanx:phone",
+      "@type": "xsd:string"
+    },
+    "redeemableFrom": {
+      "@id": "thanx:redeemable_from",
+      "@type": "xsd:dateTime"
+    },
+    "redeemableTo": {
+      "@id": "thanx:redeemable_to",
+      "@type": "xsd:dateTime"
+    },
+    "requestedCount": {
+      "@id": "thanx:requested_count",
+      "@type": "xsd:integer"
+    },
+    "rewardTemplateId": {
+      "@id": "thanx:reward_template_id",
+      "@type": "xsd:string"
+    },
+    "startAt": {
+      "@id": "thanx:start_at",
+      "@type": "xsd:dateTime"
+    },
+    "state": {
+      "@id": "thanx:state",
+      "@type": "xsd:string"
+    },
+    "timeZone": {
+      "@id": "thanx:time_zone",
+      "@type": "xsd:string"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified"
+    },
+    "variants": {
+      "@id": "thanx:variants",
+      "@container": "@set",
+      "@type": "@id"
+    }
+  }
+}

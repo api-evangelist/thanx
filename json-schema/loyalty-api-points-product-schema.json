@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PointsProduct",
+  "description": "PointsProduct schema from Thanx Loyalty API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/loyalty-api-points-product-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "label": {
+      "type": "string",
+      "example": "A free hamburger"
+    },
+    "cost": {
+      "type": "number",
+      "format": "double",
+      "example": 1.0
+    }
+  }
+}

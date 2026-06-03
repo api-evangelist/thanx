@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Card",
+  "description": "Card schema from Thanx Consumer API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/consumer-api-card-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "user_id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "last4": {
+      "type": "string",
+      "example": "1234"
+    },
+    "type": {
+      "type": "string",
+      "example": "visa"
+    },
+    "zip_code": {
+      "type": "string",
+      "example": "94105"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Thanx Loyalty API \u2014 Baskets"
+  description: 'Baskets surface of the Thanx Loyalty API. 1 operations. Lead operation: Create And Update Basket. Self-contained Naftiko capability covering one Thanx business surface.'
+  tags:
+  - Thanx
+  - Loyalty
+  - Baskets
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    THANX_ACCESS_TOKEN: THANX_ACCESS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: loyalty-api-baskets
+    baseUri: https://loyalty.thanx.com
+    description: "Thanx Loyalty API \u2014 Baskets business capability. Self-contained, no shared references."
+    authentication:
+      type: bearer
+      token: '{{env.THANX_ACCESS_TOKEN}}'
+    resources:
+    - name: api-baskets
+      path: /api/baskets
+      operations:
+      - name: createUpdateBasket
+        method: POST
+        description: Create And Update Basket
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Create And Update Basket request body.
+  exposes:
+  - type: rest
+    namespace: loyalty-api-baskets-rest
+    port: 8080
+    description: "REST adapter for Thanx Loyalty API \u2014 Baskets. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/baskets
+      name: api-baskets
+      description: REST surface for api-baskets.
+      operations:
+      - method: POST
+        name: createUpdateBasket
+        description: Create And Update Basket
+        call: loyalty-api-baskets.createUpdateBasket
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: loyalty-api-baskets-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Thanx Loyalty API \u2014 Baskets. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: create-update-basket
+      description: Create And Update Basket
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: loyalty-api-baskets.createUpdateBasket
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

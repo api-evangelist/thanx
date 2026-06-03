@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pagination",
+  "description": "Pagination schema from Thanx Consumer API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/consumer-api-pagination-schema.json",
+  "type": "object",
+  "properties": {
+    "total_page": {
+      "type": "integer",
+      "example": 1
+    },
+    "per_page": {
+      "type": "integer",
+      "example": 1
+    },
+    "current_page": {
+      "type": "integer",
+      "example": 1
+    }
+  }
+}

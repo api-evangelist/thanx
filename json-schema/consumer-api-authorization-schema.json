@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Authorization",
+  "description": "Authorization schema from Thanx Consumer API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/consumer-api-authorization-schema.json",
+  "type": "object",
+  "properties": {
+    "token_type": {
+      "type": "string",
+      "example": "945148251b603ae34561d90acfe4050e"
+    },
+    "scope": {
+      "type": "string",
+      "example": "passwordless"
+    },
+    "created_at": {
+      "type": "integer",
+      "example": 1577836800
+    },
+    "access_token": {
+      "type": "string",
+      "example": "945148251b603ae34561d90acfe4050e"
+    },
+    "refresh_token": {
+      "type": "string",
+      "example": "945148251b603ae34561d90acfe4050e"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-structure/loyalty-api-basket-structure.json",
+  "name": "Basket",
+  "description": "Basket schema from Thanx Loyalty API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "92b7b0dac4"
+    },
+    "state": {
+      "type": "string",
+      "example": "CA"
+    },
+    "discount": {
+      "type": "string",
+      "example": "example"
+    }
+  }
+}

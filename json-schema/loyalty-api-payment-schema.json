@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Payment",
+  "description": "Payment schema from Thanx Loyalty API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-schema/loyalty-api-payment-schema.json",
+  "type": "object",
+  "properties": {
+    "issuer": {
+      "type": "string",
+      "example": "example"
+    },
+    "last4": {
+      "type": "string",
+      "example": "1234"
+    },
+    "amount": {
+      "type": "number",
+      "format": "double",
+      "example": 9.99
+    },
+    "authorized_at": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2025-06-01T18:02:05Z"
+    }
+  }
+}

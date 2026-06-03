@@ -1,0 +1,127 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Thanx Consumer API \u2014 Purchases"
+  description: 'Purchases surface of the Thanx Consumer API. 2 operations. Lead operation: Get Purchases. Self-contained Naftiko capability covering one Thanx business surface.'
+  tags:
+  - Thanx
+  - Consumer
+  - Purchases
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    THANX_ACCESS_TOKEN: THANX_ACCESS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: consumer-api-purchases
+    baseUri: https://api.thanx.com
+    description: "Thanx Consumer API \u2014 Purchases business capability. Self-contained, no shared references."
+    authentication:
+      type: bearer
+      token: '{{env.THANX_ACCESS_TOKEN}}'
+    resources:
+    - name: purchases
+      path: /purchases
+      operations:
+      - name: getPurchases
+        method: GET
+        description: Get Purchases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: merchant_id
+          in: query
+          type: string
+          required: false
+          description: merchant_id
+        - name: location_id
+          in: query
+          type: string
+          required: false
+          description: location_id
+        - name: user_id
+          in: query
+          type: string
+          required: false
+          description: user_id
+      - name: createPurchase
+        method: POST
+        description: Create Purchase
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Create Purchase request body.
+  exposes:
+  - type: rest
+    namespace: consumer-api-purchases-rest
+    port: 8080
+    description: "REST adapter for Thanx Consumer API \u2014 Purchases. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/purchases
+      name: purchases
+      description: REST surface for purchases.
+      operations:
+      - method: GET
+        name: getPurchases
+        description: Get Purchases
+        call: consumer-api-purchases.getPurchases
+        with:
+          merchant_id: rest.merchant_id
+          location_id: rest.location_id
+          user_id: rest.user_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createPurchase
+        description: Create Purchase
+        call: consumer-api-purchases.createPurchase
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: consumer-api-purchases-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Thanx Consumer API \u2014 Purchases. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: get-purchases
+      description: Get Purchases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: consumer-api-purchases.getPurchases
+      with:
+        merchant_id: tools.merchant_id
+        location_id: tools.location_id
+        user_id: tools.user_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-purchase
+      description: Create Purchase
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: consumer-api-purchases.createPurchase
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

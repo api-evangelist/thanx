@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-structure/loyalty-api-payment-structure.json",
+  "name": "Payment",
+  "description": "Payment schema from Thanx Loyalty API",
+  "type": "object",
+  "properties": {
+    "issuer": {
+      "type": "string",
+      "example": "example"
+    },
+    "last4": {
+      "type": "string",
+      "example": "1234"
+    },
+    "amount": {
+      "type": "double",
+      "example": 9.99
+    },
+    "authorized_at": {
+      "type": "datetime",
+      "example": "2025-06-01T18:02:05Z"
+    }
+  }
+}

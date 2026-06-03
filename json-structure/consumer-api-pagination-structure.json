@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/json-structure/consumer-api-pagination-structure.json",
+  "name": "Pagination",
+  "description": "Pagination schema from Thanx Consumer API",
+  "type": "object",
+  "properties": {
+    "total_page": {
+      "type": "int32",
+      "example": 1
+    },
+    "per_page": {
+      "type": "int32",
+      "example": 1
+    },
+    "current_page": {
+      "type": "int32",
+      "example": 1
+    }
+  }
+}
