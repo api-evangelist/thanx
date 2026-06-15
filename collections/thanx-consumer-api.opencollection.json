@@ -1,0 +1,360 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thanx Consumer API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/users/me"
+          },
+          "docs": "Retrieves the authenticated Thanx user's profile."
+        },
+        {
+          "info": {
+            "name": "Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Thanx user and returns an authorization grant."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/cards"
+          },
+          "docs": "Retrieves the registered cards for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/cards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new payment card with Thanx for card-linked loyalty."
+        },
+        {
+          "info": {
+            "name": "Delete Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.thanx.com/cards/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Archives a registered card."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rewards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/rewards",
+            "params": [
+              {
+                "name": "states[]",
+                "value": "",
+                "type": "query",
+                "description": "Only rewards in these states are returned."
+              },
+              {
+                "name": "merchant_id",
+                "value": "92b7b0dac4",
+                "type": "query"
+              },
+              {
+                "name": "user_id",
+                "value": "92b7b0dac4",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves loyalty rewards, optionally filtered by state and merchant."
+        },
+        {
+          "info": {
+            "name": "Get Reward",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/rewards/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single reward by identifier."
+        },
+        {
+          "info": {
+            "name": "Activate Reward",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/rewards/:id/activate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Activates a reward so it can be redeemed."
+        },
+        {
+          "info": {
+            "name": "Finalize Reward",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/rewards/:id/finalize",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Finalizes a reward after redemption."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Purchases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Purchases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/purchases",
+            "params": [
+              {
+                "name": "merchant_id",
+                "value": "92b7b0dac4",
+                "type": "query"
+              },
+              {
+                "name": "location_id",
+                "value": "92b7b0dac4",
+                "type": "query"
+              },
+              {
+                "name": "user_id",
+                "value": "92b7b0dac4",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves consumer purchases, optionally filtered by merchant, location, or user."
+        },
+        {
+          "info": {
+            "name": "Create Purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/purchases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reports a consumer purchase to Thanx."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Points",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Points Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/points_experiences/:id/balance",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the user's current points currency balance for a points experience."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/locations",
+            "params": [
+              {
+                "name": "merchant_id",
+                "value": "92b7b0dac4",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves merchant locations, optionally filtered by merchant."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gift Cards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/gift_cards"
+          },
+          "docs": "Retrieves the authenticated user's gift cards."
+        },
+        {
+          "info": {
+            "name": "Create Gift Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/gift_cards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new digital gift card."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

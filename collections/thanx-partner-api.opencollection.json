@@ -1,0 +1,272 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thanx Partner API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/partner/oauth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Acquires a privileged end-user access token for a given merchant and identifier (user, email, or phone)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/campaigns",
+            "params": [
+              {
+                "name": "merchant_id",
+                "value": "92b7b0dac4",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists campaigns for a merchant."
+        },
+        {
+          "info": {
+            "name": "Create Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/partner/campaigns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a marketing campaign with treatment and control variants."
+        },
+        {
+          "info": {
+            "name": "Get Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single campaign by identifier."
+        },
+        {
+          "info": {
+            "name": "Issue Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/partner/campaigns/issue",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Issues campaign rewards to a batch of identifiers (up to 10,000 per request). Returns an asynchronous issuance job."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Issuance Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Issuance Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/issuance_jobs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the status of a reward issuance job."
+        },
+        {
+          "info": {
+            "name": "Revoke Issuance Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/partner/issuance_jobs/:id/revoke",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Revokes a reward issuance job."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscribers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Subscriber",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/partner/subscribers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ingests a marketing subscriber for a merchant."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a user by identifier."
+        },
+        {
+          "info": {
+            "name": "Get Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/users",
+            "params": [
+              {
+                "name": "merchant_id",
+                "value": "92b7b0dac4",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves users for a merchant."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Merchants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/metadata/merchants"
+          },
+          "docs": "Lists merchants accessible to the partner."
+        },
+        {
+          "info": {
+            "name": "Get Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/metadata/locations",
+            "params": [
+              {
+                "name": "merchant_id",
+                "value": "92b7b0dac4",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists locations accessible to the partner."
+        },
+        {
+          "info": {
+            "name": "Get Scopes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/metadata/scopes"
+          },
+          "docs": "Lists the OAuth scopes available to the partner."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

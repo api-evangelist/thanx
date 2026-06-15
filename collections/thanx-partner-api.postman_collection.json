@@ -1,0 +1,1409 @@
+{
+  "item": [
+    {
+      "id": "2704609a-6c24-4f8b-b46f-0da4132d4246",
+      "name": "Auth",
+      "description": {
+        "content": "Acquire privileged end-user access tokens.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "161dd258-4313-48b8-b40d-370a54533914",
+          "name": "Create Access Token",
+          "request": {
+            "name": "Create Access Token",
+            "description": {
+              "content": "Acquires a privileged end-user access token for a given merchant and identifier (user, email, or phone).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "oauth",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchant_id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"expires_in\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ffa08ea7-54b7-45be-a704-02f5a6428f5e",
+              "name": "The issued access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant_id\": \"92b7b0dac4\",\n  \"user_id\": \"92b7b0dac4\",\n  \"email\": \"jane.smith@example.com\",\n  \"phone\": \"+14158672345\",\n  \"expires_in\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"945148251b603ae34561d90acfe4050e\",\n  \"token_type\": \"945148251b603ae34561d90acfe4050e\",\n  \"scope\": \"passwordless\",\n  \"created_at\": 1577836800,\n  \"expires_in\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ba80227d-ebd1-48ab-99b7-ce530d952c23",
+      "name": "Campaigns",
+      "description": {
+        "content": "Create, retrieve, list campaigns and issue rewards.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0ff3673d-e032-46d6-8416-061f8ad4576e",
+          "name": "Create Campaign",
+          "request": {
+            "name": "Create Campaign",
+            "description": {
+              "content": "Creates a marketing campaign with treatment and control variants.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campaign\": {\n    \"merchant_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"start_at\": \"<dateTime>\",\n    \"end_at\": \"<dateTime>\",\n    \"redeemable_from\": \"<dateTime>\",\n    \"redeemable_to\": \"<dateTime>\",\n    \"objective\": \"<string>\",\n    \"fine_print\": \"<string>\",\n    \"variants\": [\n      {\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f155803b-5d97-43a1-bd5c-81f46819f261",
+              "name": "The created campaign.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaign\": {\n    \"merchant_id\": \"92b7b0dac4\",\n    \"name\": \"Pizza Town Co\",\n    \"objective\": \"Free coffee for loyal customers.\",\n    \"fine_print\": \"Free coffee for loyal customers.\",\n    \"start_at\": \"2025-06-01T18:02:05Z\",\n    \"end_at\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_from\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_to\": \"2025-06-01T18:02:05Z\",\n    \"variants\": [\n      {\n        \"name\": \"Pizza Town Co\",\n        \"reward_template_id\": \"92b7b0dac4\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaign\": {\n    \"id\": \"92b7b0dac4\",\n    \"name\": \"Pizza Town Co\",\n    \"objective\": \"Free coffee for loyal customers.\",\n    \"start_at\": \"2025-06-01T18:02:05Z\",\n    \"end_at\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_from\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_to\": \"2025-06-01T18:02:05Z\",\n    \"time_zone\": \"example\",\n    \"fine_print\": \"Free coffee for loyal customers.\",\n    \"variants\": [\n      {\n        \"id\": \"92b7b0dac4\",\n        \"name\": \"Pizza Town Co\",\n        \"reward_template_id\": \"92b7b0dac4\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f60516d0-444a-47c8-8416-d1db4e989da4",
+          "name": "List Campaigns",
+          "request": {
+            "name": "List Campaigns",
+            "description": {
+              "content": "Lists campaigns for a merchant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "425a9333-a68b-4fc1-b08b-c35a0696a2c2",
+              "name": "A list of campaigns.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_id",
+                      "value": "92b7b0dac4"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaigns\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"name\": \"Pizza Town Co\",\n      \"objective\": \"Free coffee for loyal customers.\",\n      \"start_at\": \"2025-06-01T18:02:05Z\",\n      \"end_at\": \"2025-06-01T18:02:05Z\",\n      \"redeemable_from\": \"2025-06-01T18:02:05Z\",\n      \"redeemable_to\": \"2025-06-01T18:02:05Z\",\n      \"time_zone\": \"example\",\n      \"fine_print\": \"Free coffee for loyal customers.\",\n      \"variants\": [\n        {\n          \"id\": \"92b7b0dac4\",\n          \"name\": \"Pizza Town Co\",\n          \"reward_template_id\": \"92b7b0dac4\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8328ed9-9c8e-4e3c-8bef-02b504446e21",
+          "name": "Get Campaign",
+          "request": {
+            "name": "Get Campaign",
+            "description": {
+              "content": "Retrieves a single campaign by identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "campaigns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b8aaabd-fc59-406d-8d7e-f0133e847b8f",
+              "name": "The campaign.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaign\": {\n    \"id\": \"92b7b0dac4\",\n    \"name\": \"Pizza Town Co\",\n    \"objective\": \"Free coffee for loyal customers.\",\n    \"start_at\": \"2025-06-01T18:02:05Z\",\n    \"end_at\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_from\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_to\": \"2025-06-01T18:02:05Z\",\n    \"time_zone\": \"example\",\n    \"fine_print\": \"Free coffee for loyal customers.\",\n    \"variants\": [\n      {\n        \"id\": \"92b7b0dac4\",\n        \"name\": \"Pizza Town Co\",\n        \"reward_template_id\": \"92b7b0dac4\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "246c501a-8151-4e66-93ad-2eab5644590a",
+          "name": "Issue Rewards",
+          "request": {
+            "name": "Issue Rewards",
+            "description": {
+              "content": "Issues campaign rewards to a batch of identifiers (up to 10,000 per request). Returns an asynchronous issuance job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "campaigns",
+                "issue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campaign_id\": \"<string>\",\n  \"merchant_id\": \"<string>\",\n  \"variant_id\": \"<string>\",\n  \"identifiers\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "73172d71-ec5d-4457-8610-2c5caa70f90d",
+              "name": "The reward issuance job was accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "campaigns",
+                    "issue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaign_id\": \"92b7b0dac4\",\n  \"merchant_id\": \"92b7b0dac4\",\n  \"variant_id\": \"92b7b0dac4\",\n  \"identifiers\": [\n    {\n      \"type\": \"email\",\n      \"value\": \"example\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuance_job\": {\n    \"id\": \"92b7b0dac4\",\n    \"state\": \"CA\",\n    \"requested_count\": 3,\n    \"issued_count\": 3,\n    \"failed_count\": 3,\n    \"created_at\": \"2025-06-01T18:02:05Z\",\n    \"updated_at\": \"2025-06-01T18:02:05Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "352785dc-c41d-469f-8a37-da9932306639",
+      "name": "Issuance Jobs",
+      "description": {
+        "content": "Track and revoke asynchronous reward issuance jobs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "509b32af-50f9-45cb-8b42-9c369a635d3d",
+          "name": "Get Issuance Job",
+          "request": {
+            "name": "Get Issuance Job",
+            "description": {
+              "content": "Retrieves the status of a reward issuance job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "issuance_jobs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e620f22-e8f2-4187-9952-7fea6c1cea8b",
+              "name": "The issuance job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "issuance_jobs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuance_job\": {\n    \"id\": \"92b7b0dac4\",\n    \"state\": \"CA\",\n    \"requested_count\": 3,\n    \"issued_count\": 3,\n    \"failed_count\": 3,\n    \"created_at\": \"2025-06-01T18:02:05Z\",\n    \"updated_at\": \"2025-06-01T18:02:05Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce889993-a0b4-4d74-918b-a272556aacc1",
+          "name": "Revoke Issuance Job",
+          "request": {
+            "name": "Revoke Issuance Job",
+            "description": {
+              "content": "Revokes a reward issuance job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "issuance_jobs",
+                ":id",
+                "revoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7670776-fac2-4ea2-a448-0767f90ac789",
+              "name": "The revoked issuance job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "issuance_jobs",
+                    ":id",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuance_job\": {\n    \"id\": \"92b7b0dac4\",\n    \"state\": \"CA\",\n    \"requested_count\": 3,\n    \"issued_count\": 3,\n    \"failed_count\": 3,\n    \"created_at\": \"2025-06-01T18:02:05Z\",\n    \"updated_at\": \"2025-06-01T18:02:05Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6856e6c8-2291-4550-93ab-dd2ad727e371",
+      "name": "Subscribers",
+      "description": {
+        "content": "Ingest marketing subscribers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a606bc6b-b592-425c-8579-58a232f7cba6",
+          "name": "Create Subscriber",
+          "request": {
+            "name": "Create Subscriber",
+            "description": {
+              "content": "Ingests a marketing subscriber for a merchant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "subscribers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchant_id\": \"<string>\",\n  \"subscriber\": {\n    \"email\": \"<email>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"birth_date\": {\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"zip_code\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "47c12daf-8ff4-4129-8430-861263e68944",
+              "name": "The created subscriber.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "subscribers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant_id\": \"92b7b0dac4\",\n  \"subscriber\": {\n    \"email\": \"jane.smith@example.com\",\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Smith\",\n    \"birth_date\": {\n      \"month\": 8,\n      \"day\": 14\n    },\n    \"zip_code\": \"94105\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscriber\": {\n    \"email\": \"jane.smith@example.com\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3a4c5a9-1931-4ff7-bd6d-3e6ee5b3db4b",
+              "name": "The request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "subscribers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant_id\": \"92b7b0dac4\",\n  \"subscriber\": {\n    \"email\": \"jane.smith@example.com\",\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Smith\",\n    \"birth_date\": {\n      \"month\": 8,\n      \"day\": 14\n    },\n    \"zip_code\": \"94105\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0aa8c610-2134-414d-b73f-72412c3bad11",
+      "name": "Users",
+      "description": {
+        "content": "Retrieve users and manage communication settings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b781a7b-dd7e-420c-8b8c-71f69c429db5",
+          "name": "Get User",
+          "request": {
+            "name": "Get User",
+            "description": {
+              "content": "Retrieves a user by identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b0d9ba4-48a7-44b8-8d4a-8e8038d6317a",
+              "name": "The user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"id\": \"92b7b0dac4\",\n    \"email\": \"jane.smith@example.com\",\n    \"phone\": \"+14158672345\",\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Smith\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60447f40-a35e-4948-85a2-a15ff88d2467",
+          "name": "Get Users",
+          "request": {
+            "name": "Get Users",
+            "description": {
+              "content": "Retrieves users for a merchant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c6e186a-5764-4033-9f8a-09a4c1637ed8",
+              "name": "A list of users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_id",
+                      "value": "92b7b0dac4"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"email\": \"jane.smith@example.com\",\n      \"phone\": \"+14158672345\",\n      \"first_name\": \"Jane\",\n      \"last_name\": \"Smith\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3f5b5491-4388-4b2b-8301-acb8e4924588",
+      "name": "Feedbacks",
+      "description": {
+        "content": "Retrieve and respond to feedback records.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "8af17f24-534b-4fe9-948b-b4434209a5df",
+      "name": "Metadata",
+      "description": {
+        "content": "Look up merchants, locations, and scopes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8a660c5-8afa-4ad5-a4b7-18dd422cdd91",
+          "name": "Get Merchants",
+          "request": {
+            "name": "Get Merchants",
+            "description": {
+              "content": "Lists merchants accessible to the partner.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "metadata",
+                "merchants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2cec81d-bff0-41fb-8f6b-b33391ab9254",
+              "name": "A list of merchants.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "metadata",
+                    "merchants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merchants\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"name\": \"Pizza Town Co\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48985952-f626-42db-8517-c0bc8e4626d5",
+          "name": "Get Locations",
+          "request": {
+            "name": "Get Locations",
+            "description": {
+              "content": "Lists locations accessible to the partner.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "metadata",
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6487561a-e9a2-4919-a183-93839a704aeb",
+              "name": "A list of locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "metadata",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_id",
+                      "value": "92b7b0dac4"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"locations\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"merchant_id\": \"92b7b0dac4\",\n      \"name\": \"Pizza Town Co\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c47192e2-392d-448b-9e99-568d9b5e1257",
+          "name": "Get Scopes",
+          "request": {
+            "name": "Get Scopes",
+            "description": {
+              "content": "Lists the OAuth scopes available to the partner.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "metadata",
+                "scopes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cde12816-d5ec-4bf3-9ac9-f35b3b8ebabd",
+              "name": "A list of scopes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "metadata",
+                    "scopes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scopes\": [\n    \"passwordless\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "de73e260-6898-4b39-9ed4-2fba713b7903",
+      "name": "Tags",
+      "description": {
+        "content": "Manage user tags.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thanx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f3fd9661-a5c2-4779-a5d5-fff9e23150d5",
+    "name": "Thanx Partner API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Thanx Partner API provides privileged endpoints supporting custom integration use cases, including end-user token issuance, campaign management and reward issuance, subscriber ingestion, feedback handling, tags, and metadata lookups for merchants, locations, and scopes. It is intended for approved partners building deeper integrations with the Thanx engagement and marketing platform.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

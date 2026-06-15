@@ -1,0 +1,374 @@
+{
+  "item": [
+    {
+      "id": "487626d3-684c-4d85-bf00-0a667a58de2d",
+      "name": "Account",
+      "description": {
+        "content": "Retrieve a user's loyalty account, rewards, and points balances.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "01531d08-ccde-46af-9ec4-c8d665aa97fe",
+          "name": "Get Account",
+          "request": {
+            "name": "Get Account",
+            "description": {
+              "content": "Retrieves the authenticated user's loyalty account, including available rewards, points products for redemption, loyalty progress, and points balances across configured experiences.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<string>",
+                  "description": "Thanx Location UID."
+                },
+                {
+                  "disabled": false,
+                  "key": "redemption_venue",
+                  "value": "online",
+                  "description": "Venue where the redemption occurs."
+                },
+                {
+                  "disabled": false,
+                  "key": "reward_states[]",
+                  "value": "delivered",
+                  "description": "Filter rewards by state."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.thanx-v1+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ccd1e112-33e5-4d3d-9db3-0e8d065c7bd4",
+              "name": "The loyalty account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_id",
+                      "value": "92b7b0dac4"
+                    },
+                    {
+                      "key": "redemption_venue",
+                      "value": "instore"
+                    },
+                    {
+                      "key": "reward_states[]",
+                      "value": "delivered"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.thanx-v1+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.thanx-v1+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"92b7b0dac4\",\n  \"email\": \"jane.smith@example.com\",\n  \"rewards\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"value\": 1,\n      \"label\": \"A free hamburger\",\n      \"state\": \"redeemable\",\n      \"type\": \"amount\"\n    }\n  ],\n  \"points_products\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"label\": \"A free hamburger\",\n      \"cost\": 1\n    }\n  ],\n  \"points_balances\": [\n    {\n      \"points_experience_id\": \"92b7b0dac4\",\n      \"balance\": 10\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f88aa29-d33f-47e0-9cd6-83cd48e631f4",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_id",
+                      "value": "92b7b0dac4"
+                    },
+                    {
+                      "key": "redemption_venue",
+                      "value": "instore"
+                    },
+                    {
+                      "key": "reward_states[]",
+                      "value": "delivered"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1,\n  \"message\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2e01e922-fd52-4e2f-91c6-b421a20dff26",
+      "name": "Baskets",
+      "description": {
+        "content": "Create and update ordering baskets and redeem rewards or points products.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7dd4612-ee16-4f9e-92c1-92dbc4e6e997",
+          "name": "Create And Update Basket",
+          "request": {
+            "name": "Create And Update Basket",
+            "description": {
+              "content": "Creates or updates an ordering basket and computes applicable loyalty discounts. Only a single reward or points product can be redeemed per order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "baskets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.thanx-v1+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"state\": \"<string>\",\n  \"order_timestamp\": \"<dateTime>\",\n  \"location_uid\": \"<string>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        }\n      ]\n    }\n  ],\n  \"subtotal\": \"<double>\",\n  \"id\": \"<string>\",\n  \"rewards\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"points_products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"payments\": [\n    {\n      \"issuer\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"authorized_at\": \"<dateTime>\"\n    },\n    {\n      \"issuer\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"authorized_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e967fa5-1eb2-42ca-a333-8fefb3c0017e",
+              "name": "The created or updated basket.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "baskets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.thanx-v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"92b7b0dac4\",\n  \"state\": \"open\",\n  \"order_timestamp\": \"2025-06-01T18:02:05Z\",\n  \"location_uid\": \"92b7b0dac4\",\n  \"rewards\": [\n    \"example\"\n  ],\n  \"points_products\": [\n    \"example\"\n  ],\n  \"payments\": [\n    {\n      \"issuer\": \"example\",\n      \"last4\": \"1234\",\n      \"amount\": 9.99,\n      \"authorized_at\": \"2025-06-01T18:02:05Z\"\n    }\n  ],\n  \"items\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"name\": \"Pizza Town Co\",\n      \"price\": 9.99,\n      \"categories\": [\n        \"example\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"92b7b0dac4\",\n          \"name\": \"Pizza Town Co\",\n          \"price\": 9.99,\n          \"item_base_price\": 9.99\n        }\n      ]\n    }\n  ],\n  \"subtotal\": 9.99\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.thanx-v1+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"92b7b0dac4\",\n  \"state\": \"CA\",\n  \"discount\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27f6e920-0ed2-49e5-9352-d95adbc1ca27",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "baskets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"92b7b0dac4\",\n  \"state\": \"open\",\n  \"order_timestamp\": \"2025-06-01T18:02:05Z\",\n  \"location_uid\": \"92b7b0dac4\",\n  \"rewards\": [\n    \"example\"\n  ],\n  \"points_products\": [\n    \"example\"\n  ],\n  \"payments\": [\n    {\n      \"issuer\": \"example\",\n      \"last4\": \"1234\",\n      \"amount\": 9.99,\n      \"authorized_at\": \"2025-06-01T18:02:05Z\"\n    }\n  ],\n  \"items\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"name\": \"Pizza Town Co\",\n      \"price\": 9.99,\n      \"categories\": [\n        \"example\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"92b7b0dac4\",\n          \"name\": \"Pizza Town Co\",\n          \"price\": 9.99,\n          \"item_base_price\": 9.99\n        }\n      ]\n    }\n  ],\n  \"subtotal\": 9.99\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1,\n  \"message\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://loyalty.thanx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "596a2a16-b984-4089-be2a-4f37f364789e",
+    "name": "Thanx Loyalty API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Thanx Loyalty API supports integrations with digital ordering and kiosk providers, exposing account lookup and basket lifecycle operations so external ordering systems can connect to a brand's Thanx loyalty program, apply rewards and points products, and track loyalty progress. All endpoints are authorized via end-user access tokens and a merchant key.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

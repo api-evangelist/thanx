@@ -1,0 +1,1751 @@
+{
+  "item": [
+    {
+      "id": "667fe0ea-82c3-4346-923d-31cc93b5be67",
+      "name": "Users",
+      "description": {
+        "content": "Create, retrieve, update, and delete Thanx users.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1199797-2efd-4e24-8ad7-a48f2b8227bd",
+          "name": "Get User",
+          "request": {
+            "name": "Get User",
+            "description": {
+              "content": "Retrieves the authenticated Thanx user's profile.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06892856-886f-4246-8a32-25dbf61cd367",
+              "name": "The authenticated user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"id\": \"92b7b0dac4\",\n    \"email\": \"jane.smith@example.com\",\n    \"phone\": \"+14158672345\",\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Smith\",\n    \"birth_date\": {\n      \"year\": 1987,\n      \"month\": 8,\n      \"day\": 14\n    },\n    \"zip_code\": \"94105\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24925363-40f7-48c8-b3e9-fa1af898cb56",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"code\": 1,\n  \"message\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0f4e643-e273-413c-bf90-1a5e6c644724",
+          "name": "Create User",
+          "request": {
+            "name": "Create User",
+            "description": {
+              "content": "Creates a new Thanx user and returns an authorization grant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user\": {\n    \"email\": \"<email>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": {\n      \"year\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"zip_code\": \"<string>\",\n    \"signup_program_id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "44b8c9ca-0451-4783-879b-ccf072e9ac4f",
+              "name": "The created user and authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user\": {\n    \"email\": \"jane.smith@example.com\",\n    \"phone\": \"+14158672345\",\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Smith\",\n    \"birth_date\": {\n      \"year\": 1987,\n      \"month\": 8,\n      \"day\": 14\n    },\n    \"zip_code\": \"94105\",\n    \"signup_program_id\": \"92b7b0dac4\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"id\": \"92b7b0dac4\",\n    \"email\": \"jane.smith@example.com\",\n    \"phone\": \"+14158672345\",\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Smith\",\n    \"birth_date\": {\n      \"year\": 1987,\n      \"month\": 8,\n      \"day\": 14\n    },\n    \"zip_code\": \"94105\"\n  },\n  \"authorization\": {\n    \"token_type\": \"945148251b603ae34561d90acfe4050e\",\n    \"scope\": \"passwordless\",\n    \"created_at\": 1577836800,\n    \"access_token\": \"945148251b603ae34561d90acfe4050e\",\n    \"refresh_token\": \"945148251b603ae34561d90acfe4050e\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1424141c-0752-4ca7-bea2-b528f382d73a",
+              "name": "The request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user\": {\n    \"email\": \"jane.smith@example.com\",\n    \"phone\": \"+14158672345\",\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Smith\",\n    \"birth_date\": {\n      \"year\": 1987,\n      \"month\": 8,\n      \"day\": 14\n    },\n    \"zip_code\": \"94105\",\n    \"signup_program_id\": \"92b7b0dac4\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"code\": 1,\n  \"message\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1d100e84-707f-4a1c-b258-70197b375b37",
+      "name": "Cards",
+      "description": {
+        "content": "Register and manage payment cards for card-linked loyalty.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0b3ddec4-8518-405d-b475-c4689b5fcab9",
+          "name": "Create Card",
+          "request": {
+            "name": "Create Card",
+            "description": {
+              "content": "Registers a new payment card with Thanx for card-linked loyalty.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "cards"
+              ],
+              "host": [
+                "secure",
+                "api",
+                "thanx",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"card\": {\n    \"number\": \"<string>\",\n    \"zip_code\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c1594d6f-c0fa-4441-bb7b-1df8fdf506c9",
+              "name": "The registered card.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "cards"
+                  ],
+                  "host": [
+                    "secure",
+                    "api",
+                    "thanx",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"card\": {\n    \"number\": \"1234123412341234\",\n    \"zip_code\": \"94105\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"card\": {\n    \"id\": \"92b7b0dac4\",\n    \"user_id\": \"92b7b0dac4\",\n    \"last4\": \"1234\",\n    \"type\": \"visa\",\n    \"zip_code\": \"94105\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9478c871-30c8-4b0a-ad0e-c6d570e65854",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "cards"
+                  ],
+                  "host": [
+                    "secure",
+                    "api",
+                    "thanx",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"card\": {\n    \"number\": \"1234123412341234\",\n    \"zip_code\": \"94105\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"code\": 1,\n  \"message\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ac3d63a-198d-423e-8223-73eace08a3ca",
+          "name": "Get Cards",
+          "request": {
+            "name": "Get Cards",
+            "description": {
+              "content": "Retrieves the registered cards for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60948d90-79ab-4e4a-9202-eea57424a8e4",
+              "name": "A list of cards.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cards\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"user_id\": \"92b7b0dac4\",\n      \"last4\": \"1234\",\n      \"type\": \"visa\",\n      \"zip_code\": \"94105\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5040b906-6d3f-4889-ba9f-16e8e5947b99",
+          "name": "Delete Card",
+          "request": {
+            "name": "Delete Card",
+            "description": {
+              "content": "Archives a registered card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67314df4-9c34-4832-b016-50ebf580ba03",
+              "name": "The card was archived.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b95f3828-bf2d-4b33-9a73-42c1955a6d49",
+      "name": "Rewards",
+      "description": {
+        "content": "Retrieve, activate, finalize, and grant loyalty rewards.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc509866-14c5-4219-b08e-7c6e786bbc6b",
+          "name": "Get Rewards",
+          "request": {
+            "name": "Get Rewards",
+            "description": {
+              "content": "Retrieves loyalty rewards, optionally filtered by state and merchant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "states[]",
+                  "value": "<string>",
+                  "description": "Only rewards in these states are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "states[]",
+                  "value": "<string>",
+                  "description": "Only rewards in these states are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "merchant_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "305c7950-69bd-47fc-a15f-c12ab5391eb2",
+              "name": "A paginated list of rewards.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "states[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "merchant_id",
+                      "value": "92b7b0dac4"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "92b7b0dac4"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rewards\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"olo_uid\": \"92b7b0dac4\",\n      \"user_id\": \"92b7b0dac4\",\n      \"merchant_id\": \"92b7b0dac4\",\n      \"campaign_id\": \"92b7b0dac4\",\n      \"state\": \"available\",\n      \"earn\": {\n        \"type\": \"visa\"\n      },\n      \"redeem\": {\n        \"type\": \"visa\",\n        \"text\": \"Free coffee for loyal customers.\",\n        \"detail\": \"example\",\n        \"window\": \"example\",\n        \"venue\": \"example\"\n      },\n      \"coupon_code\": {\n        \"code\": \"FREECOFFEE\",\n        \"type\": \"visa\",\n        \"display\": \"example\"\n      },\n      \"fine_print\": \"Free coffee for loyal customers.\",\n      \"instructions\": \"Free coffee for loyal customers.\",\n      \"available_at\": \"2025-06-01T18:02:05Z\",\n      \"activated_at\": \"2025-06-01T18:02:05Z\",\n      \"retire_at\": \"2025-06-01T18:02:05Z\",\n      \"used_at\": \"2025-06-01T18:02:05Z\",\n      \"uses_dynamic_coupon_codes\": true\n    }\n  ],\n  \"pagination\": {\n    \"total_page\": 1,\n    \"per_page\": 1,\n    \"current_page\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59fe280c-9a16-4a73-9abd-4dc290a34022",
+          "name": "Get Reward",
+          "request": {
+            "name": "Get Reward",
+            "description": {
+              "content": "Retrieves a single reward by identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rewards",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ccdc6f0d-f6c4-4e22-b808-1e586e4e2bd8",
+              "name": "The reward.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rewards",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reward\": {\n    \"id\": \"92b7b0dac4\",\n    \"olo_uid\": \"92b7b0dac4\",\n    \"user_id\": \"92b7b0dac4\",\n    \"merchant_id\": \"92b7b0dac4\",\n    \"campaign_id\": \"92b7b0dac4\",\n    \"state\": \"available\",\n    \"earn\": {\n      \"type\": \"visa\"\n    },\n    \"redeem\": {\n      \"type\": \"visa\",\n      \"text\": \"Free coffee for loyal customers.\",\n      \"detail\": \"example\",\n      \"window\": \"example\",\n      \"venue\": \"example\"\n    },\n    \"coupon_code\": {\n      \"code\": \"FREECOFFEE\",\n      \"type\": \"visa\",\n      \"display\": \"example\"\n    },\n    \"fine_print\": \"Free coffee for loyal customers.\",\n    \"instructions\": \"Free coffee for loyal customers.\",\n    \"available_at\": \"2025-06-01T18:02:05Z\",\n    \"activated_at\": \"2025-06-01T18:02:05Z\",\n    \"retire_at\": \"2025-06-01T18:02:05Z\",\n    \"used_at\": \"2025-06-01T18:02:05Z\",\n    \"uses_dynamic_coupon_codes\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8db17294-dea8-4f7a-b0ff-2d53ae2b41f8",
+          "name": "Activate Reward",
+          "request": {
+            "name": "Activate Reward",
+            "description": {
+              "content": "Activates a reward so it can be redeemed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rewards",
+                ":id",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58b07ab6-4094-4287-9ac7-5d0e3a51e895",
+              "name": "The activated reward.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rewards",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reward\": {\n    \"id\": \"92b7b0dac4\",\n    \"olo_uid\": \"92b7b0dac4\",\n    \"user_id\": \"92b7b0dac4\",\n    \"merchant_id\": \"92b7b0dac4\",\n    \"campaign_id\": \"92b7b0dac4\",\n    \"state\": \"available\",\n    \"earn\": {\n      \"type\": \"visa\"\n    },\n    \"redeem\": {\n      \"type\": \"visa\",\n      \"text\": \"Free coffee for loyal customers.\",\n      \"detail\": \"example\",\n      \"window\": \"example\",\n      \"venue\": \"example\"\n    },\n    \"coupon_code\": {\n      \"code\": \"FREECOFFEE\",\n      \"type\": \"visa\",\n      \"display\": \"example\"\n    },\n    \"fine_print\": \"Free coffee for loyal customers.\",\n    \"instructions\": \"Free coffee for loyal customers.\",\n    \"available_at\": \"2025-06-01T18:02:05Z\",\n    \"activated_at\": \"2025-06-01T18:02:05Z\",\n    \"retire_at\": \"2025-06-01T18:02:05Z\",\n    \"used_at\": \"2025-06-01T18:02:05Z\",\n    \"uses_dynamic_coupon_codes\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9868d872-ba50-4963-b06f-8a20efafb3eb",
+          "name": "Finalize Reward",
+          "request": {
+            "name": "Finalize Reward",
+            "description": {
+              "content": "Finalizes a reward after redemption.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rewards",
+                ":id",
+                "finalize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ef33e0f-c5ce-4421-a01d-5b372c9c2171",
+              "name": "The finalized reward.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rewards",
+                    ":id",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reward\": {\n    \"id\": \"92b7b0dac4\",\n    \"olo_uid\": \"92b7b0dac4\",\n    \"user_id\": \"92b7b0dac4\",\n    \"merchant_id\": \"92b7b0dac4\",\n    \"campaign_id\": \"92b7b0dac4\",\n    \"state\": \"available\",\n    \"earn\": {\n      \"type\": \"visa\"\n    },\n    \"redeem\": {\n      \"type\": \"visa\",\n      \"text\": \"Free coffee for loyal customers.\",\n      \"detail\": \"example\",\n      \"window\": \"example\",\n      \"venue\": \"example\"\n    },\n    \"coupon_code\": {\n      \"code\": \"FREECOFFEE\",\n      \"type\": \"visa\",\n      \"display\": \"example\"\n    },\n    \"fine_print\": \"Free coffee for loyal customers.\",\n    \"instructions\": \"Free coffee for loyal customers.\",\n    \"available_at\": \"2025-06-01T18:02:05Z\",\n    \"activated_at\": \"2025-06-01T18:02:05Z\",\n    \"retire_at\": \"2025-06-01T18:02:05Z\",\n    \"used_at\": \"2025-06-01T18:02:05Z\",\n    \"uses_dynamic_coupon_codes\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f75d2aef-fde1-46c8-b543-73a88bf8ea7d",
+      "name": "Purchases",
+      "description": {
+        "content": "Retrieve and report consumer purchases.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "87b7772c-0e90-4d6f-b766-b50469beaf86",
+          "name": "Get Purchases",
+          "request": {
+            "name": "Get Purchases",
+            "description": {
+              "content": "Retrieves consumer purchases, optionally filtered by merchant, location, or user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44649292-a92f-4522-a267-e2cdaa0eab36",
+              "name": "A paginated list of purchases.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_id",
+                      "value": "92b7b0dac4"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "92b7b0dac4"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "92b7b0dac4"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"purchases\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"user_id\": \"92b7b0dac4\",\n      \"merchant_id\": \"92b7b0dac4\",\n      \"location_id\": \"92b7b0dac4\",\n      \"purchased_at\": \"2025-06-01T18:02:05Z\",\n      \"amount\": 9.99,\n      \"order\": {\n        \"id\": \"92b7b0dac4\",\n        \"provider\": \"OLO\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total_page\": 1,\n    \"per_page\": 1,\n    \"current_page\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcedcf9a-2fe5-472f-8a9f-c5e99612ffd0",
+          "name": "Create Purchase",
+          "request": {
+            "name": "Create Purchase",
+            "description": {
+              "content": "Reports a consumer purchase to Thanx.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"purchase\": {\n    \"id\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"merchant_id\": \"<string>\",\n    \"location_id\": \"<string>\",\n    \"purchased_at\": \"<dateTime>\",\n    \"amount\": \"<double>\",\n    \"order\": {\n      \"id\": \"<string>\",\n      \"provider\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e478992d-54b3-4fb8-bdac-e5ffa8c893be",
+              "name": "The created purchase.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"purchase\": {\n    \"id\": \"92b7b0dac4\",\n    \"user_id\": \"92b7b0dac4\",\n    \"merchant_id\": \"92b7b0dac4\",\n    \"location_id\": \"92b7b0dac4\",\n    \"purchased_at\": \"2025-06-01T18:02:05Z\",\n    \"amount\": 9.99,\n    \"order\": {\n      \"id\": \"92b7b0dac4\",\n      \"provider\": \"OLO\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"purchase\": {\n    \"id\": \"92b7b0dac4\",\n    \"user_id\": \"92b7b0dac4\",\n    \"merchant_id\": \"92b7b0dac4\",\n    \"location_id\": \"92b7b0dac4\",\n    \"purchased_at\": \"2025-06-01T18:02:05Z\",\n    \"amount\": 9.99,\n    \"order\": {\n      \"id\": \"92b7b0dac4\",\n      \"provider\": \"OLO\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7e78a64d-daed-47bf-b65a-c3be57c93ece",
+      "name": "Points",
+      "description": {
+        "content": "Points balances, products, experiences, and multipliers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32159e72-d2bf-4b3f-9ac1-e141cfc8afdb",
+          "name": "Get Points Balance",
+          "request": {
+            "name": "Get Points Balance",
+            "description": {
+              "content": "Retrieves the user's current points currency balance for a points experience.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "points_experiences",
+                ":id",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0eb9096c-b601-4c83-9e04-ffec428478ea",
+              "name": "The points balance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "points_experiences",
+                    ":id",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"balance\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6560e13e-458f-4904-bfc4-c995e85cd41d",
+      "name": "Gift Cards",
+      "description": {
+        "content": "Create, retrieve, and delete digital gift cards.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cfdcec53-9a70-49c4-a3b5-75dda44b66bc",
+          "name": "Get Gift Cards",
+          "request": {
+            "name": "Get Gift Cards",
+            "description": {
+              "content": "Retrieves the authenticated user's gift cards.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gift_cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7024ed0c-78b1-47c1-ae55-6b99d0388274",
+              "name": "A list of gift cards.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gift_cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"gift_cards\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"user_id\": \"92b7b0dac4\",\n      \"balance\": 10,\n      \"code\": \"FREECOFFEE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a8c2352-b24b-4f4e-98c0-d5826e784815",
+          "name": "Create Gift Card",
+          "request": {
+            "name": "Create Gift Card",
+            "description": {
+              "content": "Creates a new digital gift card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gift_cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gift_card\": {\n    \"id\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"balance\": \"<double>\",\n    \"code\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "64933a8c-8a5e-427d-9654-5471a7084c62",
+              "name": "The created gift card.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gift_cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gift_card\": {\n    \"id\": \"92b7b0dac4\",\n    \"user_id\": \"92b7b0dac4\",\n    \"balance\": 10,\n    \"code\": \"FREECOFFEE\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"gift_card\": {\n    \"id\": \"92b7b0dac4\",\n    \"user_id\": \"92b7b0dac4\",\n    \"balance\": 10,\n    \"code\": \"FREECOFFEE\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "11faa992-3679-40a6-9267-df0c0632db1b",
+      "name": "Locations",
+      "description": {
+        "content": "Retrieve merchant locations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d729e17b-a8ed-41a8-8ddb-df47756a3a23",
+          "name": "Get Locations",
+          "request": {
+            "name": "Get Locations",
+            "description": {
+              "content": "Retrieves merchant locations, optionally filtered by merchant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "caf4a0a1-fd4f-41b1-8306-1273e16ad1e1",
+              "name": "A paginated list of locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_id",
+                      "value": "92b7b0dac4"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"locations\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"merchant_id\": \"92b7b0dac4\",\n      \"street\": \"123 Pizza Lane\",\n      \"city\": \"Smalltown\",\n      \"state\": \"CA\",\n      \"zip\": \"94105\",\n      \"name\": \"Pizza Town Co\",\n      \"phone\": \"+14158672345\",\n      \"loyalty_redemption_type\": \"direct\"\n    }\n  ],\n  \"pagination\": {\n    \"total_page\": 1,\n    \"per_page\": 1,\n    \"current_page\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "778cab12-12b0-4967-b1a9-4812be7e235d",
+      "name": "Feedbacks",
+      "description": {
+        "content": "Retrieve and respond to NPS feedback.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thanx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bcceafd9-0239-4e1f-bf5f-8502e5e7f23c",
+    "name": "Thanx Consumer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,397 +1,370 @@
 aid: thanx
 name: Thanx
 description: >-
-  Thanx is a customer engagement, loyalty, and marketing automation platform for restaurants and other offline businesses, built to acquire, engage, and retain best customers and grow customer lifetime value. The platform combines data infrastructure, lifecycle marketing, loyalty and CRM, and digital ordering experiences. Thanx is API-first and publishes a public developer portal documenting a Consumer API for custom consumer experiences, a Partner API for privileged integration use cases, and a Loyalty API for digital ordering and kiosk providers, along with webhooks and Connex data-export integrations to warehouses like Snowflake and BigQuery. Thanx serves roughly 500 brands and processes over a billion transactions annually. It also publishes a hosted Docs MCP server for natural-language API search and an open agent-skills starter kit.
+  Thanx is a customer engagement, loyalty, and marketing automation platform for restaurants and other offline
+  businesses, built to acquire, engage, and retain best customers and grow customer lifetime value. The platform
+  combines data infrastructure, lifecycle marketing, loyalty and CRM, and digital ordering experiences. Thanx is
+  API-first and publishes a public developer portal documenting a Consumer API for custom consumer experiences, a
+  Partner API for privileged integration use cases, and a Loyalty API for digital ordering and kiosk providers, along
+  with webhooks and Connex data-export integrations to warehouses like Snowflake and BigQuery. Thanx serves roughly 500
+  brands and processes over a billion transactions annually. It also publishes a hosted Docs MCP server for
+  natural-language API search and an open agent-skills starter kit.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Restaurant
-- Loyalty
-- Guest Engagement
-- Marketing
-- CRM
-- Online Ordering
-- Webhooks
-- Points
-- Rewards
-- Campaigns
+  - Restaurant
+  - Loyalty
+  - Guest Engagement
+  - Marketing
+  - CRM
+  - Online Ordering
+  - Webhooks
+  - Points
+  - Rewards
+  - Campaigns
 url: https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/apis.yml
 created: '2026-06-02'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-- aid: thanx:consumer-api
-  name: Thanx Consumer API
-  description: >-
-    The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
-  humanURL: https://docs.thanx.com/consumer/overview
-  baseURL: https://api.thanx.com
-  tags:
-  - Loyalty
-  - Rewards
-  - Users
-  - Gifts
-  - Points
-  - Purchases
-  - Cards
-  properties:
-  - type: OpenAPI
-    url: openapi/thanx-consumer-api-openapi.yml
+  - aid: thanx:consumer-api
+    name: Thanx Consumer API
+    description: >-
+      The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and
+      authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It
+      powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are
+      protected and authorized via end-user access tokens acquired through Thanx SSO.
+    humanURL: https://docs.thanx.com/consumer/overview
+    baseURL: https://api.thanx.com
+    tags:
+      - Loyalty
+      - Rewards
+      - Users
+      - Gifts
+      - Points
+      - Purchases
+      - Cards
+    properties:
+      - type: OpenAPI
+        url: openapi/thanx-consumer-api-openapi.yml
+      - type: Documentation
+        url: https://docs.thanx.com/consumer/overview
+      - type: APIReference
+        url: https://docs.thanx.com/consumer/overview
+      - type: Authentication
+        url: https://docs.thanx.com/consumer/usage/headers
+      - type: SDK
+        url: https://github.com/thanx/thanx-sdk-ios
+      - type: SDK
+        url: https://github.com/thanx/thanx-sdk-android
+      - type: BestPractices
+        url: https://docs.thanx.com/consumer/best-practices/design
+      - type: Errors
+        url: https://docs.thanx.com/consumer/usage/errors
+      - type: JSONSchema
+        url: json-schema/consumer-api-authorization-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-birth-date-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-card-envelope-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-card-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-gift-card-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-location-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-pagination-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-purchase-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-reward-envelope-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-reward-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-user-envelope-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-user-input-schema.json
+      - type: JSONSchema
+        url: json-schema/consumer-api-user-schema.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-authorization-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-birth-date-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-card-envelope-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-card-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-gift-card-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-location-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-pagination-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-purchase-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-reward-envelope-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-reward-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-user-envelope-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-user-input-structure.json
+      - type: JSONStructure
+        url: json-structure/consumer-api-user-structure.json
+      - type: Example
+        url: examples/consumer-api-authorization-example.json
+      - type: Example
+        url: examples/consumer-api-birth-date-example.json
+      - type: Example
+        url: examples/consumer-api-card-envelope-example.json
+      - type: Example
+        url: examples/consumer-api-card-example.json
+      - type: Example
+        url: examples/consumer-api-gift-card-example.json
+      - type: Example
+        url: examples/consumer-api-location-example.json
+      - type: Example
+        url: examples/consumer-api-pagination-example.json
+      - type: Example
+        url: examples/consumer-api-purchase-example.json
+      - type: Example
+        url: examples/consumer-api-reward-envelope-example.json
+      - type: Example
+        url: examples/consumer-api-reward-example.json
+      - type: Example
+        url: examples/consumer-api-user-envelope-example.json
+      - type: Example
+        url: examples/consumer-api-user-example.json
+      - type: Example
+        url: examples/consumer-api-user-input-example.json
+      - type: JSONLD
+        url: json-ld/thanx-consumer-api-context.jsonld
+  - aid: thanx:partner-api
+    name: Thanx Partner API
+    description: >-
+      The Thanx Partner API provides privileged endpoints supporting custom integration use cases, including end-user
+      token issuance, campaign management and reward issuance, subscriber ingestion, feedback handling, tags, and
+      metadata lookups for merchants, locations, and scopes. It is intended for approved partners building deeper
+      integrations with the Thanx engagement and marketing platform.
+    humanURL: https://docs.thanx.com/partner/overview
+    baseURL: https://api.thanx.com
+    tags:
+      - Campaigns
+      - Subscribers
+      - Marketing
+      - Rewards
+      - Merchants
+    properties:
+      - type: OpenAPI
+        url: openapi/thanx-partner-api-openapi.yml
+      - type: Documentation
+        url: https://docs.thanx.com/partner/overview
+      - type: APIReference
+        url: https://docs.thanx.com/partner/overview
+      - type: Authentication
+        url: https://docs.thanx.com/consumer/usage/headers
+      - type: GettingStarted
+        url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+      - type: GettingStarted
+        url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+      - type: JSONSchema
+        url: json-schema/partner-api-campaign-input-schema.json
+      - type: JSONSchema
+        url: json-schema/partner-api-campaign-schema.json
+      - type: JSONSchema
+        url: json-schema/partner-api-campaign-variant-input-schema.json
+      - type: JSONSchema
+        url: json-schema/partner-api-issuance-job-schema.json
+      - type: JSONSchema
+        url: json-schema/partner-api-partner-user-schema.json
+      - type: JSONStructure
+        url: json-structure/partner-api-campaign-input-structure.json
+      - type: JSONStructure
+        url: json-structure/partner-api-campaign-structure.json
+      - type: JSONStructure
+        url: json-structure/partner-api-campaign-variant-input-structure.json
+      - type: JSONStructure
+        url: json-structure/partner-api-issuance-job-structure.json
+      - type: JSONStructure
+        url: json-structure/partner-api-partner-user-structure.json
+      - type: Example
+        url: examples/partner-api-campaign-example.json
+      - type: Example
+        url: examples/partner-api-campaign-input-example.json
+      - type: Example
+        url: examples/partner-api-campaign-variant-input-example.json
+      - type: Example
+        url: examples/partner-api-issuance-job-example.json
+      - type: Example
+        url: examples/partner-api-partner-user-example.json
+      - type: JSONLD
+        url: json-ld/thanx-partner-api-context.jsonld
+  - aid: thanx:loyalty-api
+    name: Thanx Loyalty API
+    description: >-
+      The Thanx Loyalty API supports integrations with digital ordering and kiosk providers, exposing account lookup and
+      basket lifecycle operations so external ordering systems can connect to a brand's Thanx loyalty program, apply
+      rewards and points products, and track loyalty progress. All endpoints are authorized via end-user access tokens
+      and a merchant key.
+    humanURL: https://docs.thanx.com/loyalty/overview
+    baseURL: https://loyalty.thanx.com
+    tags:
+      - Loyalty
+      - Points
+      - Online Ordering
+      - Baskets
+    properties:
+      - type: OpenAPI
+        url: openapi/thanx-loyalty-api-openapi.yml
+      - type: Documentation
+        url: https://docs.thanx.com/loyalty/overview
+      - type: APIReference
+        url: https://docs.thanx.com/loyalty/overview
+      - type: Authentication
+        url: https://docs.thanx.com/consumer/usage/headers
+      - type: GettingStarted
+        url: https://docs.thanx.com/overview/guides/pos-kiosk
+      - type: Regions
+        url: https://docs.thanx.com/loyalty/private-link
+      - type: JSONSchema
+        url: json-schema/loyalty-api-account-schema.json
+      - type: JSONSchema
+        url: json-schema/loyalty-api-basket-input-schema.json
+      - type: JSONSchema
+        url: json-schema/loyalty-api-basket-item-schema.json
+      - type: JSONSchema
+        url: json-schema/loyalty-api-basket-schema.json
+      - type: JSONSchema
+        url: json-schema/loyalty-api-loyalty-reward-schema.json
+      - type: JSONSchema
+        url: json-schema/loyalty-api-payment-schema.json
+      - type: JSONSchema
+        url: json-schema/loyalty-api-points-product-schema.json
+      - type: JSONStructure
+        url: json-structure/loyalty-api-account-structure.json
+      - type: JSONStructure
+        url: json-structure/loyalty-api-basket-input-structure.json
+      - type: JSONStructure
+        url: json-structure/loyalty-api-basket-item-structure.json
+      - type: JSONStructure
+        url: json-structure/loyalty-api-basket-structure.json
+      - type: JSONStructure
+        url: json-structure/loyalty-api-loyalty-reward-structure.json
+      - type: JSONStructure
+        url: json-structure/loyalty-api-payment-structure.json
+      - type: JSONStructure
+        url: json-structure/loyalty-api-points-product-structure.json
+      - type: Example
+        url: examples/loyalty-api-account-example.json
+      - type: Example
+        url: examples/loyalty-api-basket-example.json
+      - type: Example
+        url: examples/loyalty-api-basket-input-example.json
+      - type: Example
+        url: examples/loyalty-api-basket-item-example.json
+      - type: Example
+        url: examples/loyalty-api-loyalty-reward-example.json
+      - type: Example
+        url: examples/loyalty-api-payment-example.json
+      - type: Example
+        url: examples/loyalty-api-points-product-example.json
+      - type: JSONLD
+        url: json-ld/thanx-loyalty-api-context.jsonld
+common:
+  - type: Website
+    url: https://www.thanx.com/
+  - type: DeveloperPortal
+    url: https://docs.thanx.com/overview
   - type: Documentation
-    url: https://docs.thanx.com/consumer/overview
-  - type: APIReference
-    url: https://docs.thanx.com/consumer/overview
-  - type: Authentication
-    url: https://docs.thanx.com/consumer/usage/headers
-  - type: SDK
-    url: https://github.com/thanx/thanx-sdk-ios
-  - type: SDK
-    url: https://github.com/thanx/thanx-sdk-android
+    url: https://docs.thanx.com/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/integrating
+  - type: Pricing
+    url: https://www.thanx.com/pricing
+  - type: GitHubOrganization
+    url: https://github.com/thanx
+  - type: LLMsTxt
+    url: https://docs.thanx.com/llms.txt
+  - type: ChangeLog
+    url: https://docs.thanx.com/data/changelog
   - type: BestPractices
     url: https://docs.thanx.com/consumer/best-practices/design
   - type: Errors
     url: https://docs.thanx.com/consumer/usage/errors
-  - type: NaftikoCapability
-    url: capabilities/consumer-api-cards.yaml
-  - type: NaftikoCapability
-    url: capabilities/consumer-api-gift-cards.yaml
-  - type: NaftikoCapability
-    url: capabilities/consumer-api-locations.yaml
-  - type: NaftikoCapability
-    url: capabilities/consumer-api-points.yaml
-  - type: NaftikoCapability
-    url: capabilities/consumer-api-purchases.yaml
-  - type: NaftikoCapability
-    url: capabilities/consumer-api-rewards.yaml
-  - type: NaftikoCapability
-    url: capabilities/consumer-api-users.yaml
-  - type: JSONSchema
-    url: json-schema/consumer-api-authorization-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-birth-date-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-card-envelope-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-card-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-gift-card-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-location-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-pagination-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-purchase-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-reward-envelope-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-reward-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-user-envelope-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-user-input-schema.json
-  - type: JSONSchema
-    url: json-schema/consumer-api-user-schema.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-authorization-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-birth-date-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-card-envelope-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-card-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-gift-card-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-location-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-pagination-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-purchase-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-reward-envelope-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-reward-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-user-envelope-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-user-input-structure.json
-  - type: JSONStructure
-    url: json-structure/consumer-api-user-structure.json
-  - type: Example
-    url: examples/consumer-api-authorization-example.json
-  - type: Example
-    url: examples/consumer-api-birth-date-example.json
-  - type: Example
-    url: examples/consumer-api-card-envelope-example.json
-  - type: Example
-    url: examples/consumer-api-card-example.json
-  - type: Example
-    url: examples/consumer-api-gift-card-example.json
-  - type: Example
-    url: examples/consumer-api-location-example.json
-  - type: Example
-    url: examples/consumer-api-pagination-example.json
-  - type: Example
-    url: examples/consumer-api-purchase-example.json
-  - type: Example
-    url: examples/consumer-api-reward-envelope-example.json
-  - type: Example
-    url: examples/consumer-api-reward-example.json
-  - type: Example
-    url: examples/consumer-api-user-envelope-example.json
-  - type: Example
-    url: examples/consumer-api-user-example.json
-  - type: Example
-    url: examples/consumer-api-user-input-example.json
-  - type: JSONLD
-    url: json-ld/thanx-consumer-api-context.jsonld
-- aid: thanx:partner-api
-  name: Thanx Partner API
-  description: >-
-    The Thanx Partner API provides privileged endpoints supporting custom integration use cases, including end-user token issuance, campaign management and reward issuance, subscriber ingestion, feedback handling, tags, and metadata lookups for merchants, locations, and scopes. It is intended for approved partners building deeper integrations with the Thanx engagement and marketing platform.
-  humanURL: https://docs.thanx.com/partner/overview
-  baseURL: https://api.thanx.com
-  tags:
-  - Campaigns
-  - Subscribers
-  - Marketing
-  - Rewards
-  - Merchants
-  properties:
-  - type: OpenAPI
-    url: openapi/thanx-partner-api-openapi.yml
   - type: Documentation
-    url: https://docs.thanx.com/partner/overview
-  - type: APIReference
-    url: https://docs.thanx.com/partner/overview
-  - type: Authentication
-    url: https://docs.thanx.com/consumer/usage/headers
-  - type: GettingStarted
-    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
-  - type: GettingStarted
-    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
-  - type: NaftikoCapability
-    url: capabilities/partner-api-auth.yaml
-  - type: NaftikoCapability
-    url: capabilities/partner-api-campaigns.yaml
-  - type: NaftikoCapability
-    url: capabilities/partner-api-issuance-jobs.yaml
-  - type: NaftikoCapability
-    url: capabilities/partner-api-metadata.yaml
-  - type: NaftikoCapability
-    url: capabilities/partner-api-subscribers.yaml
-  - type: NaftikoCapability
-    url: capabilities/partner-api-users.yaml
-  - type: JSONSchema
-    url: json-schema/partner-api-campaign-input-schema.json
-  - type: JSONSchema
-    url: json-schema/partner-api-campaign-schema.json
-  - type: JSONSchema
-    url: json-schema/partner-api-campaign-variant-input-schema.json
-  - type: JSONSchema
-    url: json-schema/partner-api-issuance-job-schema.json
-  - type: JSONSchema
-    url: json-schema/partner-api-partner-user-schema.json
-  - type: JSONStructure
-    url: json-structure/partner-api-campaign-input-structure.json
-  - type: JSONStructure
-    url: json-structure/partner-api-campaign-structure.json
-  - type: JSONStructure
-    url: json-structure/partner-api-campaign-variant-input-structure.json
-  - type: JSONStructure
-    url: json-structure/partner-api-issuance-job-structure.json
-  - type: JSONStructure
-    url: json-structure/partner-api-partner-user-structure.json
-  - type: Example
-    url: examples/partner-api-campaign-example.json
-  - type: Example
-    url: examples/partner-api-campaign-input-example.json
-  - type: Example
-    url: examples/partner-api-campaign-variant-input-example.json
-  - type: Example
-    url: examples/partner-api-issuance-job-example.json
-  - type: Example
-    url: examples/partner-api-partner-user-example.json
-  - type: JSONLD
-    url: json-ld/thanx-partner-api-context.jsonld
-- aid: thanx:loyalty-api
-  name: Thanx Loyalty API
-  description: >-
-    The Thanx Loyalty API supports integrations with digital ordering and kiosk providers, exposing account lookup and basket lifecycle operations so external ordering systems can connect to a brand's Thanx loyalty program, apply rewards and points products, and track loyalty progress. All endpoints are authorized via end-user access tokens and a merchant key.
-  humanURL: https://docs.thanx.com/loyalty/overview
-  baseURL: https://loyalty.thanx.com
-  tags:
-  - Loyalty
-  - Points
-  - Online Ordering
-  - Baskets
-  properties:
-  - type: OpenAPI
-    url: openapi/thanx-loyalty-api-openapi.yml
+    title: Webhooks Overview
+    url: https://docs.thanx.com/webhooks/overview
   - type: Documentation
-    url: https://docs.thanx.com/loyalty/overview
-  - type: APIReference
-    url: https://docs.thanx.com/loyalty/overview
-  - type: Authentication
-    url: https://docs.thanx.com/consumer/usage/headers
-  - type: GettingStarted
-    url: https://docs.thanx.com/overview/guides/pos-kiosk
-  - type: Regions
-    url: https://docs.thanx.com/loyalty/private-link
-  - type: NaftikoCapability
-    url: capabilities/loyalty-api-account.yaml
-  - type: NaftikoCapability
-    url: capabilities/loyalty-api-baskets.yaml
-  - type: JSONSchema
-    url: json-schema/loyalty-api-account-schema.json
-  - type: JSONSchema
-    url: json-schema/loyalty-api-basket-input-schema.json
-  - type: JSONSchema
-    url: json-schema/loyalty-api-basket-item-schema.json
-  - type: JSONSchema
-    url: json-schema/loyalty-api-basket-schema.json
-  - type: JSONSchema
-    url: json-schema/loyalty-api-loyalty-reward-schema.json
-  - type: JSONSchema
-    url: json-schema/loyalty-api-payment-schema.json
-  - type: JSONSchema
-    url: json-schema/loyalty-api-points-product-schema.json
-  - type: JSONStructure
-    url: json-structure/loyalty-api-account-structure.json
-  - type: JSONStructure
-    url: json-structure/loyalty-api-basket-input-structure.json
-  - type: JSONStructure
-    url: json-structure/loyalty-api-basket-item-structure.json
-  - type: JSONStructure
-    url: json-structure/loyalty-api-basket-structure.json
-  - type: JSONStructure
-    url: json-structure/loyalty-api-loyalty-reward-structure.json
-  - type: JSONStructure
-    url: json-structure/loyalty-api-payment-structure.json
-  - type: JSONStructure
-    url: json-structure/loyalty-api-points-product-structure.json
-  - type: Example
-    url: examples/loyalty-api-account-example.json
-  - type: Example
-    url: examples/loyalty-api-basket-example.json
-  - type: Example
-    url: examples/loyalty-api-basket-input-example.json
-  - type: Example
-    url: examples/loyalty-api-basket-item-example.json
-  - type: Example
-    url: examples/loyalty-api-loyalty-reward-example.json
-  - type: Example
-    url: examples/loyalty-api-payment-example.json
-  - type: Example
-    url: examples/loyalty-api-points-product-example.json
-  - type: JSONLD
-    url: json-ld/thanx-loyalty-api-context.jsonld
-common:
-- type: Website
-  url: https://www.thanx.com/
-- type: DeveloperPortal
-  url: https://docs.thanx.com/overview
-- type: Documentation
-  url: https://docs.thanx.com/overview
-- type: GettingStarted
-  url: https://docs.thanx.com/overview/integrating
-- type: Pricing
-  url: https://www.thanx.com/pricing
-- type: GitHubOrganization
-  url: https://github.com/thanx
-- type: LLMsTxt
-  url: https://docs.thanx.com/llms.txt
-- type: ChangeLog
-  url: https://docs.thanx.com/data/changelog
-- type: BestPractices
-  url: https://docs.thanx.com/consumer/best-practices/design
-- type: Errors
-  url: https://docs.thanx.com/consumer/usage/errors
-- type: Documentation
-  title: Webhooks Overview
-  url: https://docs.thanx.com/webhooks/overview
-- type: Documentation
-  title: Data Exports (Connex)
-  url: https://docs.thanx.com/data/overview
-- type: Tools
-  title: MCP Server
-  url: https://docs.thanx.com/mcp
-- type: Documentation
-  title: AI Integration
-  url: https://docs.thanx.com/ai/overview
-- type: Tools
-  title: Claude Code Skills (Agent Starter)
-  url: https://github.com/thanx/thanx-agent-starter
-- type: CodeExamples
-  title: Postman API Collections
-  url: https://docs.thanx.com/overview/api_collections
-- type: SpectralRules
-  url: rules/thanx-spectral-rules.yml
-- type: Vocabulary
-  url: vocabulary/thanx-vocabulary.yaml
-- type: Plans
-  url: plans/thanx-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/thanx-rate-limits.yml
-- type: FinOps
-  url: finops/thanx-finops.yml
-- type: Features
-  data:
-  - name: Loyalty & Rewards
-    description: >-
-      Configurable loyalty programs with points, tiers, rewards, multipliers, and reward templates across in-store and online venues.
-  - name: Lifecycle Marketing
-    description: >-
-      Campaign creation with treatment/control variants and batched reward issuance to targeted audiences.
-  - name: CRM & Data Infrastructure
-    description: >-
-      Unified customer profiles, communication settings, tags, and NPS feedback backed by warehouse data exports.
-  - name: Digital Ordering & Pay
-    description: >-
-      Basket lifecycle and account APIs for digital ordering, kiosk, and pay-at-table integrations.
-  - name: Card-Linked Loyalty
-    description: >-
-      Register payment cards to attribute purchases automatically for card-linked loyalty earning.
-  - name: Webhooks
-    description: >-
-      Real-time events for purchases, reward issuance, reward batch completion, SMS subscriptions, and communication settings.
-- type: UseCases
-  data:
-  - name: Branded Loyalty App
-    description: >-
-      Build a custom branded app on the Consumer API with SSO, rewards, points, and purchase history.
-  - name: Targeted Reward Campaigns
-    description: >-
-      Partners create campaigns and issue rewards to large audiences via batched issuance jobs.
-  - name: Kiosk & Online Ordering Loyalty
-    description: >-
-      Ordering and kiosk providers connect baskets to a brand loyalty program to apply rewards and points.
-  - name: Warehouse Analytics
-    description: >-
-      Export Thanx data models to Snowflake, BigQuery, Redshift, or Databricks for analytics.
-- type: Integrations
-  data:
-  - name: Olo
-    description: >-
-      Online ordering provider referenced in purchase order providers.
-  - name: Toast
-    description: >-
-      POS / ordering provider referenced in purchase order providers.
-  - name: Snowflake
-    description: >-
-      Connex data-export destination.
-  - name: Google BigQuery
-    description: >-
-      Connex data-export destination.
-  - name: Amazon Redshift
-    description: >-
-      Connex data-export destination.
-  - name: Databricks
-    description: >-
-      Connex data-export destination.
-  - name: AWS PrivateLink
-    description: >-
-      Private connectivity option for the Loyalty API.
+    title: Data Exports (Connex)
+    url: https://docs.thanx.com/data/overview
+  - type: Tools
+    title: MCP Server
+    url: https://docs.thanx.com/mcp
+  - type: Documentation
+    title: AI Integration
+    url: https://docs.thanx.com/ai/overview
+  - type: Tools
+    title: Claude Code Skills (Agent Starter)
+    url: https://github.com/thanx/thanx-agent-starter
+  - type: CodeExamples
+    title: Postman API Collections
+    url: https://docs.thanx.com/overview/api_collections
+  - type: SpectralRules
+    url: rules/thanx-spectral-rules.yml
+  - type: Vocabulary
+    url: vocabulary/thanx-vocabulary.yaml
+  - type: Plans
+    url: plans/thanx-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/thanx-rate-limits.yml
+  - type: FinOps
+    url: finops/thanx-finops.yml
+  - type: Features
+    data:
+      - name: Loyalty & Rewards
+        description: >-
+          Configurable loyalty programs with points, tiers, rewards, multipliers, and reward templates across in-store
+          and online venues.
+      - name: Lifecycle Marketing
+        description: Campaign creation with treatment/control variants and batched reward issuance to targeted audiences.
+      - name: CRM & Data Infrastructure
+        description: Unified customer profiles, communication settings, tags, and NPS feedback backed by warehouse data exports.
+      - name: Digital Ordering & Pay
+        description: Basket lifecycle and account APIs for digital ordering, kiosk, and pay-at-table integrations.
+      - name: Card-Linked Loyalty
+        description: Register payment cards to attribute purchases automatically for card-linked loyalty earning.
+      - name: Webhooks
+        description: >-
+          Real-time events for purchases, reward issuance, reward batch completion, SMS subscriptions, and communication
+          settings.
+  - type: UseCases
+    data:
+      - name: Branded Loyalty App
+        description: Build a custom branded app on the Consumer API with SSO, rewards, points, and purchase history.
+      - name: Targeted Reward Campaigns
+        description: Partners create campaigns and issue rewards to large audiences via batched issuance jobs.
+      - name: Kiosk & Online Ordering Loyalty
+        description: Ordering and kiosk providers connect baskets to a brand loyalty program to apply rewards and points.
+      - name: Warehouse Analytics
+        description: Export Thanx data models to Snowflake, BigQuery, Redshift, or Databricks for analytics.
+  - type: Integrations
+    data:
+      - name: Olo
+        description: Online ordering provider referenced in purchase order providers.
+      - name: Toast
+        description: POS / ordering provider referenced in purchase order providers.
+      - name: Snowflake
+        description: Connex data-export destination.
+      - name: Google BigQuery
+        description: Connex data-export destination.
+      - name: Amazon Redshift
+        description: Connex data-export destination.
+      - name: Databricks
+        description: Connex data-export destination.
+      - name: AWS PrivateLink
+        description: Private connectivity option for the Loyalty API.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

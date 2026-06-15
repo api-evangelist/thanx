@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thanx Loyalty API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://loyalty.thanx.com/api/account",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "92b7b0dac4",
+                "type": "query",
+                "description": "Thanx Location UID."
+              },
+              {
+                "name": "redemption_venue",
+                "value": "instore",
+                "type": "query",
+                "description": "Venue where the redemption occurs."
+              },
+              {
+                "name": "reward_states[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter rewards by state."
+              }
+            ]
+          },
+          "docs": "Retrieves the authenticated user's loyalty account, including available rewards, points products for redemption, loyalty progress, and points balances across configured experiences."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Baskets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create And Update Basket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://loyalty.thanx.com/api/baskets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates an ordering basket and computes applicable loyalty discounts. Only a single reward or points product can be redeemed per order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
