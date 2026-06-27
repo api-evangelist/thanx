@@ -53,13 +53,13 @@ apis:
         url: https://docs.thanx.com/consumer/overview
       - type: Authentication
         url: https://docs.thanx.com/consumer/usage/headers
-      - type: SDK
+      - type: SDKs
         url: https://github.com/thanx/thanx-sdk-ios
-      - type: SDK
+      - type: SDKs
         url: https://github.com/thanx/thanx-sdk-android
       - type: BestPractices
         url: https://docs.thanx.com/consumer/best-practices/design
-      - type: Errors
+      - type: ErrorCodes
         url: https://docs.thanx.com/consumer/usage/errors
       - type: JSONSchema
         url: json-schema/consumer-api-authorization-schema.json
@@ -113,31 +113,31 @@ apis:
         url: json-structure/consumer-api-user-input-structure.json
       - type: JSONStructure
         url: json-structure/consumer-api-user-structure.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-authorization-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-birth-date-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-card-envelope-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-card-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-gift-card-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-location-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-pagination-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-purchase-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-reward-envelope-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-reward-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-user-envelope-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-user-example.json
-      - type: Example
+      - type: Examples
         url: examples/consumer-api-user-input-example.json
       - type: JSONLD
         url: json-ld/thanx-consumer-api-context.jsonld
@@ -189,15 +189,15 @@ apis:
         url: json-structure/partner-api-issuance-job-structure.json
       - type: JSONStructure
         url: json-structure/partner-api-partner-user-structure.json
-      - type: Example
+      - type: Examples
         url: examples/partner-api-campaign-example.json
-      - type: Example
+      - type: Examples
         url: examples/partner-api-campaign-input-example.json
-      - type: Example
+      - type: Examples
         url: examples/partner-api-campaign-variant-input-example.json
-      - type: Example
+      - type: Examples
         url: examples/partner-api-issuance-job-example.json
-      - type: Example
+      - type: Examples
         url: examples/partner-api-partner-user-example.json
       - type: JSONLD
         url: json-ld/thanx-partner-api-context.jsonld
@@ -256,19 +256,19 @@ apis:
         url: json-structure/loyalty-api-payment-structure.json
       - type: JSONStructure
         url: json-structure/loyalty-api-points-product-structure.json
-      - type: Example
+      - type: Examples
         url: examples/loyalty-api-account-example.json
-      - type: Example
+      - type: Examples
         url: examples/loyalty-api-basket-example.json
-      - type: Example
+      - type: Examples
         url: examples/loyalty-api-basket-input-example.json
-      - type: Example
+      - type: Examples
         url: examples/loyalty-api-basket-item-example.json
-      - type: Example
+      - type: Examples
         url: examples/loyalty-api-loyalty-reward-example.json
-      - type: Example
+      - type: Examples
         url: examples/loyalty-api-payment-example.json
-      - type: Example
+      - type: Examples
         url: examples/loyalty-api-points-product-example.json
       - type: JSONLD
         url: json-ld/thanx-loyalty-api-context.jsonld
@@ -285,13 +285,13 @@ common:
     url: https://www.thanx.com/pricing
   - type: GitHubOrganization
     url: https://github.com/thanx
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.thanx.com/llms.txt
   - type: ChangeLog
     url: https://docs.thanx.com/data/changelog
   - type: BestPractices
     url: https://docs.thanx.com/consumer/best-practices/design
-  - type: Errors
+  - type: ErrorCodes
     url: https://docs.thanx.com/consumer/usage/errors
   - type: Documentation
     title: Webhooks Overview
