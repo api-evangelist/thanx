@@ -1,0 +1,33 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/thanx-consumer-api-openapi.yml, openapi/thanx-loyalty-api-openapi.yml, openapi/thanx-partner-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: End-user access token acquired through Thanx SSO.
+  sources:
+  - openapi/thanx-consumer-api-openapi.yml
+  - openapi/thanx-loyalty-api-openapi.yml
+  - openapi/thanx-partner-api-openapi.yml
+- name: clientId
+  type: apiKey
+  in: header
+  parameter: X-ClientId
+  description: Client-specific identifier provided by Thanx.
+  sources:
+  - openapi/thanx-consumer-api-openapi.yml
+  - openapi/thanx-partner-api-openapi.yml
+- name: merchantKey
+  type: apiKey
+  in: header
+  parameter: Merchant-Key
+  description: Merchant key provided by Thanx.
+  sources:
+  - openapi/thanx-loyalty-api-openapi.yml
