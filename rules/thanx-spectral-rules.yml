@@ -1,11 +1,23 @@
-# Thanx API Spectral Ruleset
-# Enforces the conventions observed across the Thanx Consumer, Partner, and
-# Loyalty OpenAPI specifications: Title-prefixed metadata, HTTPS servers,
-# snake_case paths/parameters/properties, camelCase verb-prefixed operationIds,
-# Title Case tags, bearer + X-ClientId security, and enveloped JSON responses.
+# thanx — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - path-params-casing: snake @ 100% (n=9)
+#   - query-params-casing: snake @ 90% (n=19)
+#   - operationid-casing: camel @ 100% (n=30)
+#   - schema-names-casing: pascal @ 100% (n=28)
+#   - schema-properties-casing: snake @ 100% (n=142)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - error-schema-defined: Error
+#   - pagination params observed: ['page', 'per_page']
+#   - merge: kept 33 existing, added 7 measured, upgraded 0
+#   - added: path-params-casing, query-params-casing, operationid-casing, schema-names-casing, schema-properties-casing, error-schema-defined, no-empty-descriptions
+extends:
+  - spectral:oas
 rules:
-
-  # ── INFO / METADATA ──────────────────────────────────────────────────
   thanx-info-title:
     description: Info title should start with "Thanx".
     severity: warn
@@ -14,7 +26,7 @@ rules:
       field: title
       function: pattern
       functionOptions:
-        match: "^Thanx"
+        match: ^Thanx
   thanx-info-description:
     description: Info description is required and should be meaningful.
     severity: warn
@@ -43,8 +55,6 @@ rules:
     then:
       field: license
       function: truthy
-
-  # ── OPENAPI VERSION ──────────────────────────────────────────────────
   thanx-openapi-3-1:
     description: Specs should target OpenAPI 3.1.x.
     severity: warn
@@ -53,9 +63,7 @@ rules:
       field: openapi
       function: pattern
       functionOptions:
-        match: "^3\\.1\\."
-
-  # ── SERVERS ──────────────────────────────────────────────────────────
+        match: ^3\.1\.
   thanx-servers-defined:
     description: At least one server must be defined.
     severity: error
@@ -71,7 +79,7 @@ rules:
       field: url
       function: pattern
       functionOptions:
-        match: "^https://"
+        match: ^https://
   thanx-servers-description:
     description: Each server should have a description.
     severity: info
@@ -79,16 +87,15 @@ rules:
     then:
       field: description
       function: truthy
-
-  # ── PATHS — NAMING ───────────────────────────────────────────────────
   thanx-paths-snake-case:
-    description: Path segments should be snake_case (lowercase, underscores), matching Thanx resource paths.
+    description: Path segments should be snake_case (lowercase, underscores), matching Thanx resource
+      paths.
     severity: warn
     given: $.paths[*]~
     then:
       function: pattern
       functionOptions:
-        match: "^(/[a-z0-9_.]+(\\{[a-zA-Z0-9_]+\\})?|/\\{[a-zA-Z0-9_]+\\})+/?$|^/$"
+        match: ^(/[a-z0-9_.]+(\{[a-zA-Z0-9_]+\})?|/\{[a-zA-Z0-9_]+\})+/?$|^/$
   thanx-paths-no-trailing-slash:
     description: Paths should not end with a trailing slash.
     severity: warn
@@ -96,9 +103,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        notMatch: ".+/$"
-
-  # ── OPERATIONS ───────────────────────────────────────────────────────
+        notMatch: .+/$
   thanx-operation-operationId:
     description: Every operation must have an operationId.
     severity: error
@@ -114,7 +119,7 @@ rules:
       field: operationId
       function: pattern
       functionOptions:
-        match: "^(get|list|create|update|delete|issue|revoke|activate|finalize|grant|exchange|upsert|check)[A-Z0-9].*$"
+        match: ^(get|list|create|update|delete|issue|revoke|activate|finalize|grant|exchange|upsert|check)[A-Z0-9].*$
   thanx-operation-summary:
     description: Every operation must have a summary.
     severity: warn
@@ -130,7 +135,7 @@ rules:
       field: summary
       function: pattern
       functionOptions:
-        match: "^[A-Z][A-Za-z0-9]*( [A-Z0-9][A-Za-z0-9]*)*$"
+        match: ^[A-Z][A-Za-z0-9]*( [A-Z0-9][A-Za-z0-9]*)*$
   thanx-operation-description:
     description: Every operation should have a description.
     severity: info
@@ -145,8 +150,6 @@ rules:
     then:
       field: tags
       function: truthy
-
-  # ── TAGS ─────────────────────────────────────────────────────────────
   thanx-global-tags:
     description: A global tags array should be defined.
     severity: info
@@ -169,9 +172,7 @@ rules:
       field: name
       function: pattern
       functionOptions:
-        match: "^[A-Z][A-Za-z0-9]*( [A-Z0-9][A-Za-z0-9]*)*$"
-
-  # ── PARAMETERS ───────────────────────────────────────────────────────
+        match: ^[A-Z][A-Za-z0-9]*( [A-Z0-9][A-Za-z0-9]*)*$
   thanx-parameter-description:
     description: Parameters should be described.
     severity: info
@@ -187,9 +188,7 @@ rules:
       field: name
       function: pattern
       functionOptions:
-        match: "^[a-z][a-z0-9_]*(\\[\\])?$"
-
-  # ── REQUEST BODIES ───────────────────────────────────────────────────
+        match: ^[a-z][a-z0-9_]*(\[\])?$
   thanx-request-body-json:
     description: Request bodies should offer application/json.
     severity: warn
@@ -197,8 +196,6 @@ rules:
     then:
       field: application/json
       function: truthy
-
-  # ── RESPONSES ────────────────────────────────────────────────────────
   thanx-response-success:
     description: Operations should declare a 2xx response.
     severity: warn
@@ -209,7 +206,7 @@ rules:
         schema:
           type: object
           patternProperties:
-            "^2[0-9][0-9]$": true
+            ^2[0-9][0-9]$: true
           minProperties: 1
   thanx-response-description:
     description: Each response must have a description.
@@ -228,10 +225,10 @@ rules:
         schema:
           type: object
           anyOf:
-            - required: [message]
-            - required: [error]
-
-  # ── SCHEMAS — PROPERTY NAMING ────────────────────────────────────────
+          - required:
+            - message
+          - required:
+            - error
   thanx-schema-property-snake-case:
     description: Schema property names should be snake_case.
     severity: warn
@@ -239,7 +236,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-z0-9_]*$"
+        match: ^[a-z][a-z0-9_]*$
   thanx-schema-property-typed:
     description: Schema properties should declare a type or a $ref.
     severity: info
@@ -250,13 +247,16 @@ rules:
         schema:
           type: object
           anyOf:
-            - required: [type]
-            - required: [$ref]
-            - required: [allOf]
-            - required: [oneOf]
-            - required: [anyOf]
-
-  # ── SECURITY ─────────────────────────────────────────────────────────
+          - required:
+            - type
+          - required:
+            - $ref
+          - required:
+            - allOf
+          - required:
+            - oneOf
+          - required:
+            - anyOf
   thanx-global-security:
     description: A global security requirement should be defined.
     severity: warn
@@ -278,8 +278,6 @@ rules:
     then:
       field: bearerAuth
       function: truthy
-
-  # ── HTTP METHOD CONVENTIONS ──────────────────────────────────────────
   thanx-get-no-body:
     description: GET operations must not declare a request body.
     severity: error
@@ -294,3 +292,59 @@ rules:
     then:
       field: requestBody
       function: falsy
+  path-params-casing:
+    description: Path parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: snake
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
+  operationid-casing:
+    description: Operation IDs should be camelCase (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: pascal
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  error-schema-defined:
+    description: A shared error schema (Error) should be defined for error payloads.
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: Error
+      function: truthy
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
+      function: truthy
