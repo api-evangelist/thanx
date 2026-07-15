@@ -273,6 +273,8 @@ apis:
       - type: JSONLD
         url: json-ld/thanx-loyalty-api-context.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/thanx-agentic-access.yml
   - type: DomainSecurity
     url: security/thanx-domain-security.yml
   - type: Authentication
