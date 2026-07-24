@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account Points API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Points
+  description: Points balances, products, experiences, and multipliers.
+paths:
+  /points_experiences/{id}/balance:
+    get:
+      operationId: getPointsBalance
+      summary: Get Points Balance
+      description: Retrieves the user's current points currency balance for a points experience.
+      tags:
+      - Points
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The points balance.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balance:
+                    type: number
+                    format: double
+                    examples:
+                    - 10.0
+              examples:
+                GetPointsBalance200Example:
+                  summary: Default getPointsBalance 200 response
+                  x-microcks-default: true
+                  value:
+                    balance: 10.0
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.

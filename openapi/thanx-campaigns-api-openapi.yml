@@ -1,0 +1,403 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account Campaigns API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Campaigns
+  description: Create, retrieve, list campaigns and issue rewards.
+paths:
+  /partner/campaigns:
+    post:
+      operationId: createCampaign
+      summary: Create Campaign
+      description: Creates a marketing campaign with treatment and control variants.
+      tags:
+      - Campaigns
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - campaign
+              properties:
+                campaign:
+                  $ref: '#/components/schemas/CampaignInput'
+            examples:
+              CreateCampaignRequestExample:
+                summary: Default createCampaign request
+                x-microcks-default: true
+                value:
+                  campaign:
+                    merchant_id: 92b7b0dac4
+                    name: Pizza Town Co
+                    objective: Free coffee for loyal customers.
+                    fine_print: Free coffee for loyal customers.
+                    start_at: '2025-06-01T18:02:05Z'
+                    end_at: '2025-06-01T18:02:05Z'
+                    redeemable_from: '2025-06-01T18:02:05Z'
+                    redeemable_to: '2025-06-01T18:02:05Z'
+                    variants:
+                    - name: Pizza Town Co
+                      reward_template_id: 92b7b0dac4
+      responses:
+        '201':
+          description: The created campaign.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campaign:
+                    $ref: '#/components/schemas/Campaign'
+              examples:
+                CreateCampaign201Example:
+                  summary: Default createCampaign 201 response
+                  x-microcks-default: true
+                  value:
+                    campaign:
+                      id: 92b7b0dac4
+                      name: Pizza Town Co
+                      objective: Free coffee for loyal customers.
+                      start_at: '2025-06-01T18:02:05Z'
+                      end_at: '2025-06-01T18:02:05Z'
+                      redeemable_from: '2025-06-01T18:02:05Z'
+                      redeemable_to: '2025-06-01T18:02:05Z'
+                      time_zone: example
+                      fine_print: Free coffee for loyal customers.
+                      variants:
+                      - id: 92b7b0dac4
+                        name: Pizza Town Co
+                        reward_template_id: 92b7b0dac4
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listCampaigns
+      summary: List Campaigns
+      description: Lists campaigns for a merchant.
+      tags:
+      - Campaigns
+      parameters:
+      - name: merchant_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      responses:
+        '200':
+          description: A list of campaigns.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campaigns:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Campaign'
+              examples:
+                ListCampaigns200Example:
+                  summary: Default listCampaigns 200 response
+                  x-microcks-default: true
+                  value:
+                    campaigns:
+                    - id: 92b7b0dac4
+                      name: Pizza Town Co
+                      objective: Free coffee for loyal customers.
+                      start_at: '2025-06-01T18:02:05Z'
+                      end_at: '2025-06-01T18:02:05Z'
+                      redeemable_from: '2025-06-01T18:02:05Z'
+                      redeemable_to: '2025-06-01T18:02:05Z'
+                      time_zone: example
+                      fine_print: Free coffee for loyal customers.
+                      variants:
+                      - id: 92b7b0dac4
+                        name: Pizza Town Co
+                        reward_template_id: 92b7b0dac4
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/campaigns/{id}:
+    get:
+      operationId: getCampaign
+      summary: Get Campaign
+      description: Retrieves a single campaign by identifier.
+      tags:
+      - Campaigns
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The campaign.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campaign:
+                    $ref: '#/components/schemas/Campaign'
+              examples:
+                GetCampaign200Example:
+                  summary: Default getCampaign 200 response
+                  x-microcks-default: true
+                  value:
+                    campaign:
+                      id: 92b7b0dac4
+                      name: Pizza Town Co
+                      objective: Free coffee for loyal customers.
+                      start_at: '2025-06-01T18:02:05Z'
+                      end_at: '2025-06-01T18:02:05Z'
+                      redeemable_from: '2025-06-01T18:02:05Z'
+                      redeemable_to: '2025-06-01T18:02:05Z'
+                      time_zone: example
+                      fine_print: Free coffee for loyal customers.
+                      variants:
+                      - id: 92b7b0dac4
+                        name: Pizza Town Co
+                        reward_template_id: 92b7b0dac4
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/campaigns/issue:
+    post:
+      operationId: issueRewards
+      summary: Issue Rewards
+      description: Issues campaign rewards to a batch of identifiers (up to 10,000 per request). Returns an asynchronous issuance job.
+      tags:
+      - Campaigns
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - campaign_id
+              - merchant_id
+              - variant_id
+              - identifiers
+              properties:
+                campaign_id:
+                  type: string
+                merchant_id:
+                  type: string
+                variant_id:
+                  type: string
+                identifiers:
+                  type: array
+                  maxItems: 10000
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - value
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - email
+                        - phone
+                      value:
+                        type: string
+            examples:
+              IssueRewardsRequestExample:
+                summary: Default issueRewards request
+                x-microcks-default: true
+                value:
+                  campaign_id: 92b7b0dac4
+                  merchant_id: 92b7b0dac4
+                  variant_id: 92b7b0dac4
+                  identifiers:
+                  - type: email
+                    value: example
+      responses:
+        '202':
+          description: The reward issuance job was accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issuance_job:
+                    $ref: '#/components/schemas/IssuanceJob'
+              examples:
+                IssueRewards202Example:
+                  summary: Default issueRewards 202 response
+                  x-microcks-default: true
+                  value:
+                    issuance_job:
+                      id: 92b7b0dac4
+                      state: CA
+                      requested_count: 3
+                      issued_count: 3
+                      failed_count: 3
+                      created_at: '2025-06-01T18:02:05Z'
+                      updated_at: '2025-06-01T18:02:05Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    IssuanceJob:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        state:
+          type: string
+          example: CA
+        requested_count:
+          type: integer
+          example: 3
+        issued_count:
+          type: integer
+          example: 3
+        failed_count:
+          type: integer
+          example: 3
+        created_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+    CampaignInput:
+      type: object
+      required:
+      - merchant_id
+      - name
+      - start_at
+      - end_at
+      - redeemable_from
+      - redeemable_to
+      properties:
+        merchant_id:
+          type: string
+          example: 92b7b0dac4
+        name:
+          type: string
+          example: Pizza Town Co
+        objective:
+          type: string
+          example: Free coffee for loyal customers.
+        fine_print:
+          type: string
+          example: Free coffee for loyal customers.
+        start_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        end_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        redeemable_from:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        redeemable_to:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/CampaignVariantInput'
+    CampaignVariantInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          example: Pizza Town Co
+        reward_template_id:
+          type: string
+          description: Required for treatment variants, omitted for control.
+          example: 92b7b0dac4
+    Campaign:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        name:
+          type: string
+          example: Pizza Town Co
+        objective:
+          type: string
+          example: Free coffee for loyal customers.
+        start_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        end_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        redeemable_from:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        redeemable_to:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        time_zone:
+          type: string
+          example: example
+        fine_print:
+          type: string
+          example: Free coffee for loyal customers.
+        variants:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              reward_template_id:
+                type: string
+                nullable: true
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.

@@ -1,0 +1,107 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account Auth API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Auth
+  description: Acquire privileged end-user access tokens.
+paths:
+  /partner/oauth/token:
+    post:
+      operationId: createToken
+      summary: Create Access Token
+      description: Acquires a privileged end-user access token for a given merchant and identifier (user, email, or phone).
+      tags:
+      - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - merchant_id
+              properties:
+                merchant_id:
+                  type: string
+                user_id:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                phone:
+                  type: string
+                expires_in:
+                  type: integer
+                  minimum: 60
+                  maximum: 3600
+            examples:
+              CreateTokenRequestExample:
+                summary: Default createToken request
+                x-microcks-default: true
+                value:
+                  merchant_id: 92b7b0dac4
+                  user_id: 92b7b0dac4
+                  email: jane.smith@example.com
+                  phone: '+14158672345'
+                  expires_in: 1
+      responses:
+        '200':
+          description: The issued access token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  scope:
+                    type: string
+                  created_at:
+                    type: integer
+                  expires_in:
+                    type: integer
+              examples:
+                CreateToken200Example:
+                  summary: Default createToken 200 response
+                  x-microcks-default: true
+                  value:
+                    access_token: 945148251b603ae34561d90acfe4050e
+                    token_type: 945148251b603ae34561d90acfe4050e
+                    scope: passwordless
+                    created_at: 1577836800
+                    expires_in: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.

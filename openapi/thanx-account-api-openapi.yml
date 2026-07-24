@@ -1,0 +1,189 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Account
+  description: Retrieve a user's loyalty account, rewards, and points balances.
+paths:
+  /api/account:
+    get:
+      operationId: getAccount
+      summary: Get Account
+      description: Retrieves the authenticated user's loyalty account, including available rewards, points products for redemption, loyalty progress, and points balances across configured experiences.
+      tags:
+      - Account
+      parameters:
+      - name: location_id
+        in: query
+        description: Thanx Location UID.
+        schema:
+          type: string
+        example: 92b7b0dac4
+      - name: redemption_venue
+        in: query
+        description: Venue where the redemption occurs.
+        schema:
+          type: string
+          enum:
+          - instore
+          - online
+          default: online
+        example: instore
+      - name: reward_states[]
+        in: query
+        description: Filter rewards by state.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - delivered
+            - active
+          default:
+          - delivered
+      responses:
+        '200':
+          description: The loyalty account.
+          content:
+            application/vnd.thanx-v1+json:
+              schema:
+                $ref: '#/components/schemas/Account'
+              examples:
+                GetAccount200Example:
+                  summary: Default getAccount 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 92b7b0dac4
+                    email: jane.smith@example.com
+                    rewards:
+                    - id: 92b7b0dac4
+                      value: 1.0
+                      label: A free hamburger
+                      state: redeemable
+                      type: amount
+                    points_products:
+                    - id: 92b7b0dac4
+                      label: A free hamburger
+                      cost: 1.0
+                    points_balances:
+                    - points_experience_id: 92b7b0dac4
+                      balance: 10.0
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    LoyaltyReward:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        value:
+          type: number
+          example: 1.0
+        label:
+          type: string
+          example: A free hamburger
+        state:
+          type: string
+          enum:
+          - redeemable
+          - delivered
+          - active
+          example: redeemable
+        type:
+          type: string
+          enum:
+          - amount
+          - percent
+          - item
+          example: amount
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 1
+        message:
+          type: string
+          example: example
+    PointsProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        label:
+          type: string
+          example: A free hamburger
+        cost:
+          type: number
+          format: double
+          example: 1.0
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        email:
+          type: string
+          format: email
+          example: jane.smith@example.com
+        rewards:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoyaltyReward'
+        points_products:
+          type: array
+          items:
+            $ref: '#/components/schemas/PointsProduct'
+        points_balances:
+          type: array
+          items:
+            type: object
+            properties:
+              points_experience_id:
+                type: string
+              balance:
+                type: number
+                format: double
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.

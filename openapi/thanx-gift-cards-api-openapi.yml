@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account Gift Cards API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Gift Cards
+  description: Create, retrieve, and delete digital gift cards.
+paths:
+  /gift_cards:
+    get:
+      operationId: getGiftCards
+      summary: Get Gift Cards
+      description: Retrieves the authenticated user's gift cards.
+      tags:
+      - Gift Cards
+      responses:
+        '200':
+          description: A list of gift cards.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  gift_cards:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GiftCard'
+              examples:
+                GetGiftCards200Example:
+                  summary: Default getGiftCards 200 response
+                  x-microcks-default: true
+                  value:
+                    gift_cards:
+                    - id: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      balance: 10.0
+                      code: FREECOFFEE
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createGiftCard
+      summary: Create Gift Card
+      description: Creates a new digital gift card.
+      tags:
+      - Gift Cards
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                gift_card:
+                  $ref: '#/components/schemas/GiftCard'
+            examples:
+              CreateGiftCardRequestExample:
+                summary: Default createGiftCard request
+                x-microcks-default: true
+                value:
+                  gift_card:
+                    id: 92b7b0dac4
+                    user_id: 92b7b0dac4
+                    balance: 10.0
+                    code: FREECOFFEE
+      responses:
+        '201':
+          description: The created gift card.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  gift_card:
+                    $ref: '#/components/schemas/GiftCard'
+              examples:
+                CreateGiftCard201Example:
+                  summary: Default createGiftCard 201 response
+                  x-microcks-default: true
+                  value:
+                    gift_card:
+                      id: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      balance: 10.0
+                      code: FREECOFFEE
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    GiftCard:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        user_id:
+          type: string
+          example: 92b7b0dac4
+        balance:
+          type: number
+          format: double
+          example: 10.0
+        code:
+          type: string
+          example: FREECOFFEE
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.

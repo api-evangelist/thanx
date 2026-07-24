@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account Subscribers API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Subscribers
+  description: Ingest marketing subscribers.
+paths:
+  /partner/subscribers:
+    post:
+      operationId: createSubscriber
+      summary: Create Subscriber
+      description: Ingests a marketing subscriber for a merchant.
+      tags:
+      - Subscribers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - merchant_id
+              - subscriber
+              properties:
+                merchant_id:
+                  type: string
+                subscriber:
+                  type: object
+                  required:
+                  - email
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    birth_date:
+                      type: object
+                      properties:
+                        month:
+                          type: integer
+                        day:
+                          type: integer
+                    zip_code:
+                      type: string
+            examples:
+              CreateSubscriberRequestExample:
+                summary: Default createSubscriber request
+                x-microcks-default: true
+                value:
+                  merchant_id: 92b7b0dac4
+                  subscriber:
+                    email: jane.smith@example.com
+                    first_name: Jane
+                    last_name: Smith
+                    birth_date:
+                      month: 8
+                      day: 14
+                    zip_code: '94105'
+      responses:
+        '201':
+          description: The created subscriber.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  subscriber:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+              examples:
+                CreateSubscriber201Example:
+                  summary: Default createSubscriber 201 response
+                  x-microcks-default: true
+                  value:
+                    subscriber:
+                      email: jane.smith@example.com
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    BadRequest:
+      description: The request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.

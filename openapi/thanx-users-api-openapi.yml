@@ -1,0 +1,361 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account Users API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Users
+  description: Create, retrieve, update, and delete Thanx users.
+paths:
+  /users/me:
+    get:
+      operationId: getUser
+      summary: Get User
+      description: Retrieves the authenticated Thanx user's profile.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: The authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEnvelope'
+              examples:
+                GetUser200Example:
+                  summary: Default getUser 200 response
+                  x-microcks-default: true
+                  value:
+                    user:
+                      id: 92b7b0dac4
+                      email: jane.smith@example.com
+                      phone: '+14158672345'
+                      first_name: Jane
+                      last_name: Smith
+                      birth_date:
+                        year: 1987
+                        month: 8
+                        day: 14
+                      zip_code: '94105'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /users:
+    post:
+      operationId: createUser
+      summary: Create User
+      description: Creates a new Thanx user and returns an authorization grant.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - user
+              properties:
+                user:
+                  $ref: '#/components/schemas/UserInput'
+            examples:
+              CreateUserRequestExample:
+                summary: Default createUser request
+                x-microcks-default: true
+                value:
+                  user:
+                    email: jane.smith@example.com
+                    phone: '+14158672345'
+                    first_name: Jane
+                    last_name: Smith
+                    birth_date:
+                      year: 1987
+                      month: 8
+                      day: 14
+                    zip_code: '94105'
+                    signup_program_id: 92b7b0dac4
+      responses:
+        '201':
+          description: The created user and authorization.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  authorization:
+                    $ref: '#/components/schemas/Authorization'
+              examples:
+                CreateUser201Example:
+                  summary: Default createUser 201 response
+                  x-microcks-default: true
+                  value:
+                    user:
+                      id: 92b7b0dac4
+                      email: jane.smith@example.com
+                      phone: '+14158672345'
+                      first_name: Jane
+                      last_name: Smith
+                      birth_date:
+                        year: 1987
+                        month: 8
+                        day: 14
+                      zip_code: '94105'
+                    authorization:
+                      token_type: 945148251b603ae34561d90acfe4050e
+                      scope: passwordless
+                      created_at: 1577836800
+                      access_token: 945148251b603ae34561d90acfe4050e
+                      refresh_token: 945148251b603ae34561d90acfe4050e
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/users/{id}:
+    get:
+      operationId: getPartnerUser
+      summary: Get User
+      description: Retrieves a user by identifier.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The user.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/PartnerUser'
+              examples:
+                GetPartnerUser200Example:
+                  summary: Default getPartnerUser 200 response
+                  x-microcks-default: true
+                  value:
+                    user:
+                      id: 92b7b0dac4
+                      email: jane.smith@example.com
+                      phone: '+14158672345'
+                      first_name: Jane
+                      last_name: Smith
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/users:
+    get:
+      operationId: getPartnerUsers
+      summary: Get Users
+      description: Retrieves users for a merchant.
+      tags:
+      - Users
+      parameters:
+      - name: merchant_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      responses:
+        '200':
+          description: A list of users.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PartnerUser'
+              examples:
+                GetPartnerUsers200Example:
+                  summary: Default getPartnerUsers 200 response
+                  x-microcks-default: true
+                  value:
+                    users:
+                    - id: 92b7b0dac4
+                      email: jane.smith@example.com
+                      phone: '+14158672345'
+                      first_name: Jane
+                      last_name: Smith
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        email:
+          type: string
+          format: email
+          example: jane.smith@example.com
+        phone:
+          type: string
+          description: E.164 formatted phone number.
+          example: '+14158672345'
+        first_name:
+          type: string
+          example: Jane
+        last_name:
+          type: string
+          example: Smith
+        birth_date:
+          $ref: '#/components/schemas/BirthDate'
+        zip_code:
+          type: string
+          example: '94105'
+    Authorization:
+      type: object
+      properties:
+        token_type:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
+        scope:
+          type: string
+          example: passwordless
+        created_at:
+          type: integer
+          example: 1577836800
+        access_token:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
+        refresh_token:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
+    PartnerUser:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        email:
+          type: string
+          format: email
+          example: jane.smith@example.com
+        phone:
+          type: string
+          example: '+14158672345'
+        first_name:
+          type: string
+          example: Jane
+        last_name:
+          type: string
+          example: Smith
+    UserEnvelope:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    BirthDate:
+      type: object
+      properties:
+        year:
+          type: integer
+          example: 1987
+        month:
+          type: integer
+          example: 8
+        day:
+          type: integer
+          example: 14
+    UserInput:
+      type: object
+      required:
+      - email
+      - first_name
+      - last_name
+      properties:
+        email:
+          type: string
+          format: email
+          example: jane.smith@example.com
+        phone:
+          type: string
+          example: '+14158672345'
+        first_name:
+          type: string
+          example: Jane
+        last_name:
+          type: string
+          example: Smith
+        birth_date:
+          $ref: '#/components/schemas/BirthDate'
+        zip_code:
+          type: string
+          example: '94105'
+        signup_program_id:
+          type: string
+          example: 92b7b0dac4
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+        code:
+          type: integer
+          example: 1
+        message:
+          type: string
+          example: example
+  responses:
+    BadRequest:
+      description: The request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.

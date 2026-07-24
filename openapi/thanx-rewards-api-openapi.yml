@@ -1,0 +1,384 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account Rewards API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Rewards
+  description: Retrieve, activate, finalize, and grant loyalty rewards.
+paths:
+  /rewards:
+    get:
+      operationId: getRewards
+      summary: Get Rewards
+      description: Retrieves loyalty rewards, optionally filtered by state and merchant.
+      tags:
+      - Rewards
+      parameters:
+      - name: states[]
+        in: query
+        description: Only rewards in these states are returned.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - available
+            - active
+            - used
+      - name: merchant_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      - name: user_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of rewards.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rewards:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Reward'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              examples:
+                GetRewards200Example:
+                  summary: Default getRewards 200 response
+                  x-microcks-default: true
+                  value:
+                    rewards:
+                    - id: 92b7b0dac4
+                      olo_uid: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      campaign_id: 92b7b0dac4
+                      state: available
+                      earn:
+                        type: visa
+                      redeem:
+                        type: visa
+                        text: Free coffee for loyal customers.
+                        detail: example
+                        window: example
+                        venue: example
+                      coupon_code:
+                        code: FREECOFFEE
+                        type: visa
+                        display: example
+                      fine_print: Free coffee for loyal customers.
+                      instructions: Free coffee for loyal customers.
+                      available_at: '2025-06-01T18:02:05Z'
+                      activated_at: '2025-06-01T18:02:05Z'
+                      retire_at: '2025-06-01T18:02:05Z'
+                      used_at: '2025-06-01T18:02:05Z'
+                      uses_dynamic_coupon_codes: true
+                    pagination:
+                      total_page: 1
+                      per_page: 1
+                      current_page: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /rewards/{id}:
+    get:
+      operationId: getReward
+      summary: Get Reward
+      description: Retrieves a single reward by identifier.
+      tags:
+      - Rewards
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The reward.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RewardEnvelope'
+              examples:
+                GetReward200Example:
+                  summary: Default getReward 200 response
+                  x-microcks-default: true
+                  value:
+                    reward:
+                      id: 92b7b0dac4
+                      olo_uid: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      campaign_id: 92b7b0dac4
+                      state: available
+                      earn:
+                        type: visa
+                      redeem:
+                        type: visa
+                        text: Free coffee for loyal customers.
+                        detail: example
+                        window: example
+                        venue: example
+                      coupon_code:
+                        code: FREECOFFEE
+                        type: visa
+                        display: example
+                      fine_print: Free coffee for loyal customers.
+                      instructions: Free coffee for loyal customers.
+                      available_at: '2025-06-01T18:02:05Z'
+                      activated_at: '2025-06-01T18:02:05Z'
+                      retire_at: '2025-06-01T18:02:05Z'
+                      used_at: '2025-06-01T18:02:05Z'
+                      uses_dynamic_coupon_codes: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /rewards/{id}/activate:
+    post:
+      operationId: activateReward
+      summary: Activate Reward
+      description: Activates a reward so it can be redeemed.
+      tags:
+      - Rewards
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The activated reward.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RewardEnvelope'
+              examples:
+                ActivateReward200Example:
+                  summary: Default activateReward 200 response
+                  x-microcks-default: true
+                  value:
+                    reward:
+                      id: 92b7b0dac4
+                      olo_uid: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      campaign_id: 92b7b0dac4
+                      state: available
+                      earn:
+                        type: visa
+                      redeem:
+                        type: visa
+                        text: Free coffee for loyal customers.
+                        detail: example
+                        window: example
+                        venue: example
+                      coupon_code:
+                        code: FREECOFFEE
+                        type: visa
+                        display: example
+                      fine_print: Free coffee for loyal customers.
+                      instructions: Free coffee for loyal customers.
+                      available_at: '2025-06-01T18:02:05Z'
+                      activated_at: '2025-06-01T18:02:05Z'
+                      retire_at: '2025-06-01T18:02:05Z'
+                      used_at: '2025-06-01T18:02:05Z'
+                      uses_dynamic_coupon_codes: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /rewards/{id}/finalize:
+    post:
+      operationId: finalizeReward
+      summary: Finalize Reward
+      description: Finalizes a reward after redemption.
+      tags:
+      - Rewards
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The finalized reward.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RewardEnvelope'
+              examples:
+                FinalizeReward200Example:
+                  summary: Default finalizeReward 200 response
+                  x-microcks-default: true
+                  value:
+                    reward:
+                      id: 92b7b0dac4
+                      olo_uid: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      campaign_id: 92b7b0dac4
+                      state: available
+                      earn:
+                        type: visa
+                      redeem:
+                        type: visa
+                        text: Free coffee for loyal customers.
+                        detail: example
+                        window: example
+                        venue: example
+                      coupon_code:
+                        code: FREECOFFEE
+                        type: visa
+                        display: example
+                      fine_print: Free coffee for loyal customers.
+                      instructions: Free coffee for loyal customers.
+                      available_at: '2025-06-01T18:02:05Z'
+                      activated_at: '2025-06-01T18:02:05Z'
+                      retire_at: '2025-06-01T18:02:05Z'
+                      used_at: '2025-06-01T18:02:05Z'
+                      uses_dynamic_coupon_codes: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    RewardEnvelope:
+      type: object
+      properties:
+        reward:
+          $ref: '#/components/schemas/Reward'
+    Reward:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        olo_uid:
+          type: string
+          example: 92b7b0dac4
+        user_id:
+          type: string
+          example: 92b7b0dac4
+        merchant_id:
+          type: string
+          example: 92b7b0dac4
+        campaign_id:
+          type: string
+          example: 92b7b0dac4
+        state:
+          type: string
+          enum:
+          - available
+          - active
+          - used
+          example: available
+        earn:
+          type: object
+          properties:
+            type:
+              type: string
+        redeem:
+          type: object
+          properties:
+            type:
+              type: string
+            text:
+              type: string
+            detail:
+              type: string
+            window:
+              type: string
+            venue:
+              type: string
+        coupon_code:
+          type: object
+          properties:
+            code:
+              type: string
+            type:
+              type: string
+            display:
+              type: string
+        fine_print:
+          type: string
+          example: Free coffee for loyal customers.
+        instructions:
+          type: string
+          example: Free coffee for loyal customers.
+        available_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        activated_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        retire_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        used_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        uses_dynamic_coupon_codes:
+          type: boolean
+          example: true
+    Pagination:
+      type: object
+      properties:
+        total_page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 1
+        current_page:
+          type: integer
+          example: 1
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.

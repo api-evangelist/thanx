@@ -1,0 +1,225 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account Baskets API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Baskets
+  description: Create and update ordering baskets and redeem rewards or points products.
+paths:
+  /api/baskets:
+    post:
+      operationId: createUpdateBasket
+      summary: Create And Update Basket
+      description: Creates or updates an ordering basket and computes applicable loyalty discounts. Only a single reward or points product can be redeemed per order.
+      tags:
+      - Baskets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BasketInput'
+            examples:
+              CreateUpdateBasketRequestExample:
+                summary: Default createUpdateBasket request
+                x-microcks-default: true
+                value:
+                  id: 92b7b0dac4
+                  state: open
+                  order_timestamp: '2025-06-01T18:02:05Z'
+                  location_uid: 92b7b0dac4
+                  rewards:
+                  - example
+                  points_products:
+                  - example
+                  payments:
+                  - issuer: example
+                    last4: '1234'
+                    amount: 9.99
+                    authorized_at: '2025-06-01T18:02:05Z'
+                  items:
+                  - id: 92b7b0dac4
+                    name: Pizza Town Co
+                    price: 9.99
+                    categories:
+                    - example
+                    modifiers:
+                    - id: 92b7b0dac4
+                      name: Pizza Town Co
+                      price: 9.99
+                      item_base_price: 9.99
+                  subtotal: 9.99
+      responses:
+        '201':
+          description: The created or updated basket.
+          content:
+            application/vnd.thanx-v1+json:
+              schema:
+                $ref: '#/components/schemas/Basket'
+              examples:
+                CreateUpdateBasket201Example:
+                  summary: Default createUpdateBasket 201 response
+                  x-microcks-default: true
+                  value:
+                    id: 92b7b0dac4
+                    state: CA
+                    discount: example
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    BasketItem:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        name:
+          type: string
+          example: Pizza Town Co
+        price:
+          type: number
+          format: double
+          example: 9.99
+        categories:
+          type: array
+          items:
+            type: string
+        modifiers:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              price:
+                type: number
+                format: double
+              item_base_price:
+                type: number
+                format: double
+    BasketInput:
+      type: object
+      required:
+      - state
+      - order_timestamp
+      - location_uid
+      - items
+      - subtotal
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        state:
+          type: string
+          enum:
+          - open
+          - validated
+          - billed
+          - checkout
+          example: open
+        order_timestamp:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        location_uid:
+          type: string
+          example: 92b7b0dac4
+        rewards:
+          type: array
+          items:
+            type: string
+        points_products:
+          type: array
+          items:
+            type: string
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BasketItem'
+        subtotal:
+          type: number
+          format: double
+          example: 9.99
+    Payment:
+      type: object
+      properties:
+        issuer:
+          type: string
+          example: example
+        last4:
+          type: string
+          example: '1234'
+        amount:
+          type: number
+          format: double
+          example: 9.99
+        authorized_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 1
+        message:
+          type: string
+          example: example
+    Basket:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        state:
+          type: string
+          example: CA
+        discount:
+          type: string
+          example: example
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.

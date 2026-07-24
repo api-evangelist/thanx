@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account Metadata API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Metadata
+  description: Look up merchants, locations, and scopes.
+paths:
+  /partner/metadata/merchants:
+    get:
+      operationId: getMerchants
+      summary: Get Merchants
+      description: Lists merchants accessible to the partner.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: A list of merchants.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  merchants:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+              examples:
+                GetMerchants200Example:
+                  summary: Default getMerchants 200 response
+                  x-microcks-default: true
+                  value:
+                    merchants:
+                    - id: 92b7b0dac4
+                      name: Pizza Town Co
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/metadata/locations:
+    get:
+      operationId: getPartnerLocations
+      summary: Get Locations
+      description: Lists locations accessible to the partner.
+      tags:
+      - Metadata
+      parameters:
+      - name: merchant_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      responses:
+        '200':
+          description: A list of locations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        merchant_id:
+                          type: string
+                        name:
+                          type: string
+              examples:
+                GetPartnerLocations200Example:
+                  summary: Default getPartnerLocations 200 response
+                  x-microcks-default: true
+                  value:
+                    locations:
+                    - id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      name: Pizza Town Co
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/metadata/scopes:
+    get:
+      operationId: getScopes
+      summary: Get Scopes
+      description: Lists the OAuth scopes available to the partner.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: A list of scopes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  scopes:
+                    type: array
+                    items:
+                      type: string
+              examples:
+                GetScopes200Example:
+                  summary: Default getScopes 200 response
+                  x-microcks-default: true
+                  value:
+                    scopes:
+                    - passwordless
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.

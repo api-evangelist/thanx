@@ -1,0 +1,201 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account Cards API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Cards
+  description: Register and manage payment cards for card-linked loyalty.
+paths:
+  /cards:
+    post:
+      operationId: createCard
+      summary: Create Card
+      description: Registers a new payment card with Thanx for card-linked loyalty.
+      tags:
+      - Cards
+      servers:
+      - url: https://secure.api.thanx.com
+        description: Production (PCI-scoped)
+      - url: https://secure.api.thanxsandbox.com
+        description: Sandbox (PCI-scoped)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - card
+              properties:
+                card:
+                  type: object
+                  required:
+                  - number
+                  properties:
+                    number:
+                      type: string
+                      description: The card's primary account number (PAN).
+                    zip_code:
+                      type: string
+                      description: Billing ZIP code.
+            examples:
+              CreateCardRequestExample:
+                summary: Default createCard request
+                x-microcks-default: true
+                value:
+                  card:
+                    number: '1234123412341234'
+                    zip_code: '94105'
+      responses:
+        '201':
+          description: The registered card.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardEnvelope'
+              examples:
+                CreateCard201Example:
+                  summary: Default createCard 201 response
+                  x-microcks-default: true
+                  value:
+                    card:
+                      id: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      last4: '1234'
+                      type: visa
+                      zip_code: '94105'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: getCards
+      summary: Get Cards
+      description: Retrieves the registered cards for the authenticated user.
+      tags:
+      - Cards
+      responses:
+        '200':
+          description: A list of cards.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cards:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Card'
+              examples:
+                GetCards200Example:
+                  summary: Default getCards 200 response
+                  x-microcks-default: true
+                  value:
+                    cards:
+                    - id: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      last4: '1234'
+                      type: visa
+                      zip_code: '94105'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cards/{id}:
+    delete:
+      operationId: deleteCard
+      summary: Delete Card
+      description: Archives a registered card.
+      tags:
+      - Cards
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '204':
+          description: The card was archived.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        user_id:
+          type: string
+          example: 92b7b0dac4
+        last4:
+          type: string
+          example: '1234'
+        type:
+          type: string
+          example: visa
+        zip_code:
+          type: string
+          example: '94105'
+    CardEnvelope:
+      type: object
+      properties:
+        card:
+          $ref: '#/components/schemas/Card'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+        code:
+          type: integer
+          example: 1
+        message:
+          type: string
+          example: example
+  responses:
+    Unauthorized:
+      description: Authentication failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.

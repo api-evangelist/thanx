@@ -1,0 +1,148 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer Account Locations API
+  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Locations
+  description: Retrieve merchant locations.
+paths:
+  /locations:
+    get:
+      operationId: getLocations
+      summary: Get Locations
+      description: Retrieves merchant locations, optionally filtered by merchant.
+      tags:
+      - Locations
+      parameters:
+      - name: merchant_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of locations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Location'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              examples:
+                GetLocations200Example:
+                  summary: Default getLocations 200 response
+                  x-microcks-default: true
+                  value:
+                    locations:
+                    - id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      street: 123 Pizza Lane
+                      city: Smalltown
+                      state: CA
+                      zip: '94105'
+                      name: Pizza Town Co
+                      phone: '+14158672345'
+                      loyalty_redemption_type: direct
+                    pagination:
+                      total_page: 1
+                      per_page: 1
+                      current_page: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        total_page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 1
+        current_page:
+          type: integer
+          example: 1
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        merchant_id:
+          type: string
+          example: 92b7b0dac4
+        street:
+          type: string
+          example: 123 Pizza Lane
+        city:
+          type: string
+          example: Smalltown
+        state:
+          type: string
+          example: CA
+        zip:
+          type: string
+          example: '94105'
+        name:
+          type: string
+          example: Pizza Town Co
+        phone:
+          type: string
+          example: '+14158672345'
+        loyalty_redemption_type:
+          type: string
+          enum:
+          - direct
+          - indirect
+          - none
+          example: direct
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.
