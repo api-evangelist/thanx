@@ -10,7 +10,20 @@ description: >-
   brands and processes over a billion transactions annually. It also publishes a hosted Docs MCP server for
   natural-language API search and an open agent-skills starter kit.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/thanx.png
 tags:
   - Restaurant
   - Loyalty
@@ -27,252 +40,2753 @@ created: '2026-06-02'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: thanx:consumer-api
-    name: Thanx Consumer API
-    description: >-
-      The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and
-      authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It
-      powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are
-      protected and authorized via end-user access tokens acquired through Thanx SSO.
-    humanURL: https://docs.thanx.com/consumer/overview
-    baseURL: https://api.thanx.com
-    tags:
-      - Loyalty
-      - Rewards
-      - Users
-      - Gifts
-      - Points
-      - Purchases
-      - Cards
-    properties:
-      - type: OpenAPI
-        url: openapi/thanx-consumer-api-openapi.yml
-      - type: Documentation
-        url: https://docs.thanx.com/consumer/overview
-      - type: APIReference
-        url: https://docs.thanx.com/consumer/overview
-      - type: Authentication
-        url: https://docs.thanx.com/consumer/usage/headers
-      - type: SDKs
-        url: https://github.com/thanx/thanx-sdk-ios
-      - type: SDKs
-        url: https://github.com/thanx/thanx-sdk-android
-      - type: BestPractices
-        url: https://docs.thanx.com/consumer/best-practices/design
-      - type: ErrorCodes
-        url: https://docs.thanx.com/consumer/usage/errors
-      - type: JSONSchema
-        url: json-schema/consumer-api-authorization-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-birth-date-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-card-envelope-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-card-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-gift-card-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-location-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-pagination-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-purchase-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-reward-envelope-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-reward-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-user-envelope-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-user-input-schema.json
-      - type: JSONSchema
-        url: json-schema/consumer-api-user-schema.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-authorization-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-birth-date-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-card-envelope-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-card-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-gift-card-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-location-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-pagination-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-purchase-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-reward-envelope-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-reward-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-user-envelope-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-user-input-structure.json
-      - type: JSONStructure
-        url: json-structure/consumer-api-user-structure.json
-      - type: Examples
-        url: examples/consumer-api-authorization-example.json
-      - type: Examples
-        url: examples/consumer-api-birth-date-example.json
-      - type: Examples
-        url: examples/consumer-api-card-envelope-example.json
-      - type: Examples
-        url: examples/consumer-api-card-example.json
-      - type: Examples
-        url: examples/consumer-api-gift-card-example.json
-      - type: Examples
-        url: examples/consumer-api-location-example.json
-      - type: Examples
-        url: examples/consumer-api-pagination-example.json
-      - type: Examples
-        url: examples/consumer-api-purchase-example.json
-      - type: Examples
-        url: examples/consumer-api-reward-envelope-example.json
-      - type: Examples
-        url: examples/consumer-api-reward-example.json
-      - type: Examples
-        url: examples/consumer-api-user-envelope-example.json
-      - type: Examples
-        url: examples/consumer-api-user-example.json
-      - type: Examples
-        url: examples/consumer-api-user-input-example.json
-      - type: JSONLD
-        url: json-ld/thanx-consumer-api-context.jsonld
-  - aid: thanx:partner-api
-    name: Thanx Partner API
-    description: >-
-      The Thanx Partner API provides privileged endpoints supporting custom integration use cases, including end-user
-      token issuance, campaign management and reward issuance, subscriber ingestion, feedback handling, tags, and
-      metadata lookups for merchants, locations, and scopes. It is intended for approved partners building deeper
-      integrations with the Thanx engagement and marketing platform.
-    humanURL: https://docs.thanx.com/partner/overview
-    baseURL: https://api.thanx.com
-    tags:
-      - Campaigns
-      - Subscribers
-      - Marketing
-      - Rewards
-      - Merchants
-    properties:
-      - type: OpenAPI
-        url: openapi/thanx-partner-api-openapi.yml
-      - type: Documentation
-        url: https://docs.thanx.com/partner/overview
-      - type: APIReference
-        url: https://docs.thanx.com/partner/overview
-      - type: Authentication
-        url: https://docs.thanx.com/consumer/usage/headers
-      - type: GettingStarted
-        url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
-      - type: GettingStarted
-        url: https://docs.thanx.com/overview/guides/subscriber-ingestion
-      - type: JSONSchema
-        url: json-schema/partner-api-campaign-input-schema.json
-      - type: JSONSchema
-        url: json-schema/partner-api-campaign-schema.json
-      - type: JSONSchema
-        url: json-schema/partner-api-campaign-variant-input-schema.json
-      - type: JSONSchema
-        url: json-schema/partner-api-issuance-job-schema.json
-      - type: JSONSchema
-        url: json-schema/partner-api-partner-user-schema.json
-      - type: JSONStructure
-        url: json-structure/partner-api-campaign-input-structure.json
-      - type: JSONStructure
-        url: json-structure/partner-api-campaign-structure.json
-      - type: JSONStructure
-        url: json-structure/partner-api-campaign-variant-input-structure.json
-      - type: JSONStructure
-        url: json-structure/partner-api-issuance-job-structure.json
-      - type: JSONStructure
-        url: json-structure/partner-api-partner-user-structure.json
-      - type: Examples
-        url: examples/partner-api-campaign-example.json
-      - type: Examples
-        url: examples/partner-api-campaign-input-example.json
-      - type: Examples
-        url: examples/partner-api-campaign-variant-input-example.json
-      - type: Examples
-        url: examples/partner-api-issuance-job-example.json
-      - type: Examples
-        url: examples/partner-api-partner-user-example.json
-      - type: JSONLD
-        url: json-ld/thanx-partner-api-context.jsonld
-  - aid: thanx:loyalty-api
-    name: Thanx Loyalty API
-    description: >-
-      The Thanx Loyalty API supports integrations with digital ordering and kiosk providers, exposing account lookup and
-      basket lifecycle operations so external ordering systems can connect to a brand's Thanx loyalty program, apply
-      rewards and points products, and track loyalty progress. All endpoints are authorized via end-user access tokens
-      and a merchant key.
-    humanURL: https://docs.thanx.com/loyalty/overview
-    baseURL: https://loyalty.thanx.com
-    tags:
-      - Loyalty
-      - Points
-      - Online Ordering
-      - Baskets
-    properties:
-      - type: OpenAPI
-        url: openapi/thanx-loyalty-api-openapi.yml
-      - type: Documentation
-        url: https://docs.thanx.com/loyalty/overview
-      - type: APIReference
-        url: https://docs.thanx.com/loyalty/overview
-      - type: Authentication
-        url: https://docs.thanx.com/consumer/usage/headers
-      - type: GettingStarted
-        url: https://docs.thanx.com/overview/guides/pos-kiosk
-      - type: Regions
-        url: https://docs.thanx.com/loyalty/private-link
-      - type: JSONSchema
-        url: json-schema/loyalty-api-account-schema.json
-      - type: JSONSchema
-        url: json-schema/loyalty-api-basket-input-schema.json
-      - type: JSONSchema
-        url: json-schema/loyalty-api-basket-item-schema.json
-      - type: JSONSchema
-        url: json-schema/loyalty-api-basket-schema.json
-      - type: JSONSchema
-        url: json-schema/loyalty-api-loyalty-reward-schema.json
-      - type: JSONSchema
-        url: json-schema/loyalty-api-payment-schema.json
-      - type: JSONSchema
-        url: json-schema/loyalty-api-points-product-schema.json
-      - type: JSONStructure
-        url: json-structure/loyalty-api-account-structure.json
-      - type: JSONStructure
-        url: json-structure/loyalty-api-basket-input-structure.json
-      - type: JSONStructure
-        url: json-structure/loyalty-api-basket-item-structure.json
-      - type: JSONStructure
-        url: json-structure/loyalty-api-basket-structure.json
-      - type: JSONStructure
-        url: json-structure/loyalty-api-loyalty-reward-structure.json
-      - type: JSONStructure
-        url: json-structure/loyalty-api-payment-structure.json
-      - type: JSONStructure
-        url: json-structure/loyalty-api-points-product-structure.json
-      - type: Examples
-        url: examples/loyalty-api-account-example.json
-      - type: Examples
-        url: examples/loyalty-api-basket-example.json
-      - type: Examples
-        url: examples/loyalty-api-basket-input-example.json
-      - type: Examples
-        url: examples/loyalty-api-basket-item-example.json
-      - type: Examples
-        url: examples/loyalty-api-loyalty-reward-example.json
-      - type: Examples
-        url: examples/loyalty-api-payment-example.json
-      - type: Examples
-        url: examples/loyalty-api-points-product-example.json
-      - type: JSONLD
-        url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-account-api
+  name: Thanx Account API
+  description: Retrieve a user's loyalty account, rewards, and points balances.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-account-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-auth-api
+  name: Thanx Auth API
+  description: Acquire privileged end-user access tokens.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-auth-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-baskets-api
+  name: Thanx Baskets API
+  description: Create and update ordering baskets and redeem rewards or points products.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Baskets
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-baskets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-campaigns-api
+  name: Thanx Campaigns API
+  description: Create, retrieve, list campaigns and issue rewards.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-cards-api
+  name: Thanx Cards API
+  description: Register and manage payment cards for card-linked loyalty.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Cards
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-cards-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-gift-cards-api
+  name: Thanx Gift Cards API
+  description: Create, retrieve, and delete digital gift cards.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Gift Cards
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-gift-cards-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-issuance-jobs-api
+  name: Thanx Issuance Jobs API
+  description: Track and revoke asynchronous reward issuance jobs.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Issuance Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-issuance-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-locations-api
+  name: Thanx Locations API
+  description: Retrieve merchant locations.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-locations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-metadata-api
+  name: Thanx Metadata API
+  description: Look up merchants, locations, and scopes.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-points-api
+  name: Thanx Points API
+  description: Points balances, products, experiences, and multipliers.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Points
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-points-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-purchases-api
+  name: Thanx Purchases API
+  description: Retrieve and report consumer purchases.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Purchases
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-purchases-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-rewards-api
+  name: Thanx Rewards API
+  description: Retrieve, activate, finalize, and grant loyalty rewards.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Rewards
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-rewards-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-subscribers-api
+  name: Thanx Subscribers API
+  description: Ingest marketing subscribers.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Subscribers
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-subscribers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
+- aid: thanx:thanx-users-api
+  name: Thanx Users API
+  description: Create, retrieve, update, and delete Thanx users.
+  humanURL: https://docs.thanx.com/consumer/overview
+  baseURL: https://api.thanx.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/thanx-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thanx.com/consumer/overview
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
+  - type: Authentication
+    url: https://docs.thanx.com/consumer/usage/headers
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-ios
+  - type: SDKs
+    url: https://github.com/thanx/thanx-sdk-android
+  - type: BestPractices
+    url: https://docs.thanx.com/consumer/best-practices/design
+  - type: ErrorCodes
+    url: https://docs.thanx.com/consumer/usage/errors
+  - type: JSONSchema
+    url: json-schema/consumer-api-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-birth-date-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-gift-card-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-location-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-pagination-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-purchase-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-envelope-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-input-schema.json
+  - type: JSONSchema
+    url: json-schema/consumer-api-user-schema.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-authorization-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-birth-date-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-gift-card-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-location-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-pagination-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-purchase-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-envelope-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-input-structure.json
+  - type: JSONStructure
+    url: json-structure/consumer-api-user-structure.json
+  - type: Examples
+    url: examples/consumer-api-authorization-example.json
+  - type: Examples
+    url: examples/consumer-api-birth-date-example.json
+  - type: Examples
+    url: examples/consumer-api-card-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-card-example.json
+  - type: Examples
+    url: examples/consumer-api-gift-card-example.json
+  - type: Examples
+    url: examples/consumer-api-location-example.json
+  - type: Examples
+    url: examples/consumer-api-pagination-example.json
+  - type: Examples
+    url: examples/consumer-api-purchase-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-reward-example.json
+  - type: Examples
+    url: examples/consumer-api-user-envelope-example.json
+  - type: Examples
+    url: examples/consumer-api-user-example.json
+  - type: Examples
+    url: examples/consumer-api-user-input-example.json
+  - type: JSONLD
+    url: json-ld/thanx-consumer-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/partner/overview
+  - type: APIReference
+    url: https://docs.thanx.com/partner/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-campaign-variant-input-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-issuance-job-schema.json
+  - type: JSONSchema
+    url: json-schema/partner-api-partner-user-schema.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-campaign-variant-input-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-issuance-job-structure.json
+  - type: JSONStructure
+    url: json-structure/partner-api-partner-user-structure.json
+  - type: Examples
+    url: examples/partner-api-campaign-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-input-example.json
+  - type: Examples
+    url: examples/partner-api-campaign-variant-input-example.json
+  - type: Examples
+    url: examples/partner-api-issuance-job-example.json
+  - type: Examples
+    url: examples/partner-api-partner-user-example.json
+  - type: JSONLD
+    url: json-ld/thanx-partner-api-context.jsonld
+  - type: Documentation
+    url: https://docs.thanx.com/loyalty/overview
+  - type: APIReference
+    url: https://docs.thanx.com/loyalty/overview
+  - type: GettingStarted
+    url: https://docs.thanx.com/overview/guides/pos-kiosk
+  - type: Regions
+    url: https://docs.thanx.com/loyalty/private-link
+  - type: JSONSchema
+    url: json-schema/loyalty-api-account-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-input-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-item-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-basket-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-loyalty-reward-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/loyalty-api-points-product-schema.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-account-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-input-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-item-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-basket-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-loyalty-reward-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-payment-structure.json
+  - type: JSONStructure
+    url: json-structure/loyalty-api-points-product-structure.json
+  - type: Examples
+    url: examples/loyalty-api-account-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-input-example.json
+  - type: Examples
+    url: examples/loyalty-api-basket-item-example.json
+  - type: Examples
+    url: examples/loyalty-api-loyalty-reward-example.json
+  - type: Examples
+    url: examples/loyalty-api-payment-example.json
+  - type: Examples
+    url: examples/loyalty-api-points-product-example.json
+  - type: JSONLD
+    url: json-ld/thanx-loyalty-api-context.jsonld
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/thanx/overview
   - type: AgenticAccess
     url: agentic-access/thanx-agentic-access.yml
   - type: DomainSecurity
