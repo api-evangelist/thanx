@@ -1,0 +1,140 @@
+{
+  "info": {
+    "_postman_id": "7b959ab4-737b-41ca-876d-b2fba118e6f3",
+    "name": "Thanx Consumer Account Locations API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:51.000Z",
+    "updatedAt": "2026-07-28T03:09:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7b959ab4-737b-41ca-876d-b2fba118e6f3"
+  },
+  "item": [
+    {
+      "name": "locations",
+      "item": [
+        {
+          "name": "Get Locations",
+          "id": "d5ccd96d-715a-497f-824e-670cef1e1ca1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/locations?merchant_id=<string>&page=<integer>&per_page=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "locations"
+              ],
+              "query": [
+                {
+                  "key": "merchant_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Retrieves merchant locations, optionally filtered by merchant."
+          },
+          "response": [
+            {
+              "id": "f26fde89-7553-485f-9001-b64770dae419",
+              "name": "A paginated list of locations.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/locations?merchant_id=<string>&page=<integer>&per_page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "locations"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"locations\": [\n    {\n      \"id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"loyalty_redemption_type\": \"none\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"loyalty_redemption_type\": \"indirect\"\n    }\n  ],\n  \"pagination\": {\n    \"total_page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"current_page\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:09:51.000Z",
+              "updatedAt": "2026-07-28T03:09:51.000Z",
+              "uid": "35240-f26fde89-7553-485f-9001-b64770dae419"
+            }
+          ],
+          "createdAt": "2026-07-28T03:09:51.000Z",
+          "updatedAt": "2026-07-28T03:09:51.000Z",
+          "uid": "35240-d5ccd96d-715a-497f-824e-670cef1e1ca1"
+        }
+      ],
+      "id": "fd702625-6ee8-4365-967a-aa881336daed",
+      "createdAt": "2026-07-28T03:09:51.000Z",
+      "updatedAt": "2026-07-28T03:09:51.000Z",
+      "uid": "35240-fd702625-6ee8-4365-967a-aa881336daed"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

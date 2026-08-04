@@ -1,0 +1,527 @@
+{
+  "info": {
+    "_postman_id": "a0054421-c7c6-4e1e-b1dc-88c6364426e6",
+    "name": "Thanx Consumer Account Users API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:58.000Z",
+    "updatedAt": "2026-07-28T03:09:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a0054421-c7c6-4e1e-b1dc-88c6364426e6"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "me",
+          "item": [
+            {
+              "name": "Get User",
+              "id": "f2a17b15-ab17-41cb-a0db-7b34c8b03c6a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "me"
+                  ]
+                },
+                "description": "Retrieves the authenticated Thanx user's profile."
+              },
+              "response": [
+                {
+                  "id": "d25b1821-f899-4e7f-81e2-98918ef2d3f1",
+                  "name": "The authenticated user.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"birth_date\": {\n      \"year\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"zip_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:09:59.000Z",
+                  "updatedAt": "2026-07-28T03:09:59.000Z",
+                  "uid": "35240-d25b1821-f899-4e7f-81e2-98918ef2d3f1"
+                },
+                {
+                  "id": "dc71d047-29ee-4b75-b8ff-0c37a2cd58c0",
+                  "name": "Authentication failed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:09:59.000Z",
+                  "updatedAt": "2026-07-28T03:09:59.000Z",
+                  "uid": "35240-dc71d047-29ee-4b75-b8ff-0c37a2cd58c0"
+                }
+              ],
+              "createdAt": "2026-07-28T03:09:59.000Z",
+              "updatedAt": "2026-07-28T03:09:59.000Z",
+              "uid": "35240-f2a17b15-ab17-41cb-a0db-7b34c8b03c6a"
+            }
+          ],
+          "id": "ada14111-f6ed-4470-8bb9-af9a0ccd7e7e",
+          "createdAt": "2026-07-28T03:09:59.000Z",
+          "updatedAt": "2026-07-28T03:09:59.000Z",
+          "uid": "35240-ada14111-f6ed-4470-8bb9-af9a0ccd7e7e"
+        },
+        {
+          "name": "Create User",
+          "id": "93c6df42-9892-4866-9f53-41615e8f1fa7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user\": {\n    \"email\": \"<email>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": {\n      \"year\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"zip_code\": \"<string>\",\n    \"signup_program_id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "Creates a new Thanx user and returns an authorization grant."
+          },
+          "response": [
+            {
+              "id": "91d249a1-4bdd-4e55-b3d7-d8b5b300bae0",
+              "name": "The created user and authorization.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user\": {\n    \"email\": \"<email>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": {\n      \"year\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"zip_code\": \"<string>\",\n    \"signup_program_id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"birth_date\": {\n      \"year\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"zip_code\": \"<string>\"\n  },\n  \"authorization\": {\n    \"token_type\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"access_token\": \"<string>\",\n    \"refresh_token\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:09:59.000Z",
+              "updatedAt": "2026-07-28T03:09:59.000Z",
+              "uid": "35240-91d249a1-4bdd-4e55-b3d7-d8b5b300bae0"
+            },
+            {
+              "id": "8a0b87ac-eec6-4508-b6a6-64a9078af36a",
+              "name": "The request was invalid.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user\": {\n    \"email\": \"<email>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": {\n      \"year\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"zip_code\": \"<string>\",\n    \"signup_program_id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:09:59.000Z",
+              "updatedAt": "2026-07-28T03:09:59.000Z",
+              "uid": "35240-8a0b87ac-eec6-4508-b6a6-64a9078af36a"
+            }
+          ],
+          "createdAt": "2026-07-28T03:09:59.000Z",
+          "updatedAt": "2026-07-28T03:09:59.000Z",
+          "uid": "35240-93c6df42-9892-4866-9f53-41615e8f1fa7"
+        }
+      ],
+      "id": "94dd2f37-1233-4b44-9b1a-bbde18a4a693",
+      "createdAt": "2026-07-28T03:09:59.000Z",
+      "updatedAt": "2026-07-28T03:09:59.000Z",
+      "uid": "35240-94dd2f37-1233-4b44-9b1a-bbde18a4a693"
+    },
+    {
+      "name": "partner",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get User",
+                  "id": "cbad12a1-0414-4a11-bb98-85f23b83a013",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b7467b62-f1e6-499e-bbb3-2d4bce1a8c80",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a user by identifier."
+                  },
+                  "response": [
+                    {
+                      "id": "9420c602-7fdb-4f63-a5c6-7671f1268f17",
+                      "name": "The user.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/users/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "users",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:09:59.000Z",
+                      "updatedAt": "2026-07-28T03:09:59.000Z",
+                      "uid": "35240-9420c602-7fdb-4f63-a5c6-7671f1268f17"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:09:59.000Z",
+                  "updatedAt": "2026-07-28T03:09:59.000Z",
+                  "uid": "35240-cbad12a1-0414-4a11-bb98-85f23b83a013"
+                }
+              ],
+              "id": "ffd01dcb-953e-46cd-a84a-ee3bd362bdd2",
+              "createdAt": "2026-07-28T03:09:59.000Z",
+              "updatedAt": "2026-07-28T03:09:59.000Z",
+              "uid": "35240-ffd01dcb-953e-46cd-a84a-ee3bd362bdd2"
+            },
+            {
+              "name": "Get Users",
+              "id": "469ffd4c-231b-4479-9100-cf49ea6cd482",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/partner/users?merchant_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves users for a merchant."
+              },
+              "response": [
+                {
+                  "id": "2d20c4a8-2f7f-4812-bcbb-35ab62b59c5d",
+                  "name": "A list of users.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/users?merchant_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "key": "merchant_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"users\": [\n    {\n      \"id\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:09:59.000Z",
+                  "updatedAt": "2026-07-28T03:09:59.000Z",
+                  "uid": "35240-2d20c4a8-2f7f-4812-bcbb-35ab62b59c5d"
+                }
+              ],
+              "createdAt": "2026-07-28T03:09:59.000Z",
+              "updatedAt": "2026-07-28T03:09:59.000Z",
+              "uid": "35240-469ffd4c-231b-4479-9100-cf49ea6cd482"
+            }
+          ],
+          "id": "61f3e700-4404-4819-8fc3-e32ab606dba2",
+          "createdAt": "2026-07-28T03:09:59.000Z",
+          "updatedAt": "2026-07-28T03:09:59.000Z",
+          "uid": "35240-61f3e700-4404-4819-8fc3-e32ab606dba2"
+        }
+      ],
+      "id": "6db1b9b7-3aef-466a-a677-df7f015f06d8",
+      "createdAt": "2026-07-28T03:09:59.000Z",
+      "updatedAt": "2026-07-28T03:09:59.000Z",
+      "uid": "35240-6db1b9b7-3aef-466a-a677-df7f015f06d8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "info": {
+    "_postman_id": "ef3ae444-28d1-47d5-ba88-13608e1051b7",
+    "name": "Thanx Consumer Account Metadata API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:52.000Z",
+    "updatedAt": "2026-07-28T03:09:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ef3ae444-28d1-47d5-ba88-13608e1051b7"
+  },
+  "item": [
+    {
+      "name": "partner",
+      "item": [
+        {
+          "name": "metadata",
+          "item": [
+            {
+              "name": "merchants",
+              "item": [
+                {
+                  "name": "Get Merchants",
+                  "id": "32b166fb-929a-4e41-8a32-aca9881ce3d2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/metadata/merchants",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "metadata",
+                        "merchants"
+                      ]
+                    },
+                    "description": "Lists merchants accessible to the partner."
+                  },
+                  "response": [
+                    {
+                      "id": "daba1e6b-d753-45ea-a8c7-e5e2de64c530",
+                      "name": "A list of merchants.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/metadata/merchants",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "metadata",
+                            "merchants"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"merchants\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:09:52.000Z",
+                      "updatedAt": "2026-07-28T03:09:52.000Z",
+                      "uid": "35240-daba1e6b-d753-45ea-a8c7-e5e2de64c530"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:09:52.000Z",
+                  "updatedAt": "2026-07-28T03:09:52.000Z",
+                  "uid": "35240-32b166fb-929a-4e41-8a32-aca9881ce3d2"
+                }
+              ],
+              "id": "e6f497dd-9052-418e-bc42-11adf41b7f76",
+              "createdAt": "2026-07-28T03:09:52.000Z",
+              "updatedAt": "2026-07-28T03:09:52.000Z",
+              "uid": "35240-e6f497dd-9052-418e-bc42-11adf41b7f76"
+            },
+            {
+              "name": "locations",
+              "item": [
+                {
+                  "name": "Get Locations",
+                  "id": "54f8057b-d9a9-4244-9699-ef5cabcf3ecb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/metadata/locations?merchant_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "metadata",
+                        "locations"
+                      ],
+                      "query": [
+                        {
+                          "key": "merchant_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Lists locations accessible to the partner."
+                  },
+                  "response": [
+                    {
+                      "id": "e6122e54-af99-417a-a81b-06fbccf77b10",
+                      "name": "A list of locations.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/metadata/locations?merchant_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "metadata",
+                            "locations"
+                          ],
+                          "query": [
+                            {
+                              "key": "merchant_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"locations\": [\n    {\n      \"id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:09:52.000Z",
+                      "updatedAt": "2026-07-28T03:09:52.000Z",
+                      "uid": "35240-e6122e54-af99-417a-a81b-06fbccf77b10"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:09:52.000Z",
+                  "updatedAt": "2026-07-28T03:09:52.000Z",
+                  "uid": "35240-54f8057b-d9a9-4244-9699-ef5cabcf3ecb"
+                }
+              ],
+              "id": "d675e7cc-e0e9-479d-92af-09fdabdacb5f",
+              "createdAt": "2026-07-28T03:09:52.000Z",
+              "updatedAt": "2026-07-28T03:09:52.000Z",
+              "uid": "35240-d675e7cc-e0e9-479d-92af-09fdabdacb5f"
+            },
+            {
+              "name": "scopes",
+              "item": [
+                {
+                  "name": "Get Scopes",
+                  "id": "aa9c8ee9-dd9c-4b74-9c7f-d4a1f4787f7b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/metadata/scopes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "metadata",
+                        "scopes"
+                      ]
+                    },
+                    "description": "Lists the OAuth scopes available to the partner."
+                  },
+                  "response": [
+                    {
+                      "id": "5f55fae9-2cca-4ba6-b01b-190915d6fd19",
+                      "name": "A list of scopes.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/metadata/scopes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "metadata",
+                            "scopes"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T03:09:52.000Z",
+                      "updatedAt": "2026-07-28T03:09:52.000Z",
+                      "uid": "35240-5f55fae9-2cca-4ba6-b01b-190915d6fd19"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:09:52.000Z",
+                  "updatedAt": "2026-07-28T03:09:52.000Z",
+                  "uid": "35240-aa9c8ee9-dd9c-4b74-9c7f-d4a1f4787f7b"
+                }
+              ],
+              "id": "5c70c9c8-957a-4bcc-aaf0-43888bf91cf9",
+              "createdAt": "2026-07-28T03:09:52.000Z",
+              "updatedAt": "2026-07-28T03:09:52.000Z",
+              "uid": "35240-5c70c9c8-957a-4bcc-aaf0-43888bf91cf9"
+            }
+          ],
+          "id": "1754193f-1623-4ea6-a511-c65f56b96809",
+          "createdAt": "2026-07-28T03:09:52.000Z",
+          "updatedAt": "2026-07-28T03:09:52.000Z",
+          "uid": "35240-1754193f-1623-4ea6-a511-c65f56b96809"
+        }
+      ],
+      "id": "f8b5a8f9-b36b-423b-9fc3-a2f4b36ede74",
+      "createdAt": "2026-07-28T03:09:52.000Z",
+      "updatedAt": "2026-07-28T03:09:52.000Z",
+      "uid": "35240-f8b5a8f9-b36b-423b-9fc3-a2f4b36ede74"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

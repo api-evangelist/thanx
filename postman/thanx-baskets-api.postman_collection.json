@@ -1,0 +1,208 @@
+{
+  "info": {
+    "_postman_id": "66b4d192-fbb9-45db-a01f-ada2e84afdf0",
+    "name": "Thanx Consumer Account Baskets API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:45.000Z",
+    "updatedAt": "2026-07-28T03:09:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-66b4d192-fbb9-45db-a01f-ada2e84afdf0"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "baskets",
+          "item": [
+            {
+              "name": "Create And Update Basket",
+              "id": "5259ac64-989e-49e7-8bc9-4de8fca4f60d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.thanx-v1+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"validated\",\n  \"order_timestamp\": \"<dateTime>\",\n  \"location_uid\": \"<string>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        }\n      ]\n    }\n  ],\n  \"subtotal\": \"<double>\",\n  \"id\": \"<string>\",\n  \"rewards\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"points_products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"payments\": [\n    {\n      \"issuer\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"authorized_at\": \"<dateTime>\"\n    },\n    {\n      \"issuer\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"authorized_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/baskets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "baskets"
+                  ]
+                },
+                "description": "Creates or updates an ordering basket and computes applicable loyalty discounts. Only a single reward or points product can be redeemed per order."
+              },
+              "response": [
+                {
+                  "id": "3db24c30-ffca-4aff-99ee-998d77e3e917",
+                  "name": "The created or updated basket.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.thanx-v1+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"validated\",\n  \"order_timestamp\": \"<dateTime>\",\n  \"location_uid\": \"<string>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        }\n      ]\n    }\n  ],\n  \"subtotal\": \"<double>\",\n  \"id\": \"<string>\",\n  \"rewards\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"points_products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"payments\": [\n    {\n      \"issuer\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"authorized_at\": \"<dateTime>\"\n    },\n    {\n      \"issuer\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"authorized_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/baskets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "baskets"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.thanx-v1+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"discount\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:09:46.000Z",
+                  "updatedAt": "2026-07-28T03:09:46.000Z",
+                  "uid": "35240-3db24c30-ffca-4aff-99ee-998d77e3e917"
+                },
+                {
+                  "id": "dd30efd1-e9b4-4c56-9096-02eea37e7f15",
+                  "name": "Authentication failed.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"validated\",\n  \"order_timestamp\": \"<dateTime>\",\n  \"location_uid\": \"<string>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        }\n      ]\n    }\n  ],\n  \"subtotal\": \"<double>\",\n  \"id\": \"<string>\",\n  \"rewards\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"points_products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"payments\": [\n    {\n      \"issuer\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"authorized_at\": \"<dateTime>\"\n    },\n    {\n      \"issuer\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"authorized_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/baskets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "baskets"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:09:46.000Z",
+                  "updatedAt": "2026-07-28T03:09:46.000Z",
+                  "uid": "35240-dd30efd1-e9b4-4c56-9096-02eea37e7f15"
+                }
+              ],
+              "createdAt": "2026-07-28T03:09:46.000Z",
+              "updatedAt": "2026-07-28T03:09:46.000Z",
+              "uid": "35240-5259ac64-989e-49e7-8bc9-4de8fca4f60d"
+            }
+          ],
+          "id": "1bb5dea1-b66b-4fa2-a724-c16006ec2997",
+          "createdAt": "2026-07-28T03:09:46.000Z",
+          "updatedAt": "2026-07-28T03:09:46.000Z",
+          "uid": "35240-1bb5dea1-b66b-4fa2-a724-c16006ec2997"
+        }
+      ],
+      "id": "11e6d286-e173-4cd8-93f9-bda1b5d37778",
+      "createdAt": "2026-07-28T03:09:46.000Z",
+      "updatedAt": "2026-07-28T03:09:46.000Z",
+      "uid": "35240-11e6d286-e173-4cd8-93f9-bda1b5d37778"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "info": {
+    "_postman_id": "4d3b1e01-e776-4481-a1ac-32ed6b04eda7",
+    "name": "Thanx Consumer Account Issuance Jobs API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:50.000Z",
+    "updatedAt": "2026-07-28T03:09:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4d3b1e01-e776-4481-a1ac-32ed6b04eda7"
+  },
+  "item": [
+    {
+      "name": "partner",
+      "item": [
+        {
+          "name": "issuance_jobs",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "revoke",
+                  "item": [
+                    {
+                      "name": "Revoke Issuance Job",
+                      "id": "bfb29b5e-c603-4ba3-9df7-106c1af99162",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/issuance_jobs/:id/revoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "issuance_jobs",
+                            ":id",
+                            "revoke"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f87822c6-a9d3-433d-b0f3-015d748c860f",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Revokes a reward issuance job."
+                      },
+                      "response": [
+                        {
+                          "id": "33f1b49c-dafe-4824-975b-e774c17f4523",
+                          "name": "The revoked issuance job.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/partner/issuance_jobs/:id/revoke",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "partner",
+                                "issuance_jobs",
+                                ":id",
+                                "revoke"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"issuance_job\": {\n    \"id\": \"<string>\",\n    \"state\": \"<string>\",\n    \"requested_count\": \"<integer>\",\n    \"issued_count\": \"<integer>\",\n    \"failed_count\": \"<integer>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:09:50.000Z",
+                          "updatedAt": "2026-07-28T03:09:50.000Z",
+                          "uid": "35240-33f1b49c-dafe-4824-975b-e774c17f4523"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:09:50.000Z",
+                      "updatedAt": "2026-07-28T03:09:50.000Z",
+                      "uid": "35240-bfb29b5e-c603-4ba3-9df7-106c1af99162"
+                    }
+                  ],
+                  "id": "ce79b4a9-1dbd-469d-89be-f9976d05dfc0",
+                  "createdAt": "2026-07-28T03:09:50.000Z",
+                  "updatedAt": "2026-07-28T03:09:50.000Z",
+                  "uid": "35240-ce79b4a9-1dbd-469d-89be-f9976d05dfc0"
+                },
+                {
+                  "name": "Get Issuance Job",
+                  "id": "04e51fdb-4637-4275-8dad-c9acf11a154d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/issuance_jobs/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "issuance_jobs",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1f754aa3-f7d2-4e55-8f25-83f1712dd77e",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the status of a reward issuance job."
+                  },
+                  "response": [
+                    {
+                      "id": "caaa49b2-7b4c-4f4a-85ea-1d54e6159b66",
+                      "name": "The issuance job.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/issuance_jobs/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "issuance_jobs",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"issuance_job\": {\n    \"id\": \"<string>\",\n    \"state\": \"<string>\",\n    \"requested_count\": \"<integer>\",\n    \"issued_count\": \"<integer>\",\n    \"failed_count\": \"<integer>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:09:50.000Z",
+                      "updatedAt": "2026-07-28T03:09:50.000Z",
+                      "uid": "35240-caaa49b2-7b4c-4f4a-85ea-1d54e6159b66"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:09:50.000Z",
+                  "updatedAt": "2026-07-28T03:09:50.000Z",
+                  "uid": "35240-04e51fdb-4637-4275-8dad-c9acf11a154d"
+                }
+              ],
+              "id": "5b2899f1-3324-429e-872a-bc3616138332",
+              "createdAt": "2026-07-28T03:09:50.000Z",
+              "updatedAt": "2026-07-28T03:09:50.000Z",
+              "uid": "35240-5b2899f1-3324-429e-872a-bc3616138332"
+            }
+          ],
+          "id": "ce22351c-8814-4147-bbc4-1687bb1c6322",
+          "createdAt": "2026-07-28T03:09:50.000Z",
+          "updatedAt": "2026-07-28T03:09:50.000Z",
+          "uid": "35240-ce22351c-8814-4147-bbc4-1687bb1c6322"
+        }
+      ],
+      "id": "3d4b9445-2e8d-4960-9e00-86aacbd2d6c4",
+      "createdAt": "2026-07-28T03:09:50.000Z",
+      "updatedAt": "2026-07-28T03:09:50.000Z",
+      "uid": "35240-3d4b9445-2e8d-4960-9e00-86aacbd2d6c4"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

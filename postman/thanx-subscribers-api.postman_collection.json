@@ -1,0 +1,208 @@
+{
+  "info": {
+    "_postman_id": "68fa7a98-c61f-46c8-ad55-754371713058",
+    "name": "Thanx Consumer Account Subscribers API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:57.000Z",
+    "updatedAt": "2026-07-28T03:09:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-68fa7a98-c61f-46c8-ad55-754371713058"
+  },
+  "item": [
+    {
+      "name": "partner",
+      "item": [
+        {
+          "name": "subscribers",
+          "item": [
+            {
+              "name": "Create Subscriber",
+              "id": "b68eb707-3723-432f-9808-db137857e3ee",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant_id\": \"<string>\",\n  \"subscriber\": {\n    \"email\": \"<email>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"birth_date\": {\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"zip_code\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/partner/subscribers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "subscribers"
+                  ]
+                },
+                "description": "Ingests a marketing subscriber for a merchant."
+              },
+              "response": [
+                {
+                  "id": "49aaedc4-1adf-4136-860b-11f6053fcf70",
+                  "name": "The created subscriber.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"merchant_id\": \"<string>\",\n  \"subscriber\": {\n    \"email\": \"<email>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"birth_date\": {\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"zip_code\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/subscribers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "subscribers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"subscriber\": {\n    \"email\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:09:58.000Z",
+                  "updatedAt": "2026-07-28T03:09:58.000Z",
+                  "uid": "35240-49aaedc4-1adf-4136-860b-11f6053fcf70"
+                },
+                {
+                  "id": "95effdd0-3019-465f-81ac-f3e1ff427c63",
+                  "name": "The request was invalid.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"merchant_id\": \"<string>\",\n  \"subscriber\": {\n    \"email\": \"<email>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"birth_date\": {\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"zip_code\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/subscribers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "subscribers"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:09:58.000Z",
+                  "updatedAt": "2026-07-28T03:09:58.000Z",
+                  "uid": "35240-95effdd0-3019-465f-81ac-f3e1ff427c63"
+                }
+              ],
+              "createdAt": "2026-07-28T03:09:58.000Z",
+              "updatedAt": "2026-07-28T03:09:58.000Z",
+              "uid": "35240-b68eb707-3723-432f-9808-db137857e3ee"
+            }
+          ],
+          "id": "e3cf9e29-4785-4e2e-8054-1b7a054c5b86",
+          "createdAt": "2026-07-28T03:09:58.000Z",
+          "updatedAt": "2026-07-28T03:09:58.000Z",
+          "uid": "35240-e3cf9e29-4785-4e2e-8054-1b7a054c5b86"
+        }
+      ],
+      "id": "6154b08e-9e63-49fb-be5b-eff27cbc2007",
+      "createdAt": "2026-07-28T03:09:58.000Z",
+      "updatedAt": "2026-07-28T03:09:58.000Z",
+      "uid": "35240-6154b08e-9e63-49fb-be5b-eff27cbc2007"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

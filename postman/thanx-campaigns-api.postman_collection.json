@@ -1,0 +1,451 @@
+{
+  "info": {
+    "_postman_id": "b3c42dec-f435-46b4-9da7-681ae310ee80",
+    "name": "Thanx Consumer Account Campaigns API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:47.000Z",
+    "updatedAt": "2026-07-28T03:09:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b3c42dec-f435-46b4-9da7-681ae310ee80"
+  },
+  "item": [
+    {
+      "name": "partner",
+      "item": [
+        {
+          "name": "campaigns",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get Campaign",
+                  "id": "8bdb1ab5-a042-497b-9d03-e84d8707fa26",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/campaigns/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "campaigns",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "46ebbc87-98ac-4bd3-9b01-6b3b47222c68",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a single campaign by identifier."
+                  },
+                  "response": [
+                    {
+                      "id": "e87869df-5143-4ab1-913f-6f93f4501dd2",
+                      "name": "The campaign.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/campaigns/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "campaigns",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"campaign\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"objective\": \"<string>\",\n    \"start_at\": \"<dateTime>\",\n    \"end_at\": \"<dateTime>\",\n    \"redeemable_from\": \"<dateTime>\",\n    \"redeemable_to\": \"<dateTime>\",\n    \"time_zone\": \"<string>\",\n    \"fine_print\": \"<string>\",\n    \"variants\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:09:47.000Z",
+                      "updatedAt": "2026-07-28T03:09:47.000Z",
+                      "uid": "35240-e87869df-5143-4ab1-913f-6f93f4501dd2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:09:47.000Z",
+                  "updatedAt": "2026-07-28T03:09:47.000Z",
+                  "uid": "35240-8bdb1ab5-a042-497b-9d03-e84d8707fa26"
+                }
+              ],
+              "id": "041331a7-b7c8-4191-969e-7f32a5d1382b",
+              "createdAt": "2026-07-28T03:09:47.000Z",
+              "updatedAt": "2026-07-28T03:09:47.000Z",
+              "uid": "35240-041331a7-b7c8-4191-969e-7f32a5d1382b"
+            },
+            {
+              "name": "issue",
+              "item": [
+                {
+                  "name": "Issue Rewards",
+                  "id": "6e63d98f-b68d-4b61-876c-550c714833d5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"campaign_id\": \"<string>\",\n  \"merchant_id\": \"<string>\",\n  \"variant_id\": \"<string>\",\n  \"identifiers\": [\n    {\n      \"type\": \"phone\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"email\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/campaigns/issue",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "campaigns",
+                        "issue"
+                      ]
+                    },
+                    "description": "Issues campaign rewards to a batch of identifiers (up to 10,000 per request). Returns an asynchronous issuance job."
+                  },
+                  "response": [
+                    {
+                      "id": "df4fbdfa-6ef9-4f07-a627-f728b58a94ab",
+                      "name": "The reward issuance job was accepted.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"campaign_id\": \"<string>\",\n  \"merchant_id\": \"<string>\",\n  \"variant_id\": \"<string>\",\n  \"identifiers\": [\n    {\n      \"type\": \"phone\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"email\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/campaigns/issue",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "campaigns",
+                            "issue"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"issuance_job\": {\n    \"id\": \"<string>\",\n    \"state\": \"<string>\",\n    \"requested_count\": \"<integer>\",\n    \"issued_count\": \"<integer>\",\n    \"failed_count\": \"<integer>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:09:47.000Z",
+                      "updatedAt": "2026-07-28T03:09:47.000Z",
+                      "uid": "35240-df4fbdfa-6ef9-4f07-a627-f728b58a94ab"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:09:47.000Z",
+                  "updatedAt": "2026-07-28T03:09:47.000Z",
+                  "uid": "35240-6e63d98f-b68d-4b61-876c-550c714833d5"
+                }
+              ],
+              "id": "a0c96b77-3653-4c06-ae77-c9df8689ff96",
+              "createdAt": "2026-07-28T03:09:47.000Z",
+              "updatedAt": "2026-07-28T03:09:47.000Z",
+              "uid": "35240-a0c96b77-3653-4c06-ae77-c9df8689ff96"
+            },
+            {
+              "name": "Create Campaign",
+              "id": "625d92ae-e46d-4b54-893d-aa95e19fe23d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaign\": {\n    \"merchant_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"start_at\": \"<dateTime>\",\n    \"end_at\": \"<dateTime>\",\n    \"redeemable_from\": \"<dateTime>\",\n    \"redeemable_to\": \"<dateTime>\",\n    \"objective\": \"<string>\",\n    \"fine_print\": \"<string>\",\n    \"variants\": [\n      {\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/partner/campaigns",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "campaigns"
+                  ]
+                },
+                "description": "Creates a marketing campaign with treatment and control variants."
+              },
+              "response": [
+                {
+                  "id": "59496828-a9aa-47d5-907b-14b61d9f27e0",
+                  "name": "The created campaign.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"campaign\": {\n    \"merchant_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"start_at\": \"<dateTime>\",\n    \"end_at\": \"<dateTime>\",\n    \"redeemable_from\": \"<dateTime>\",\n    \"redeemable_to\": \"<dateTime>\",\n    \"objective\": \"<string>\",\n    \"fine_print\": \"<string>\",\n    \"variants\": [\n      {\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/campaigns",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "campaigns"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"campaign\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"objective\": \"<string>\",\n    \"start_at\": \"<dateTime>\",\n    \"end_at\": \"<dateTime>\",\n    \"redeemable_from\": \"<dateTime>\",\n    \"redeemable_to\": \"<dateTime>\",\n    \"time_zone\": \"<string>\",\n    \"fine_print\": \"<string>\",\n    \"variants\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T03:09:47.000Z",
+                  "updatedAt": "2026-07-28T03:09:47.000Z",
+                  "uid": "35240-59496828-a9aa-47d5-907b-14b61d9f27e0"
+                }
+              ],
+              "createdAt": "2026-07-28T03:09:47.000Z",
+              "updatedAt": "2026-07-28T03:09:47.000Z",
+              "uid": "35240-625d92ae-e46d-4b54-893d-aa95e19fe23d"
+            },
+            {
+              "name": "List Campaigns",
+              "id": "5107d88d-576a-45f1-bf59-518564677c8d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/partner/campaigns?merchant_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "campaigns"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Lists campaigns for a merchant."
+              },
+              "response": [
+                {
+                  "id": "2cabf138-6322-4526-9a29-a7181782c738",
+                  "name": "A list of campaigns.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/campaigns?merchant_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "campaigns"
+                      ],
+                      "query": [
+                        {
+                          "key": "merchant_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"campaigns\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"objective\": \"<string>\",\n      \"start_at\": \"<dateTime>\",\n      \"end_at\": \"<dateTime>\",\n      \"redeemable_from\": \"<dateTime>\",\n      \"redeemable_to\": \"<dateTime>\",\n      \"time_zone\": \"<string>\",\n      \"fine_print\": \"<string>\",\n      \"variants\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"reward_template_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"reward_template_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"objective\": \"<string>\",\n      \"start_at\": \"<dateTime>\",\n      \"end_at\": \"<dateTime>\",\n      \"redeemable_from\": \"<dateTime>\",\n      \"redeemable_to\": \"<dateTime>\",\n      \"time_zone\": \"<string>\",\n      \"fine_print\": \"<string>\",\n      \"variants\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"reward_template_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"reward_template_id\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:09:47.000Z",
+                  "updatedAt": "2026-07-28T03:09:47.000Z",
+                  "uid": "35240-2cabf138-6322-4526-9a29-a7181782c738"
+                }
+              ],
+              "createdAt": "2026-07-28T03:09:47.000Z",
+              "updatedAt": "2026-07-28T03:09:47.000Z",
+              "uid": "35240-5107d88d-576a-45f1-bf59-518564677c8d"
+            }
+          ],
+          "id": "cc8aff5a-ff32-4ca5-9839-6802a0ad0109",
+          "createdAt": "2026-07-28T03:09:47.000Z",
+          "updatedAt": "2026-07-28T03:09:47.000Z",
+          "uid": "35240-cc8aff5a-ff32-4ca5-9839-6802a0ad0109"
+        }
+      ],
+      "id": "f0c27e1d-ae2c-4923-9f8e-f2be5acd4e6d",
+      "createdAt": "2026-07-28T03:09:47.000Z",
+      "updatedAt": "2026-07-28T03:09:47.000Z",
+      "uid": "35240-f0c27e1d-ae2c-4923-9f8e-f2be5acd4e6d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

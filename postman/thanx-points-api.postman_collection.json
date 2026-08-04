@@ -1,0 +1,147 @@
+{
+  "info": {
+    "_postman_id": "02be3ed2-4dd0-46d6-8444-1160ead36b34",
+    "name": "Thanx Consumer Account Points API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:53.000Z",
+    "updatedAt": "2026-07-28T03:09:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-02be3ed2-4dd0-46d6-8444-1160ead36b34"
+  },
+  "item": [
+    {
+      "name": "points_experiences",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "balance",
+              "item": [
+                {
+                  "name": "Get Points Balance",
+                  "id": "95bedb4f-6f07-431e-b613-e90bedf24125",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/points_experiences/:id/balance",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "points_experiences",
+                        ":id",
+                        "balance"
+                      ],
+                      "variable": [
+                        {
+                          "id": "dc3df2f2-6e5b-490c-bbef-48072ad3c8fc",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the user's current points currency balance for a points experience."
+                  },
+                  "response": [
+                    {
+                      "id": "6e29e5ca-a79a-4cb5-b37f-c37ae5cb7c34",
+                      "name": "The points balance.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/points_experiences/:id/balance",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "points_experiences",
+                            ":id",
+                            "balance"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"balance\": \"<double>\"\n}",
+                      "createdAt": "2026-07-28T03:09:53.000Z",
+                      "updatedAt": "2026-07-28T03:09:53.000Z",
+                      "uid": "35240-6e29e5ca-a79a-4cb5-b37f-c37ae5cb7c34"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:09:53.000Z",
+                  "updatedAt": "2026-07-28T03:09:53.000Z",
+                  "uid": "35240-95bedb4f-6f07-431e-b613-e90bedf24125"
+                }
+              ],
+              "id": "1599cc89-07b9-434c-89c2-1162251ff875",
+              "createdAt": "2026-07-28T03:09:53.000Z",
+              "updatedAt": "2026-07-28T03:09:53.000Z",
+              "uid": "35240-1599cc89-07b9-434c-89c2-1162251ff875"
+            }
+          ],
+          "id": "83effca6-d84f-4626-bbf9-2deecd52c76e",
+          "createdAt": "2026-07-28T03:09:53.000Z",
+          "updatedAt": "2026-07-28T03:09:53.000Z",
+          "uid": "35240-83effca6-d84f-4626-bbf9-2deecd52c76e"
+        }
+      ],
+      "id": "3f67e2ce-3e64-4651-8dbd-9db57154e344",
+      "createdAt": "2026-07-28T03:09:53.000Z",
+      "updatedAt": "2026-07-28T03:09:53.000Z",
+      "uid": "35240-3f67e2ce-3e64-4651-8dbd-9db57154e344"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

@@ -1,0 +1,458 @@
+{
+  "info": {
+    "_postman_id": "7038894e-d6da-4311-9d1a-c899eaeb1cae",
+    "name": "Thanx Consumer Account Rewards API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:56.000Z",
+    "updatedAt": "2026-07-28T03:09:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7038894e-d6da-4311-9d1a-c899eaeb1cae"
+  },
+  "item": [
+    {
+      "name": "rewards",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "activate",
+              "item": [
+                {
+                  "name": "Activate Reward",
+                  "id": "a539f531-081a-4bbd-8c06-86a5812aabba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rewards/:id/activate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rewards",
+                        ":id",
+                        "activate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "455ca134-ba11-4738-afbc-f9db2a6c82f9",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Activates a reward so it can be redeemed."
+                  },
+                  "response": [
+                    {
+                      "id": "d0564d98-c0c0-400f-85dc-2662f439a379",
+                      "name": "The activated reward.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/rewards/:id/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "rewards",
+                            ":id",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reward\": {\n    \"id\": \"<string>\",\n    \"olo_uid\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"merchant_id\": \"<string>\",\n    \"campaign_id\": \"<string>\",\n    \"state\": \"available\",\n    \"earn\": {\n      \"type\": \"<string>\"\n    },\n    \"redeem\": {\n      \"type\": \"<string>\",\n      \"text\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"window\": \"<string>\",\n      \"venue\": \"<string>\"\n    },\n    \"coupon_code\": {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"display\": \"<string>\"\n    },\n    \"fine_print\": \"<string>\",\n    \"instructions\": \"<string>\",\n    \"available_at\": \"<dateTime>\",\n    \"activated_at\": \"<dateTime>\",\n    \"retire_at\": \"<dateTime>\",\n    \"used_at\": \"<dateTime>\",\n    \"uses_dynamic_coupon_codes\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:09:57.000Z",
+                      "updatedAt": "2026-07-28T03:09:57.000Z",
+                      "uid": "35240-d0564d98-c0c0-400f-85dc-2662f439a379"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:09:57.000Z",
+                  "updatedAt": "2026-07-28T03:09:57.000Z",
+                  "uid": "35240-a539f531-081a-4bbd-8c06-86a5812aabba"
+                }
+              ],
+              "id": "4da72555-2872-4b83-92e2-f393b6fb814d",
+              "createdAt": "2026-07-28T03:09:57.000Z",
+              "updatedAt": "2026-07-28T03:09:57.000Z",
+              "uid": "35240-4da72555-2872-4b83-92e2-f393b6fb814d"
+            },
+            {
+              "name": "finalize",
+              "item": [
+                {
+                  "name": "Finalize Reward",
+                  "id": "64ce7d90-31fb-4ca0-9298-e6fa65aa1209",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rewards/:id/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rewards",
+                        ":id",
+                        "finalize"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2af1bf90-874c-43e1-bfd9-67241ef5e903",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Finalizes a reward after redemption."
+                  },
+                  "response": [
+                    {
+                      "id": "a00cf934-ade2-4159-92ba-77015eb22a4f",
+                      "name": "The finalized reward.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/rewards/:id/finalize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "rewards",
+                            ":id",
+                            "finalize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reward\": {\n    \"id\": \"<string>\",\n    \"olo_uid\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"merchant_id\": \"<string>\",\n    \"campaign_id\": \"<string>\",\n    \"state\": \"available\",\n    \"earn\": {\n      \"type\": \"<string>\"\n    },\n    \"redeem\": {\n      \"type\": \"<string>\",\n      \"text\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"window\": \"<string>\",\n      \"venue\": \"<string>\"\n    },\n    \"coupon_code\": {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"display\": \"<string>\"\n    },\n    \"fine_print\": \"<string>\",\n    \"instructions\": \"<string>\",\n    \"available_at\": \"<dateTime>\",\n    \"activated_at\": \"<dateTime>\",\n    \"retire_at\": \"<dateTime>\",\n    \"used_at\": \"<dateTime>\",\n    \"uses_dynamic_coupon_codes\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:09:57.000Z",
+                      "updatedAt": "2026-07-28T03:09:57.000Z",
+                      "uid": "35240-a00cf934-ade2-4159-92ba-77015eb22a4f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:09:57.000Z",
+                  "updatedAt": "2026-07-28T03:09:57.000Z",
+                  "uid": "35240-64ce7d90-31fb-4ca0-9298-e6fa65aa1209"
+                }
+              ],
+              "id": "8825407a-f4dd-43f2-939c-c29323d24ba7",
+              "createdAt": "2026-07-28T03:09:57.000Z",
+              "updatedAt": "2026-07-28T03:09:57.000Z",
+              "uid": "35240-8825407a-f4dd-43f2-939c-c29323d24ba7"
+            },
+            {
+              "name": "Get Reward",
+              "id": "2092b3bb-ff38-4b46-aca8-8c3e0ebe3bac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rewards/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rewards",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "dd1c97e4-1e7c-4c11-b129-06ea983b244b",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves a single reward by identifier."
+              },
+              "response": [
+                {
+                  "id": "20ef4112-c4ff-4f94-8f1e-ff25226675d2",
+                  "name": "The reward.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rewards/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rewards",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reward\": {\n    \"id\": \"<string>\",\n    \"olo_uid\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"merchant_id\": \"<string>\",\n    \"campaign_id\": \"<string>\",\n    \"state\": \"available\",\n    \"earn\": {\n      \"type\": \"<string>\"\n    },\n    \"redeem\": {\n      \"type\": \"<string>\",\n      \"text\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"window\": \"<string>\",\n      \"venue\": \"<string>\"\n    },\n    \"coupon_code\": {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"display\": \"<string>\"\n    },\n    \"fine_print\": \"<string>\",\n    \"instructions\": \"<string>\",\n    \"available_at\": \"<dateTime>\",\n    \"activated_at\": \"<dateTime>\",\n    \"retire_at\": \"<dateTime>\",\n    \"used_at\": \"<dateTime>\",\n    \"uses_dynamic_coupon_codes\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:09:57.000Z",
+                  "updatedAt": "2026-07-28T03:09:57.000Z",
+                  "uid": "35240-20ef4112-c4ff-4f94-8f1e-ff25226675d2"
+                }
+              ],
+              "createdAt": "2026-07-28T03:09:57.000Z",
+              "updatedAt": "2026-07-28T03:09:57.000Z",
+              "uid": "35240-2092b3bb-ff38-4b46-aca8-8c3e0ebe3bac"
+            }
+          ],
+          "id": "9e59c421-6daa-4418-b672-e0bacab35a88",
+          "createdAt": "2026-07-28T03:09:57.000Z",
+          "updatedAt": "2026-07-28T03:09:57.000Z",
+          "uid": "35240-9e59c421-6daa-4418-b672-e0bacab35a88"
+        },
+        {
+          "name": "Get Rewards",
+          "id": "d8eafb51-e573-4a22-9a2f-17ba0b4d560d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/rewards?states[]=active&states[]=active&merchant_id=<string>&user_id=<string>&page=<integer>&per_page=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rewards"
+              ],
+              "query": [
+                {
+                  "description": "Only rewards in these states are returned.",
+                  "key": "states[]",
+                  "value": "active"
+                },
+                {
+                  "description": "Only rewards in these states are returned.",
+                  "key": "states[]",
+                  "value": "active"
+                },
+                {
+                  "key": "merchant_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "user_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Retrieves loyalty rewards, optionally filtered by state and merchant."
+          },
+          "response": [
+            {
+              "id": "aaebdd0d-e938-4840-988d-b028f0d433e2",
+              "name": "A paginated list of rewards.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rewards?states[]=active&merchant_id=<string>&user_id=<string>&page=<integer>&per_page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rewards"
+                  ],
+                  "query": [
+                    {
+                      "description": "Only rewards in these states are returned.",
+                      "key": "states[]",
+                      "value": "active"
+                    },
+                    {
+                      "key": "merchant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"rewards\": [\n    {\n      \"id\": \"<string>\",\n      \"olo_uid\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"campaign_id\": \"<string>\",\n      \"state\": \"available\",\n      \"earn\": {\n        \"type\": \"<string>\"\n      },\n      \"redeem\": {\n        \"type\": \"<string>\",\n        \"text\": \"<string>\",\n        \"detail\": \"<string>\",\n        \"window\": \"<string>\",\n        \"venue\": \"<string>\"\n      },\n      \"coupon_code\": {\n        \"code\": \"<string>\",\n        \"type\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      \"fine_print\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"available_at\": \"<dateTime>\",\n      \"activated_at\": \"<dateTime>\",\n      \"retire_at\": \"<dateTime>\",\n      \"used_at\": \"<dateTime>\",\n      \"uses_dynamic_coupon_codes\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"olo_uid\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"campaign_id\": \"<string>\",\n      \"state\": \"used\",\n      \"earn\": {\n        \"type\": \"<string>\"\n      },\n      \"redeem\": {\n        \"type\": \"<string>\",\n        \"text\": \"<string>\",\n        \"detail\": \"<string>\",\n        \"window\": \"<string>\",\n        \"venue\": \"<string>\"\n      },\n      \"coupon_code\": {\n        \"code\": \"<string>\",\n        \"type\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      \"fine_print\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"available_at\": \"<dateTime>\",\n      \"activated_at\": \"<dateTime>\",\n      \"retire_at\": \"<dateTime>\",\n      \"used_at\": \"<dateTime>\",\n      \"uses_dynamic_coupon_codes\": \"<boolean>\"\n    }\n  ],\n  \"pagination\": {\n    \"total_page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"current_page\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:09:57.000Z",
+              "updatedAt": "2026-07-28T03:09:57.000Z",
+              "uid": "35240-aaebdd0d-e938-4840-988d-b028f0d433e2"
+            }
+          ],
+          "createdAt": "2026-07-28T03:09:57.000Z",
+          "updatedAt": "2026-07-28T03:09:57.000Z",
+          "uid": "35240-d8eafb51-e573-4a22-9a2f-17ba0b4d560d"
+        }
+      ],
+      "id": "60ce6ffb-04b6-4296-86e6-de5ba92bdd2e",
+      "createdAt": "2026-07-28T03:09:57.000Z",
+      "updatedAt": "2026-07-28T03:09:57.000Z",
+      "uid": "35240-60ce6ffb-04b6-4296-86e6-de5ba92bdd2e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

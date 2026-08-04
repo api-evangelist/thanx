@@ -1,0 +1,40 @@
+{
+  "provider": "thanx",
+  "sources": [
+    "thanx-account-api-openapi.yml",
+    "thanx-auth-api-openapi.yml",
+    "thanx-baskets-api-openapi.yml",
+    "thanx-campaigns-api-openapi.yml",
+    "thanx-cards-api-openapi.yml",
+    "thanx-gift-cards-api-openapi.yml",
+    "thanx-issuance-jobs-api-openapi.yml",
+    "thanx-locations-api-openapi.yml",
+    "thanx-metadata-api-openapi.yml",
+    "thanx-points-api-openapi.yml",
+    "thanx-purchases-api-openapi.yml",
+    "thanx-rewards-api-openapi.yml",
+    "thanx-subscribers-api-openapi.yml",
+    "thanx-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "thanx-account-api-openapi.yml",
+    "thanx-auth-api-openapi.yml",
+    "thanx-baskets-api-openapi.yml",
+    "thanx-campaigns-api-openapi.yml",
+    "thanx-cards-api-openapi.yml",
+    "thanx-gift-cards-api-openapi.yml",
+    "thanx-issuance-jobs-api-openapi.yml",
+    "thanx-locations-api-openapi.yml",
+    "thanx-metadata-api-openapi.yml",
+    "thanx-points-api-openapi.yml",
+    "thanx-purchases-api-openapi.yml",
+    "thanx-rewards-api-openapi.yml",
+    "thanx-subscribers-api-openapi.yml",
+    "thanx-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

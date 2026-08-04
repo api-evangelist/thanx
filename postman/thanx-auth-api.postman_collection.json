@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "b957ca6d-dc60-4d8b-b6af-00ecd534d47e",
+    "name": "Thanx Consumer Account Auth API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:44.000Z",
+    "updatedAt": "2026-07-28T03:09:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b957ca6d-dc60-4d8b-b6af-00ecd534d47e"
+  },
+  "item": [
+    {
+      "name": "partner",
+      "item": [
+        {
+          "name": "oauth",
+          "item": [
+            {
+              "name": "token",
+              "item": [
+                {
+                  "name": "Create Access Token",
+                  "id": "2bbf926a-4746-4d53-8ad1-228a9e081f9f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"merchant_id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"expires_in\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "oauth",
+                        "token"
+                      ]
+                    },
+                    "description": "Acquires a privileged end-user access token for a given merchant and identifier (user, email, or phone)."
+                  },
+                  "response": [
+                    {
+                      "id": "e6d2ed37-22ce-47d3-82e8-e9edd153edae",
+                      "name": "The issued access token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"merchant_id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"expires_in\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/oauth/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "oauth",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"created_at\": \"<integer>\",\n  \"expires_in\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:09:45.000Z",
+                      "updatedAt": "2026-07-28T03:09:45.000Z",
+                      "uid": "35240-e6d2ed37-22ce-47d3-82e8-e9edd153edae"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:09:45.000Z",
+                  "updatedAt": "2026-07-28T03:09:45.000Z",
+                  "uid": "35240-2bbf926a-4746-4d53-8ad1-228a9e081f9f"
+                }
+              ],
+              "id": "74a32952-ca23-4e93-b301-c0349c52b7f3",
+              "createdAt": "2026-07-28T03:09:45.000Z",
+              "updatedAt": "2026-07-28T03:09:45.000Z",
+              "uid": "35240-74a32952-ca23-4e93-b301-c0349c52b7f3"
+            }
+          ],
+          "id": "c4916815-be47-4554-9293-2e19d67a18c6",
+          "createdAt": "2026-07-28T03:09:45.000Z",
+          "updatedAt": "2026-07-28T03:09:45.000Z",
+          "uid": "35240-c4916815-be47-4554-9293-2e19d67a18c6"
+        }
+      ],
+      "id": "66634c99-b361-4fb5-8e9a-defdbcc07243",
+      "createdAt": "2026-07-28T03:09:45.000Z",
+      "updatedAt": "2026-07-28T03:09:45.000Z",
+      "uid": "35240-66634c99-b361-4fb5-8e9a-defdbcc07243"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

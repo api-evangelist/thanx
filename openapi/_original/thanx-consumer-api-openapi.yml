@@ -1,0 +1,1127 @@
+openapi: 3.1.0
+info:
+  title: Thanx Consumer API
+  description: >-
+    The Thanx Consumer API lets brands integrate Thanx into a custom consumer
+    experience, covering users and authentication, cards, gift cards, rewards,
+    purchases, points and loyalty balances, locations, and feedback. It powers
+    branded apps and digital experiences built on top of the Thanx loyalty and
+    CRM platform. Endpoints are protected and authorized via end-user access
+    tokens acquired through Thanx SSO.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+- url: https://secure.api.thanx.com
+  description: Production (PCI-scoped card endpoints)
+- url: https://secure.api.thanxsandbox.com
+  description: Sandbox (PCI-scoped card endpoints)
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Users
+  description: Create, retrieve, update, and delete Thanx users.
+- name: Cards
+  description: Register and manage payment cards for card-linked loyalty.
+- name: Rewards
+  description: Retrieve, activate, finalize, and grant loyalty rewards.
+- name: Purchases
+  description: Retrieve and report consumer purchases.
+- name: Points
+  description: Points balances, products, experiences, and multipliers.
+- name: Gift Cards
+  description: Create, retrieve, and delete digital gift cards.
+- name: Locations
+  description: Retrieve merchant locations.
+- name: Feedbacks
+  description: Retrieve and respond to NPS feedback.
+paths:
+  /users/me:
+    get:
+      operationId: getUser
+      summary: Get User
+      description: Retrieves the authenticated Thanx user's profile.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: The authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEnvelope'
+              examples:
+                GetUser200Example:
+                  summary: Default getUser 200 response
+                  x-microcks-default: true
+                  value:
+                    user:
+                      id: 92b7b0dac4
+                      email: jane.smith@example.com
+                      phone: '+14158672345'
+                      first_name: Jane
+                      last_name: Smith
+                      birth_date:
+                        year: 1987
+                        month: 8
+                        day: 14
+                      zip_code: '94105'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /users:
+    post:
+      operationId: createUser
+      summary: Create User
+      description: Creates a new Thanx user and returns an authorization grant.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - user
+              properties:
+                user:
+                  $ref: '#/components/schemas/UserInput'
+            examples:
+              CreateUserRequestExample:
+                summary: Default createUser request
+                x-microcks-default: true
+                value:
+                  user:
+                    email: jane.smith@example.com
+                    phone: '+14158672345'
+                    first_name: Jane
+                    last_name: Smith
+                    birth_date:
+                      year: 1987
+                      month: 8
+                      day: 14
+                    zip_code: '94105'
+                    signup_program_id: 92b7b0dac4
+      responses:
+        '201':
+          description: The created user and authorization.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  authorization:
+                    $ref: '#/components/schemas/Authorization'
+              examples:
+                CreateUser201Example:
+                  summary: Default createUser 201 response
+                  x-microcks-default: true
+                  value:
+                    user:
+                      id: 92b7b0dac4
+                      email: jane.smith@example.com
+                      phone: '+14158672345'
+                      first_name: Jane
+                      last_name: Smith
+                      birth_date:
+                        year: 1987
+                        month: 8
+                        day: 14
+                      zip_code: '94105'
+                    authorization:
+                      token_type: 945148251b603ae34561d90acfe4050e
+                      scope: passwordless
+                      created_at: 1577836800
+                      access_token: 945148251b603ae34561d90acfe4050e
+                      refresh_token: 945148251b603ae34561d90acfe4050e
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cards:
+    post:
+      operationId: createCard
+      summary: Create Card
+      description: Registers a new payment card with Thanx for card-linked loyalty.
+      tags:
+      - Cards
+      servers:
+      - url: https://secure.api.thanx.com
+        description: Production (PCI-scoped)
+      - url: https://secure.api.thanxsandbox.com
+        description: Sandbox (PCI-scoped)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - card
+              properties:
+                card:
+                  type: object
+                  required:
+                  - number
+                  properties:
+                    number:
+                      type: string
+                      description: The card's primary account number (PAN).
+                    zip_code:
+                      type: string
+                      description: Billing ZIP code.
+            examples:
+              CreateCardRequestExample:
+                summary: Default createCard request
+                x-microcks-default: true
+                value:
+                  card:
+                    number: '1234123412341234'
+                    zip_code: '94105'
+      responses:
+        '201':
+          description: The registered card.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardEnvelope'
+              examples:
+                CreateCard201Example:
+                  summary: Default createCard 201 response
+                  x-microcks-default: true
+                  value:
+                    card:
+                      id: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      last4: '1234'
+                      type: visa
+                      zip_code: '94105'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: getCards
+      summary: Get Cards
+      description: Retrieves the registered cards for the authenticated user.
+      tags:
+      - Cards
+      responses:
+        '200':
+          description: A list of cards.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cards:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Card'
+              examples:
+                GetCards200Example:
+                  summary: Default getCards 200 response
+                  x-microcks-default: true
+                  value:
+                    cards:
+                    - id: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      last4: '1234'
+                      type: visa
+                      zip_code: '94105'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cards/{id}:
+    delete:
+      operationId: deleteCard
+      summary: Delete Card
+      description: Archives a registered card.
+      tags:
+      - Cards
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '204':
+          description: The card was archived.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /rewards:
+    get:
+      operationId: getRewards
+      summary: Get Rewards
+      description: Retrieves loyalty rewards, optionally filtered by state and merchant.
+      tags:
+      - Rewards
+      parameters:
+      - name: states[]
+        in: query
+        description: Only rewards in these states are returned.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - available
+            - active
+            - used
+      - name: merchant_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      - name: user_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of rewards.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rewards:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Reward'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              examples:
+                GetRewards200Example:
+                  summary: Default getRewards 200 response
+                  x-microcks-default: true
+                  value:
+                    rewards:
+                    - id: 92b7b0dac4
+                      olo_uid: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      campaign_id: 92b7b0dac4
+                      state: available
+                      earn:
+                        type: visa
+                      redeem:
+                        type: visa
+                        text: Free coffee for loyal customers.
+                        detail: example
+                        window: example
+                        venue: example
+                      coupon_code:
+                        code: FREECOFFEE
+                        type: visa
+                        display: example
+                      fine_print: Free coffee for loyal customers.
+                      instructions: Free coffee for loyal customers.
+                      available_at: '2025-06-01T18:02:05Z'
+                      activated_at: '2025-06-01T18:02:05Z'
+                      retire_at: '2025-06-01T18:02:05Z'
+                      used_at: '2025-06-01T18:02:05Z'
+                      uses_dynamic_coupon_codes: true
+                    pagination:
+                      total_page: 1
+                      per_page: 1
+                      current_page: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /rewards/{id}:
+    get:
+      operationId: getReward
+      summary: Get Reward
+      description: Retrieves a single reward by identifier.
+      tags:
+      - Rewards
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The reward.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RewardEnvelope'
+              examples:
+                GetReward200Example:
+                  summary: Default getReward 200 response
+                  x-microcks-default: true
+                  value:
+                    reward:
+                      id: 92b7b0dac4
+                      olo_uid: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      campaign_id: 92b7b0dac4
+                      state: available
+                      earn:
+                        type: visa
+                      redeem:
+                        type: visa
+                        text: Free coffee for loyal customers.
+                        detail: example
+                        window: example
+                        venue: example
+                      coupon_code:
+                        code: FREECOFFEE
+                        type: visa
+                        display: example
+                      fine_print: Free coffee for loyal customers.
+                      instructions: Free coffee for loyal customers.
+                      available_at: '2025-06-01T18:02:05Z'
+                      activated_at: '2025-06-01T18:02:05Z'
+                      retire_at: '2025-06-01T18:02:05Z'
+                      used_at: '2025-06-01T18:02:05Z'
+                      uses_dynamic_coupon_codes: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /rewards/{id}/activate:
+    post:
+      operationId: activateReward
+      summary: Activate Reward
+      description: Activates a reward so it can be redeemed.
+      tags:
+      - Rewards
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The activated reward.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RewardEnvelope'
+              examples:
+                ActivateReward200Example:
+                  summary: Default activateReward 200 response
+                  x-microcks-default: true
+                  value:
+                    reward:
+                      id: 92b7b0dac4
+                      olo_uid: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      campaign_id: 92b7b0dac4
+                      state: available
+                      earn:
+                        type: visa
+                      redeem:
+                        type: visa
+                        text: Free coffee for loyal customers.
+                        detail: example
+                        window: example
+                        venue: example
+                      coupon_code:
+                        code: FREECOFFEE
+                        type: visa
+                        display: example
+                      fine_print: Free coffee for loyal customers.
+                      instructions: Free coffee for loyal customers.
+                      available_at: '2025-06-01T18:02:05Z'
+                      activated_at: '2025-06-01T18:02:05Z'
+                      retire_at: '2025-06-01T18:02:05Z'
+                      used_at: '2025-06-01T18:02:05Z'
+                      uses_dynamic_coupon_codes: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /rewards/{id}/finalize:
+    post:
+      operationId: finalizeReward
+      summary: Finalize Reward
+      description: Finalizes a reward after redemption.
+      tags:
+      - Rewards
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The finalized reward.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RewardEnvelope'
+              examples:
+                FinalizeReward200Example:
+                  summary: Default finalizeReward 200 response
+                  x-microcks-default: true
+                  value:
+                    reward:
+                      id: 92b7b0dac4
+                      olo_uid: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      campaign_id: 92b7b0dac4
+                      state: available
+                      earn:
+                        type: visa
+                      redeem:
+                        type: visa
+                        text: Free coffee for loyal customers.
+                        detail: example
+                        window: example
+                        venue: example
+                      coupon_code:
+                        code: FREECOFFEE
+                        type: visa
+                        display: example
+                      fine_print: Free coffee for loyal customers.
+                      instructions: Free coffee for loyal customers.
+                      available_at: '2025-06-01T18:02:05Z'
+                      activated_at: '2025-06-01T18:02:05Z'
+                      retire_at: '2025-06-01T18:02:05Z'
+                      used_at: '2025-06-01T18:02:05Z'
+                      uses_dynamic_coupon_codes: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /purchases:
+    get:
+      operationId: getPurchases
+      summary: Get Purchases
+      description: Retrieves consumer purchases, optionally filtered by merchant, location, or user.
+      tags:
+      - Purchases
+      parameters:
+      - name: merchant_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      - name: location_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      - name: user_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of purchases.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  purchases:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Purchase'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              examples:
+                GetPurchases200Example:
+                  summary: Default getPurchases 200 response
+                  x-microcks-default: true
+                  value:
+                    purchases:
+                    - id: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      location_id: 92b7b0dac4
+                      purchased_at: '2025-06-01T18:02:05Z'
+                      amount: 9.99
+                      order:
+                        id: 92b7b0dac4
+                        provider: OLO
+                    pagination:
+                      total_page: 1
+                      per_page: 1
+                      current_page: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createPurchase
+      summary: Create Purchase
+      description: Reports a consumer purchase to Thanx.
+      tags:
+      - Purchases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                purchase:
+                  $ref: '#/components/schemas/Purchase'
+            examples:
+              CreatePurchaseRequestExample:
+                summary: Default createPurchase request
+                x-microcks-default: true
+                value:
+                  purchase:
+                    id: 92b7b0dac4
+                    user_id: 92b7b0dac4
+                    merchant_id: 92b7b0dac4
+                    location_id: 92b7b0dac4
+                    purchased_at: '2025-06-01T18:02:05Z'
+                    amount: 9.99
+                    order:
+                      id: 92b7b0dac4
+                      provider: OLO
+      responses:
+        '201':
+          description: The created purchase.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  purchase:
+                    $ref: '#/components/schemas/Purchase'
+              examples:
+                CreatePurchase201Example:
+                  summary: Default createPurchase 201 response
+                  x-microcks-default: true
+                  value:
+                    purchase:
+                      id: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      location_id: 92b7b0dac4
+                      purchased_at: '2025-06-01T18:02:05Z'
+                      amount: 9.99
+                      order:
+                        id: 92b7b0dac4
+                        provider: OLO
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /points_experiences/{id}/balance:
+    get:
+      operationId: getPointsBalance
+      summary: Get Points Balance
+      description: Retrieves the user's current points currency balance for a points experience.
+      tags:
+      - Points
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The points balance.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balance:
+                    type: number
+                    format: double
+                    examples:
+                    - 10.0
+              examples:
+                GetPointsBalance200Example:
+                  summary: Default getPointsBalance 200 response
+                  x-microcks-default: true
+                  value:
+                    balance: 10.0
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /locations:
+    get:
+      operationId: getLocations
+      summary: Get Locations
+      description: Retrieves merchant locations, optionally filtered by merchant.
+      tags:
+      - Locations
+      parameters:
+      - name: merchant_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of locations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Location'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              examples:
+                GetLocations200Example:
+                  summary: Default getLocations 200 response
+                  x-microcks-default: true
+                  value:
+                    locations:
+                    - id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      street: 123 Pizza Lane
+                      city: Smalltown
+                      state: CA
+                      zip: '94105'
+                      name: Pizza Town Co
+                      phone: '+14158672345'
+                      loyalty_redemption_type: direct
+                    pagination:
+                      total_page: 1
+                      per_page: 1
+                      current_page: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /gift_cards:
+    get:
+      operationId: getGiftCards
+      summary: Get Gift Cards
+      description: Retrieves the authenticated user's gift cards.
+      tags:
+      - Gift Cards
+      responses:
+        '200':
+          description: A list of gift cards.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  gift_cards:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GiftCard'
+              examples:
+                GetGiftCards200Example:
+                  summary: Default getGiftCards 200 response
+                  x-microcks-default: true
+                  value:
+                    gift_cards:
+                    - id: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      balance: 10.0
+                      code: FREECOFFEE
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createGiftCard
+      summary: Create Gift Card
+      description: Creates a new digital gift card.
+      tags:
+      - Gift Cards
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                gift_card:
+                  $ref: '#/components/schemas/GiftCard'
+            examples:
+              CreateGiftCardRequestExample:
+                summary: Default createGiftCard request
+                x-microcks-default: true
+                value:
+                  gift_card:
+                    id: 92b7b0dac4
+                    user_id: 92b7b0dac4
+                    balance: 10.0
+                    code: FREECOFFEE
+      responses:
+        '201':
+          description: The created gift card.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  gift_card:
+                    $ref: '#/components/schemas/GiftCard'
+              examples:
+                CreateGiftCard201Example:
+                  summary: Default createGiftCard 201 response
+                  x-microcks-default: true
+                  value:
+                    gift_card:
+                      id: 92b7b0dac4
+                      user_id: 92b7b0dac4
+                      balance: 10.0
+                      code: FREECOFFEE
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: End-user access token acquired through Thanx SSO.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+    PerPage:
+      name: per_page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+  responses:
+    Unauthorized:
+      description: Authentication failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    UserEnvelope:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        email:
+          type: string
+          format: email
+          example: jane.smith@example.com
+        phone:
+          type: string
+          description: E.164 formatted phone number.
+          example: '+14158672345'
+        first_name:
+          type: string
+          example: Jane
+        last_name:
+          type: string
+          example: Smith
+        birth_date:
+          $ref: '#/components/schemas/BirthDate'
+        zip_code:
+          type: string
+          example: '94105'
+    UserInput:
+      type: object
+      required:
+      - email
+      - first_name
+      - last_name
+      properties:
+        email:
+          type: string
+          format: email
+          example: jane.smith@example.com
+        phone:
+          type: string
+          example: '+14158672345'
+        first_name:
+          type: string
+          example: Jane
+        last_name:
+          type: string
+          example: Smith
+        birth_date:
+          $ref: '#/components/schemas/BirthDate'
+        zip_code:
+          type: string
+          example: '94105'
+        signup_program_id:
+          type: string
+          example: 92b7b0dac4
+    BirthDate:
+      type: object
+      properties:
+        year:
+          type: integer
+          example: 1987
+        month:
+          type: integer
+          example: 8
+        day:
+          type: integer
+          example: 14
+    Authorization:
+      type: object
+      properties:
+        token_type:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
+        scope:
+          type: string
+          example: passwordless
+        created_at:
+          type: integer
+          example: 1577836800
+        access_token:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
+        refresh_token:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
+    CardEnvelope:
+      type: object
+      properties:
+        card:
+          $ref: '#/components/schemas/Card'
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        user_id:
+          type: string
+          example: 92b7b0dac4
+        last4:
+          type: string
+          example: '1234'
+        type:
+          type: string
+          example: visa
+        zip_code:
+          type: string
+          example: '94105'
+    RewardEnvelope:
+      type: object
+      properties:
+        reward:
+          $ref: '#/components/schemas/Reward'
+    Reward:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        olo_uid:
+          type: string
+          example: 92b7b0dac4
+        user_id:
+          type: string
+          example: 92b7b0dac4
+        merchant_id:
+          type: string
+          example: 92b7b0dac4
+        campaign_id:
+          type: string
+          example: 92b7b0dac4
+        state:
+          type: string
+          enum:
+          - available
+          - active
+          - used
+          example: available
+        earn:
+          type: object
+          properties:
+            type:
+              type: string
+        redeem:
+          type: object
+          properties:
+            type:
+              type: string
+            text:
+              type: string
+            detail:
+              type: string
+            window:
+              type: string
+            venue:
+              type: string
+        coupon_code:
+          type: object
+          properties:
+            code:
+              type: string
+            type:
+              type: string
+            display:
+              type: string
+        fine_print:
+          type: string
+          example: Free coffee for loyal customers.
+        instructions:
+          type: string
+          example: Free coffee for loyal customers.
+        available_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        activated_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        retire_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        used_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        uses_dynamic_coupon_codes:
+          type: boolean
+          example: true
+    Purchase:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        user_id:
+          type: string
+          example: 92b7b0dac4
+        merchant_id:
+          type: string
+          example: 92b7b0dac4
+        location_id:
+          type: string
+          example: 92b7b0dac4
+        purchased_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        amount:
+          type: number
+          format: double
+          example: 9.99
+        order:
+          type: object
+          properties:
+            id:
+              type: string
+            provider:
+              type: string
+              enum:
+              - OLO
+              - Toast
+              - Other
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        merchant_id:
+          type: string
+          example: 92b7b0dac4
+        street:
+          type: string
+          example: 123 Pizza Lane
+        city:
+          type: string
+          example: Smalltown
+        state:
+          type: string
+          example: CA
+        zip:
+          type: string
+          example: '94105'
+        name:
+          type: string
+          example: Pizza Town Co
+        phone:
+          type: string
+          example: '+14158672345'
+        loyalty_redemption_type:
+          type: string
+          enum:
+          - direct
+          - indirect
+          - none
+          example: direct
+    GiftCard:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        user_id:
+          type: string
+          example: 92b7b0dac4
+        balance:
+          type: number
+          format: double
+          example: 10.0
+        code:
+          type: string
+          example: FREECOFFEE
+    Pagination:
+      type: object
+      properties:
+        total_page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 1
+        current_page:
+          type: integer
+          example: 1
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+        code:
+          type: integer
+          example: 1
+        message:
+          type: string
+          example: example

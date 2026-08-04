@@ -1,0 +1,257 @@
+{
+  "info": {
+    "_postman_id": "755fbca6-96a6-449f-8c97-ead4b0a0ec8d",
+    "name": "Thanx Consumer Account Purchases API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:55.000Z",
+    "updatedAt": "2026-07-28T03:09:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-755fbca6-96a6-449f-8c97-ead4b0a0ec8d"
+  },
+  "item": [
+    {
+      "name": "purchases",
+      "item": [
+        {
+          "name": "Get Purchases",
+          "id": "fe864a2b-9572-4806-aaee-f4a94bc56672",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/purchases?merchant_id=<string>&location_id=<string>&user_id=<string>&page=<integer>&per_page=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "purchases"
+              ],
+              "query": [
+                {
+                  "key": "merchant_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "location_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "user_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Retrieves consumer purchases, optionally filtered by merchant, location, or user."
+          },
+          "response": [
+            {
+              "id": "baf7f664-b3a8-4c64-bc12-40a55d483b05",
+              "name": "A paginated list of purchases.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/purchases?merchant_id=<string>&location_id=<string>&user_id=<string>&page=<integer>&per_page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"purchases\": [\n    {\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"location_id\": \"<string>\",\n      \"purchased_at\": \"<dateTime>\",\n      \"amount\": \"<double>\",\n      \"order\": {\n        \"id\": \"<string>\",\n        \"provider\": \"OLO\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"location_id\": \"<string>\",\n      \"purchased_at\": \"<dateTime>\",\n      \"amount\": \"<double>\",\n      \"order\": {\n        \"id\": \"<string>\",\n        \"provider\": \"Other\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total_page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"current_page\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:09:56.000Z",
+              "updatedAt": "2026-07-28T03:09:56.000Z",
+              "uid": "35240-baf7f664-b3a8-4c64-bc12-40a55d483b05"
+            }
+          ],
+          "createdAt": "2026-07-28T03:09:56.000Z",
+          "updatedAt": "2026-07-28T03:09:56.000Z",
+          "uid": "35240-fe864a2b-9572-4806-aaee-f4a94bc56672"
+        },
+        {
+          "name": "Create Purchase",
+          "id": "d8bdc09b-8fa0-443b-84df-4d2faa53a093",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"purchase\": {\n    \"id\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"merchant_id\": \"<string>\",\n    \"location_id\": \"<string>\",\n    \"purchased_at\": \"<dateTime>\",\n    \"amount\": \"<double>\",\n    \"order\": {\n      \"id\": \"<string>\",\n      \"provider\": \"Toast\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/purchases",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "purchases"
+              ]
+            },
+            "description": "Reports a consumer purchase to Thanx."
+          },
+          "response": [
+            {
+              "id": "7d720387-3b0b-4eb2-8b07-af88f249dd52",
+              "name": "The created purchase.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"purchase\": {\n    \"id\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"merchant_id\": \"<string>\",\n    \"location_id\": \"<string>\",\n    \"purchased_at\": \"<dateTime>\",\n    \"amount\": \"<double>\",\n    \"order\": {\n      \"id\": \"<string>\",\n      \"provider\": \"Toast\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"purchase\": {\n    \"id\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"merchant_id\": \"<string>\",\n    \"location_id\": \"<string>\",\n    \"purchased_at\": \"<dateTime>\",\n    \"amount\": \"<double>\",\n    \"order\": {\n      \"id\": \"<string>\",\n      \"provider\": \"Toast\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T03:09:56.000Z",
+              "updatedAt": "2026-07-28T03:09:56.000Z",
+              "uid": "35240-7d720387-3b0b-4eb2-8b07-af88f249dd52"
+            }
+          ],
+          "createdAt": "2026-07-28T03:09:56.000Z",
+          "updatedAt": "2026-07-28T03:09:56.000Z",
+          "uid": "35240-d8bdc09b-8fa0-443b-84df-4d2faa53a093"
+        }
+      ],
+      "id": "fb3968f4-875a-4d66-9175-cf411402610b",
+      "createdAt": "2026-07-28T03:09:56.000Z",
+      "updatedAt": "2026-07-28T03:09:56.000Z",
+      "uid": "35240-fb3968f4-875a-4d66-9175-cf411402610b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

@@ -1,0 +1,858 @@
+openapi: 3.1.0
+info:
+  title: Thanx Partner API
+  description: >-
+    The Thanx Partner API provides privileged endpoints supporting custom
+    integration use cases, including end-user token issuance, campaign
+    management and reward issuance, subscriber ingestion, feedback handling,
+    tags, and metadata lookups for merchants, locations, and scopes. It is
+    intended for approved partners building deeper integrations with the Thanx
+    engagement and marketing platform.
+  version: v4.0
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.thanx.com
+  description: Production
+- url: https://api.thanxsandbox.com
+  description: Sandbox
+security:
+- bearerAuth: []
+  clientId: []
+tags:
+- name: Auth
+  description: Acquire privileged end-user access tokens.
+- name: Campaigns
+  description: Create, retrieve, list campaigns and issue rewards.
+- name: Issuance Jobs
+  description: Track and revoke asynchronous reward issuance jobs.
+- name: Subscribers
+  description: Ingest marketing subscribers.
+- name: Users
+  description: Retrieve users and manage communication settings.
+- name: Feedbacks
+  description: Retrieve and respond to feedback records.
+- name: Metadata
+  description: Look up merchants, locations, and scopes.
+- name: Tags
+  description: Manage user tags.
+paths:
+  /partner/oauth/token:
+    post:
+      operationId: createToken
+      summary: Create Access Token
+      description: >-
+        Acquires a privileged end-user access token for a given merchant and
+        identifier (user, email, or phone).
+      tags:
+      - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - merchant_id
+              properties:
+                merchant_id:
+                  type: string
+                user_id:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                phone:
+                  type: string
+                expires_in:
+                  type: integer
+                  minimum: 60
+                  maximum: 3600
+            examples:
+              CreateTokenRequestExample:
+                summary: Default createToken request
+                x-microcks-default: true
+                value:
+                  merchant_id: 92b7b0dac4
+                  user_id: 92b7b0dac4
+                  email: jane.smith@example.com
+                  phone: '+14158672345'
+                  expires_in: 1
+      responses:
+        '200':
+          description: The issued access token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  scope:
+                    type: string
+                  created_at:
+                    type: integer
+                  expires_in:
+                    type: integer
+              examples:
+                CreateToken200Example:
+                  summary: Default createToken 200 response
+                  x-microcks-default: true
+                  value:
+                    access_token: 945148251b603ae34561d90acfe4050e
+                    token_type: 945148251b603ae34561d90acfe4050e
+                    scope: passwordless
+                    created_at: 1577836800
+                    expires_in: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/campaigns:
+    post:
+      operationId: createCampaign
+      summary: Create Campaign
+      description: Creates a marketing campaign with treatment and control variants.
+      tags:
+      - Campaigns
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - campaign
+              properties:
+                campaign:
+                  $ref: '#/components/schemas/CampaignInput'
+            examples:
+              CreateCampaignRequestExample:
+                summary: Default createCampaign request
+                x-microcks-default: true
+                value:
+                  campaign:
+                    merchant_id: 92b7b0dac4
+                    name: Pizza Town Co
+                    objective: Free coffee for loyal customers.
+                    fine_print: Free coffee for loyal customers.
+                    start_at: '2025-06-01T18:02:05Z'
+                    end_at: '2025-06-01T18:02:05Z'
+                    redeemable_from: '2025-06-01T18:02:05Z'
+                    redeemable_to: '2025-06-01T18:02:05Z'
+                    variants:
+                    - name: Pizza Town Co
+                      reward_template_id: 92b7b0dac4
+      responses:
+        '201':
+          description: The created campaign.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campaign:
+                    $ref: '#/components/schemas/Campaign'
+              examples:
+                CreateCampaign201Example:
+                  summary: Default createCampaign 201 response
+                  x-microcks-default: true
+                  value:
+                    campaign:
+                      id: 92b7b0dac4
+                      name: Pizza Town Co
+                      objective: Free coffee for loyal customers.
+                      start_at: '2025-06-01T18:02:05Z'
+                      end_at: '2025-06-01T18:02:05Z'
+                      redeemable_from: '2025-06-01T18:02:05Z'
+                      redeemable_to: '2025-06-01T18:02:05Z'
+                      time_zone: example
+                      fine_print: Free coffee for loyal customers.
+                      variants:
+                      - id: 92b7b0dac4
+                        name: Pizza Town Co
+                        reward_template_id: 92b7b0dac4
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listCampaigns
+      summary: List Campaigns
+      description: Lists campaigns for a merchant.
+      tags:
+      - Campaigns
+      parameters:
+      - name: merchant_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      responses:
+        '200':
+          description: A list of campaigns.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campaigns:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Campaign'
+              examples:
+                ListCampaigns200Example:
+                  summary: Default listCampaigns 200 response
+                  x-microcks-default: true
+                  value:
+                    campaigns:
+                    - id: 92b7b0dac4
+                      name: Pizza Town Co
+                      objective: Free coffee for loyal customers.
+                      start_at: '2025-06-01T18:02:05Z'
+                      end_at: '2025-06-01T18:02:05Z'
+                      redeemable_from: '2025-06-01T18:02:05Z'
+                      redeemable_to: '2025-06-01T18:02:05Z'
+                      time_zone: example
+                      fine_print: Free coffee for loyal customers.
+                      variants:
+                      - id: 92b7b0dac4
+                        name: Pizza Town Co
+                        reward_template_id: 92b7b0dac4
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/campaigns/{id}:
+    get:
+      operationId: getCampaign
+      summary: Get Campaign
+      description: Retrieves a single campaign by identifier.
+      tags:
+      - Campaigns
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The campaign.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campaign:
+                    $ref: '#/components/schemas/Campaign'
+              examples:
+                GetCampaign200Example:
+                  summary: Default getCampaign 200 response
+                  x-microcks-default: true
+                  value:
+                    campaign:
+                      id: 92b7b0dac4
+                      name: Pizza Town Co
+                      objective: Free coffee for loyal customers.
+                      start_at: '2025-06-01T18:02:05Z'
+                      end_at: '2025-06-01T18:02:05Z'
+                      redeemable_from: '2025-06-01T18:02:05Z'
+                      redeemable_to: '2025-06-01T18:02:05Z'
+                      time_zone: example
+                      fine_print: Free coffee for loyal customers.
+                      variants:
+                      - id: 92b7b0dac4
+                        name: Pizza Town Co
+                        reward_template_id: 92b7b0dac4
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/campaigns/issue:
+    post:
+      operationId: issueRewards
+      summary: Issue Rewards
+      description: >-
+        Issues campaign rewards to a batch of identifiers (up to 10,000 per
+        request). Returns an asynchronous issuance job.
+      tags:
+      - Campaigns
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - campaign_id
+              - merchant_id
+              - variant_id
+              - identifiers
+              properties:
+                campaign_id:
+                  type: string
+                merchant_id:
+                  type: string
+                variant_id:
+                  type: string
+                identifiers:
+                  type: array
+                  maxItems: 10000
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - value
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - email
+                        - phone
+                      value:
+                        type: string
+            examples:
+              IssueRewardsRequestExample:
+                summary: Default issueRewards request
+                x-microcks-default: true
+                value:
+                  campaign_id: 92b7b0dac4
+                  merchant_id: 92b7b0dac4
+                  variant_id: 92b7b0dac4
+                  identifiers:
+                  - type: email
+                    value: example
+      responses:
+        '202':
+          description: The reward issuance job was accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issuance_job:
+                    $ref: '#/components/schemas/IssuanceJob'
+              examples:
+                IssueRewards202Example:
+                  summary: Default issueRewards 202 response
+                  x-microcks-default: true
+                  value:
+                    issuance_job:
+                      id: 92b7b0dac4
+                      state: CA
+                      requested_count: 3
+                      issued_count: 3
+                      failed_count: 3
+                      created_at: '2025-06-01T18:02:05Z'
+                      updated_at: '2025-06-01T18:02:05Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/issuance_jobs/{id}:
+    get:
+      operationId: getIssuanceJob
+      summary: Get Issuance Job
+      description: Retrieves the status of a reward issuance job.
+      tags:
+      - Issuance Jobs
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The issuance job.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issuance_job:
+                    $ref: '#/components/schemas/IssuanceJob'
+              examples:
+                GetIssuanceJob200Example:
+                  summary: Default getIssuanceJob 200 response
+                  x-microcks-default: true
+                  value:
+                    issuance_job:
+                      id: 92b7b0dac4
+                      state: CA
+                      requested_count: 3
+                      issued_count: 3
+                      failed_count: 3
+                      created_at: '2025-06-01T18:02:05Z'
+                      updated_at: '2025-06-01T18:02:05Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/issuance_jobs/{id}/revoke:
+    post:
+      operationId: revokeIssuanceJob
+      summary: Revoke Issuance Job
+      description: Revokes a reward issuance job.
+      tags:
+      - Issuance Jobs
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The revoked issuance job.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issuance_job:
+                    $ref: '#/components/schemas/IssuanceJob'
+              examples:
+                RevokeIssuanceJob200Example:
+                  summary: Default revokeIssuanceJob 200 response
+                  x-microcks-default: true
+                  value:
+                    issuance_job:
+                      id: 92b7b0dac4
+                      state: CA
+                      requested_count: 3
+                      issued_count: 3
+                      failed_count: 3
+                      created_at: '2025-06-01T18:02:05Z'
+                      updated_at: '2025-06-01T18:02:05Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/subscribers:
+    post:
+      operationId: createSubscriber
+      summary: Create Subscriber
+      description: Ingests a marketing subscriber for a merchant.
+      tags:
+      - Subscribers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - merchant_id
+              - subscriber
+              properties:
+                merchant_id:
+                  type: string
+                subscriber:
+                  type: object
+                  required:
+                  - email
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    birth_date:
+                      type: object
+                      properties:
+                        month:
+                          type: integer
+                        day:
+                          type: integer
+                    zip_code:
+                      type: string
+            examples:
+              CreateSubscriberRequestExample:
+                summary: Default createSubscriber request
+                x-microcks-default: true
+                value:
+                  merchant_id: 92b7b0dac4
+                  subscriber:
+                    email: jane.smith@example.com
+                    first_name: Jane
+                    last_name: Smith
+                    birth_date:
+                      month: 8
+                      day: 14
+                    zip_code: '94105'
+      responses:
+        '201':
+          description: The created subscriber.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  subscriber:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+              examples:
+                CreateSubscriber201Example:
+                  summary: Default createSubscriber 201 response
+                  x-microcks-default: true
+                  value:
+                    subscriber:
+                      email: jane.smith@example.com
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/users/{id}:
+    get:
+      operationId: getPartnerUser
+      summary: Get User
+      description: Retrieves a user by identifier.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The user.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/PartnerUser'
+              examples:
+                GetPartnerUser200Example:
+                  summary: Default getPartnerUser 200 response
+                  x-microcks-default: true
+                  value:
+                    user:
+                      id: 92b7b0dac4
+                      email: jane.smith@example.com
+                      phone: '+14158672345'
+                      first_name: Jane
+                      last_name: Smith
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/users:
+    get:
+      operationId: getPartnerUsers
+      summary: Get Users
+      description: Retrieves users for a merchant.
+      tags:
+      - Users
+      parameters:
+      - name: merchant_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      responses:
+        '200':
+          description: A list of users.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PartnerUser'
+              examples:
+                GetPartnerUsers200Example:
+                  summary: Default getPartnerUsers 200 response
+                  x-microcks-default: true
+                  value:
+                    users:
+                    - id: 92b7b0dac4
+                      email: jane.smith@example.com
+                      phone: '+14158672345'
+                      first_name: Jane
+                      last_name: Smith
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/metadata/merchants:
+    get:
+      operationId: getMerchants
+      summary: Get Merchants
+      description: Lists merchants accessible to the partner.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: A list of merchants.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  merchants:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+              examples:
+                GetMerchants200Example:
+                  summary: Default getMerchants 200 response
+                  x-microcks-default: true
+                  value:
+                    merchants:
+                    - id: 92b7b0dac4
+                      name: Pizza Town Co
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/metadata/locations:
+    get:
+      operationId: getPartnerLocations
+      summary: Get Locations
+      description: Lists locations accessible to the partner.
+      tags:
+      - Metadata
+      parameters:
+      - name: merchant_id
+        in: query
+        schema:
+          type: string
+        example: 92b7b0dac4
+      responses:
+        '200':
+          description: A list of locations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        merchant_id:
+                          type: string
+                        name:
+                          type: string
+              examples:
+                GetPartnerLocations200Example:
+                  summary: Default getPartnerLocations 200 response
+                  x-microcks-default: true
+                  value:
+                    locations:
+                    - id: 92b7b0dac4
+                      merchant_id: 92b7b0dac4
+                      name: Pizza Town Co
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partner/metadata/scopes:
+    get:
+      operationId: getScopes
+      summary: Get Scopes
+      description: Lists the OAuth scopes available to the partner.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: A list of scopes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  scopes:
+                    type: array
+                    items:
+                      type: string
+              examples:
+                GetScopes200Example:
+                  summary: Default getScopes 200 response
+                  x-microcks-default: true
+                  value:
+                    scopes:
+                    - passwordless
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Partner access token.
+    clientId:
+      type: apiKey
+      in: header
+      name: X-ClientId
+      description: Client-specific identifier provided by Thanx.
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: The request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    CampaignInput:
+      type: object
+      required:
+      - merchant_id
+      - name
+      - start_at
+      - end_at
+      - redeemable_from
+      - redeemable_to
+      properties:
+        merchant_id:
+          type: string
+          example: 92b7b0dac4
+        name:
+          type: string
+          example: Pizza Town Co
+        objective:
+          type: string
+          example: Free coffee for loyal customers.
+        fine_print:
+          type: string
+          example: Free coffee for loyal customers.
+        start_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        end_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        redeemable_from:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        redeemable_to:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/CampaignVariantInput'
+    CampaignVariantInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          example: Pizza Town Co
+        reward_template_id:
+          type: string
+          description: Required for treatment variants, omitted for control.
+          example: 92b7b0dac4
+    Campaign:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        name:
+          type: string
+          example: Pizza Town Co
+        objective:
+          type: string
+          example: Free coffee for loyal customers.
+        start_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        end_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        redeemable_from:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        redeemable_to:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        time_zone:
+          type: string
+          example: example
+        fine_print:
+          type: string
+          example: Free coffee for loyal customers.
+        variants:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              reward_template_id:
+                type: string
+                nullable: true
+    IssuanceJob:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        state:
+          type: string
+          example: CA
+        requested_count:
+          type: integer
+          example: 3
+        issued_count:
+          type: integer
+          example: 3
+        failed_count:
+          type: integer
+          example: 3
+        created_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+    PartnerUser:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        email:
+          type: string
+          format: email
+          example: jane.smith@example.com
+        phone:
+          type: string
+          example: '+14158672345'
+        first_name:
+          type: string
+          example: Jane
+        last_name:
+          type: string
+          example: Smith
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string

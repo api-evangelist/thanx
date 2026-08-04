@@ -1,0 +1,213 @@
+{
+  "info": {
+    "_postman_id": "f29ae387-2e17-4665-a95b-cf4c27047f00",
+    "name": "Thanx Consumer Account Gift Cards API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:49.000Z",
+    "updatedAt": "2026-07-28T03:09:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f29ae387-2e17-4665-a95b-cf4c27047f00"
+  },
+  "item": [
+    {
+      "name": "gift_cards",
+      "item": [
+        {
+          "name": "Get Gift Cards",
+          "id": "65a81210-c1f4-43ff-b3ba-702e50dd02b9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gift_cards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "gift_cards"
+              ]
+            },
+            "description": "Retrieves the authenticated user's gift cards."
+          },
+          "response": [
+            {
+              "id": "10bafe04-5b94-4860-b0c6-5f620d46d104",
+              "name": "A list of gift cards.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/gift_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gift_cards"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"gift_cards\": [\n    {\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"balance\": \"<double>\",\n      \"code\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"balance\": \"<double>\",\n      \"code\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:09:49.000Z",
+              "updatedAt": "2026-07-28T03:09:49.000Z",
+              "uid": "35240-10bafe04-5b94-4860-b0c6-5f620d46d104"
+            }
+          ],
+          "createdAt": "2026-07-28T03:09:49.000Z",
+          "updatedAt": "2026-07-28T03:09:49.000Z",
+          "uid": "35240-65a81210-c1f4-43ff-b3ba-702e50dd02b9"
+        },
+        {
+          "name": "Create Gift Card",
+          "id": "31797402-42de-4f62-8c59-035d8d6360bd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gift_card\": {\n    \"id\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"balance\": \"<double>\",\n    \"code\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/gift_cards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "gift_cards"
+              ]
+            },
+            "description": "Creates a new digital gift card."
+          },
+          "response": [
+            {
+              "id": "03e6f47e-c013-485b-94b2-e11f869283a9",
+              "name": "The created gift card.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gift_card\": {\n    \"id\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"balance\": \"<double>\",\n    \"code\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/gift_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gift_cards"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"gift_card\": {\n    \"id\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"balance\": \"<double>\",\n    \"code\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:09:49.000Z",
+              "updatedAt": "2026-07-28T03:09:49.000Z",
+              "uid": "35240-03e6f47e-c013-485b-94b2-e11f869283a9"
+            }
+          ],
+          "createdAt": "2026-07-28T03:09:49.000Z",
+          "updatedAt": "2026-07-28T03:09:49.000Z",
+          "uid": "35240-31797402-42de-4f62-8c59-035d8d6360bd"
+        }
+      ],
+      "id": "09c5d041-adc9-465f-942c-e495043fa75c",
+      "createdAt": "2026-07-28T03:09:49.000Z",
+      "updatedAt": "2026-07-28T03:09:49.000Z",
+      "uid": "35240-09c5d041-adc9-465f-942c-e495043fa75c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}

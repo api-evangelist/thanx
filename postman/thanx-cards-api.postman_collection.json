@@ -1,0 +1,364 @@
+{
+  "info": {
+    "_postman_id": "b1aaeded-130a-435d-a7b3-4671a9eb39ec",
+    "name": "Thanx Consumer Account Cards API",
+    "description": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:48.000Z",
+    "updatedAt": "2026-07-28T03:09:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b1aaeded-130a-435d-a7b3-4671a9eb39ec"
+  },
+  "item": [
+    {
+      "name": "cards",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Delete Card",
+              "id": "1aeb36d1-b839-4166-bc17-d9c1207a1049",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/cards/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cards",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "59a6d844-c00c-47a9-bc90-3ce22b8c4d96",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Archives a registered card."
+              },
+              "response": [
+                {
+                  "id": "49fcbdb0-be93-4d2a-9a0a-24b53043d381",
+                  "name": "The card was archived.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cards/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cards",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:09:48.000Z",
+                  "updatedAt": "2026-07-28T03:09:48.000Z",
+                  "uid": "35240-49fcbdb0-be93-4d2a-9a0a-24b53043d381"
+                }
+              ],
+              "createdAt": "2026-07-28T03:09:48.000Z",
+              "updatedAt": "2026-07-28T03:09:48.000Z",
+              "uid": "35240-1aeb36d1-b839-4166-bc17-d9c1207a1049"
+            }
+          ],
+          "id": "8b886a62-95b6-4ff4-944a-62ba5d4d2eb4",
+          "createdAt": "2026-07-28T03:09:48.000Z",
+          "updatedAt": "2026-07-28T03:09:48.000Z",
+          "uid": "35240-8b886a62-95b6-4ff4-944a-62ba5d4d2eb4"
+        },
+        {
+          "name": "Create Card",
+          "id": "0f195a9c-0347-443a-81f0-6dcc9e1534a3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"card\": {\n    \"number\": \"<string>\",\n    \"zip_code\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://secure.api.thanx.com/cards",
+              "protocol": "https",
+              "host": [
+                "secure",
+                "api",
+                "thanx",
+                "com"
+              ],
+              "path": [
+                "cards"
+              ]
+            },
+            "description": "Registers a new payment card with Thanx for card-linked loyalty."
+          },
+          "response": [
+            {
+              "id": "bf6f47fc-6a32-4728-8a25-bd6db5930268",
+              "name": "The registered card.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"card\": {\n    \"number\": \"<string>\",\n    \"zip_code\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://secure.api.thanx.com/cards",
+                  "protocol": "https",
+                  "host": [
+                    "secure",
+                    "api",
+                    "thanx",
+                    "com"
+                  ],
+                  "path": [
+                    "cards"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"card\": {\n    \"id\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"type\": \"<string>\",\n    \"zip_code\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:09:48.000Z",
+              "updatedAt": "2026-07-28T03:09:48.000Z",
+              "uid": "35240-bf6f47fc-6a32-4728-8a25-bd6db5930268"
+            },
+            {
+              "id": "671b85ff-457a-47fd-b855-f8fac2ba6f43",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"card\": {\n    \"number\": \"<string>\",\n    \"zip_code\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://secure.api.thanx.com/cards",
+                  "protocol": "https",
+                  "host": [
+                    "secure",
+                    "api",
+                    "thanx",
+                    "com"
+                  ],
+                  "path": [
+                    "cards"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:09:48.000Z",
+              "updatedAt": "2026-07-28T03:09:48.000Z",
+              "uid": "35240-671b85ff-457a-47fd-b855-f8fac2ba6f43"
+            }
+          ],
+          "createdAt": "2026-07-28T03:09:48.000Z",
+          "updatedAt": "2026-07-28T03:09:48.000Z",
+          "uid": "35240-0f195a9c-0347-443a-81f0-6dcc9e1534a3"
+        },
+        {
+          "name": "Get Cards",
+          "id": "dfd9645e-c748-44b0-98a0-fe196fecdb2e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cards"
+              ]
+            },
+            "description": "Retrieves the registered cards for the authenticated user."
+          },
+          "response": [
+            {
+              "id": "918ff026-c752-4a98-bdc5-d62dd5e17a2f",
+              "name": "A list of cards.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cards"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"cards\": [\n    {\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"type\": \"<string>\",\n      \"zip_code\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"type\": \"<string>\",\n      \"zip_code\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:09:48.000Z",
+              "updatedAt": "2026-07-28T03:09:48.000Z",
+              "uid": "35240-918ff026-c752-4a98-bdc5-d62dd5e17a2f"
+            }
+          ],
+          "createdAt": "2026-07-28T03:09:48.000Z",
+          "updatedAt": "2026-07-28T03:09:48.000Z",
+          "uid": "35240-dfd9645e-c748-44b0-98a0-fe196fecdb2e"
+        }
+      ],
+      "id": "f328a4c4-d068-4353-bc7a-ca5dc8fe037f",
+      "createdAt": "2026-07-28T03:09:48.000Z",
+      "updatedAt": "2026-07-28T03:09:48.000Z",
+      "uid": "35240-f328a4c4-d068-4353-bc7a-ca5dc8fe037f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.thanx.com"
+    }
+  ]
+}
