@@ -37,19 +37,21 @@ tags:
   - Campaigns
 url: https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/apis.yml
 created: '2026-06-02'
-modified: '2026-06-03'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 apis:
 - aid: thanx:thanx-account-api
   name: Thanx Account API
   description: Retrieve a user's loyalty account, rewards, and points balances.
   humanURL: https://docs.thanx.com/consumer/overview
-  baseURL: https://api.thanx.com
+  baseURL: https://loyalty.thanx.com
   tags:
   - Account
   properties:
   - type: OpenAPI
     url: openapi/thanx-account-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-account-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -246,6 +248,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-auth-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-auth-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -436,12 +440,14 @@ apis:
   name: Thanx Baskets API
   description: Create and update ordering baskets and redeem rewards or points products.
   humanURL: https://docs.thanx.com/consumer/overview
-  baseURL: https://api.thanx.com
+  baseURL: https://loyalty.thanx.com
   tags:
   - Baskets
   properties:
   - type: OpenAPI
     url: openapi/thanx-baskets-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-baskets-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -638,6 +644,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-campaigns-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-campaigns-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -834,6 +842,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-cards-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-cards-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -1030,6 +1040,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-gift-cards-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-gift-cards-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -1226,6 +1238,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-issuance-jobs-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-issuance-jobs-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -1422,6 +1436,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-locations-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-locations-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -1618,6 +1634,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-metadata-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-metadata-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -1814,6 +1832,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-points-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-points-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -2010,6 +2030,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-purchases-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-purchases-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -2206,6 +2228,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-rewards-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-rewards-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -2402,6 +2426,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-subscribers-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-subscribers-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -2598,6 +2624,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/thanx-users-api-openapi.yml
+  - type: Overlay
+    url: overlays/thanx-users-overlay.yaml
   - type: Documentation
     url: https://docs.thanx.com/consumer/overview
   - type: APIReference
@@ -2887,6 +2915,69 @@ common:
         description: Private connectivity option for the Loyalty API.
   - url: https://www.thanx.com/blog
     type: Blog
+  - type: Packages
+    url: packages/thanx-packages.yml
+  - type: SDKs
+    url: packages/thanx-packages.yml
+  - type: WellKnown
+    url: well-known/thanx-well-known.yml
+  - type: MCPServer
+    url: mcp/thanx-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/thanx-tool-crosswalk.yml
+  - type: AgentCard
+    url: a2a/thanx-a2a.yml
+  - type: LLMsTxt
+    url: llms/thanx-llms.txt
+  - type: Conformance
+    url: conformance/thanx-conformance.yml
+  - type: Compliance
+    url: security/thanx-trust-center.yml
+  - type: TrustCenter
+    url: security/thanx-trust-center.yml
+  - type: ErrorCatalog
+    url: errors/thanx-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/thanx-lifecycle.yml
+  - type: StatusPage
+    url: https://status.thanx.com/
+  - type: Deprecation
+    url: lifecycle/thanx-lifecycle.yml
+  - type: OAuthScopes
+    url: scopes/thanx-scopes.yml
+  - type: Sandbox
+    url: sandbox/thanx-sandbox.yml
+  - type: Conventions
+    url: conventions/thanx-conventions.yml
+  - type: Idempotency
+    url: conventions/thanx-conventions.yml
+  - type: ChangeLog
+    url: changelog/thanx-changelog.yml
+  - type: DataModel
+    url: data-model/thanx-data-model.yml
+  - type: Webhooks
+    url: asyncapi/thanx-webhooks.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Support
+    url: https://help.thanx.com/hc/en-us
+  - type: SignUp
+    url: https://www.thanx.com/talk-to-sales
+  - type: Login
+    url: https://dashboard.thanx.com/
+  - type: TermsOfService
+    url: https://dashboard.thanx.com/terms
+  - type: PrivacyPolicy
+    url: https://dashboard.thanx.com/privacy
+  - type: Roadmap
+    url: https://thanx.launchnotes.io/
+  - type: APIReference
+    url: https://docs.thanx.com/consumer/overview
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 38
+  pass: local-v1
