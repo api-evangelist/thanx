@@ -1,0 +1,69 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Thanx Consumer Account Gift Cards API
+  version: 1.0.0
+extends: openapi/thanx-gift-cards-api-openapi.yml
+generated: '2026-08-13'
+method: generated
+source: openapi/thanx-gift-cards-api-openapi.yml
+description: Captures API Evangelist enrichment as an OpenAPI Overlay. Nothing here mutates the underlying
+  document — apply it to layer the cross-cutting semantics Thanx publishes in prose (headers, versioning,
+  scopes, idempotency, rate limits, error envelope) onto the machine-readable contract.
+actions:
+- target: $.info
+  update:
+    x-apievangelist:
+      catalog: https://apis.io/thanx
+      provider: Thanx
+      maintainer: Kin Lane <kin@apievangelist.com>
+      api_family: Consumer
+      artifacts:
+      - apis.yml
+      - conventions/thanx-conventions.yml
+      - errors/thanx-problem-types.yml
+      - scopes/thanx-scopes.yml
+      - authentication/thanx-authentication.yml
+      - rate-limits/thanx-rate-limits.yml
+      - lifecycle/thanx-lifecycle.yml
+      - sandbox/thanx-sandbox.yml
+      - data-model/thanx-data-model.yml
+      - conformance/thanx-conformance.yml
+      - asyncapi/thanx-webhooks.yml
+      - mcp/thanx-mcp.yml
+      - a2a/thanx-a2a.yml
+      - skills/_index.yml
+      - packages/thanx-packages.yml
+      - well-known/thanx-well-known.yml
+- target: $.info
+  update:
+    x-api-versioning:
+      mechanism: Accept-Version request header
+      value: v4.0
+      required: true
+      docs: https://docs.thanx.com/consumer/usage/headers
+- target: $.info
+  update:
+    x-required-headers:
+    - 'Content-Type: application/json'
+    - 'Accept: application/json'
+    - 'Accept-Version: v4.0'
+    - 'X-ClientId: <client id>'
+    - 'Authorization: Bearer <access_token>'
+- target: $.info
+  update:
+    x-rate-limits:
+      requests_per_second: 5
+      requests_per_15_minutes: 2000
+      hard: true
+      status_on_exhaustion: 429
+      response_headers: none published
+      docs: https://docs.thanx.com/partner/overview#global-rate-limits
+      detail: rate-limits/thanx-rate-limits.yml
+- target: $.info
+  update:
+    x-error-envelope:
+      shape: '{"error": {"code": "STRING", "message": "STRING"}}'
+      rfc9457: false
+      code_stable: true
+      message_stable: false
+      detail: errors/thanx-problem-types.yml

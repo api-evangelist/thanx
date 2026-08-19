@@ -1,0 +1,70 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.thanx.com/open-platform-apis
+description: >-
+  Thanx names two certifications publicly — SOC 2 Type 2 and PCI DSS Level 1 Service Provider —
+  on its Data Platform product page, alongside a >99.95% platform and API uptime claim. There
+  is NO trust center in the usual sense: no portal, no downloadable attestation, no subprocessor
+  list, no security questionnaire self-service. probe-security-programs.py returned
+  vdp=none trust=none for this provider; these claims were found by reading the marketing site
+  and are recorded here because the certifications themselves are named and specific.
+trust_center:
+  portal: null
+  status: no-portal
+  note: >-
+    trust.thanx.com redirects to rewards.thanx.com/trust and returns 403; www.thanx.com/trust
+    and /security both 404. Certification claims live on product marketing pages only.
+certifications:
+  - name: SOC 2 Type 2
+    status: claimed
+    evidence: >-
+      "Industry-leading security standards: SOC 2 Type 2 Compliant ✓" and "SOC 2 Type 2 and PCI
+      DSS Level 1 certified, with continuous monitoring to protect your guest data"
+      (https://www.thanx.com/open-platform-apis)
+    report_available: false
+    note: No public attestation letter or NDA-gated portal found.
+  - name: PCI DSS
+    level: Level 1 Service Provider
+    status: claimed
+    evidence: >-
+      "PCI DSS Level 1 Service Provider ✓" (https://www.thanx.com/open-platform-apis)
+    corroboration: >-
+      Dedicated secure.api.thanx.com / secure.api.thanxsandbox.com hosts appear in the OpenAPI
+      servers[] blocks, and card enrollment is tokenized through the Visa/Mastercard/Amex
+      networks rather than storing PANs — both consistent with a segmented cardholder-data
+      environment.
+  - name: HIPAA
+    status: not-claimed
+  - name: ISO 27001
+    status: not-claimed
+  - name: FedRAMP
+    status: not-claimed
+availability_claim:
+  target: '>99.95%'
+  scope: platform and API
+  source: https://www.thanx.com/open-platform-apis
+  contractual: false
+  observed: >-
+    status.thanx.com publishes 90-day per-component uptime — Consumer API 100.000%,
+    Merchant API 99.925%, Authentication 100.000% as of 2026-08-13.
+privacy:
+  privacy_policy: https://dashboard.thanx.com/privacy
+  terms: https://dashboard.thanx.com/terms
+  note: www.thanx.com/privacy and /terms both 302 to the dashboard host.
+data_handling:
+  export_surfaces:
+    - SFTP daily CSV snapshots
+    - Snowflake Secure Data Sharing
+    - Thanx Connex managed loading (Snowflake, BigQuery, Redshift, Databricks, Athena, ClickHouse, Postgres, MySQL, SQL Server, S3, GCS, Azure Blob, Google Sheets)
+  private_connectivity: AWS PrivateLink for the Loyalty API (https://docs.thanx.com/loyalty/private-link)
+  webhook_guidance: >-
+    Thanx explicitly warns that sensitive values must not be placed in webhook query
+    parameters, since those are static and sent on every delivery.
+x-evidence:
+  fetched: '2026-08-13'
+  urls:
+    - {url: 'https://www.thanx.com/open-platform-apis', status: 200, finding: 'SOC 2 Type 2 + PCI DSS Level 1 + >99.95% uptime'}
+    - {url: 'https://trust.thanx.com', status: 403, finding: 'redirects to rewards.thanx.com/trust; no trust portal'}
+    - {url: 'https://www.thanx.com/security', status: 404}
+    - {url: 'https://dashboard.thanx.com/privacy', status: 200}
+    - {url: 'https://dashboard.thanx.com/terms', status: 200}

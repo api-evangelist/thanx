@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thanx Consumer Account Issuance Jobs API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Issuance Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Issuance Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/issuance_jobs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the status of a reward issuance job."
+        },
+        {
+          "info": {
+            "name": "Revoke Issuance Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/partner/issuance_jobs/:id/revoke",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Revokes a reward issuance job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,116 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.thanx.com/overview/sandbox-faq (the "Sandbox Gotchas & FAQ" reference),
+  https://docs.thanx.com/overview/integrating, https://docs.thanx.com/partner/overview,
+  https://docs.thanx.com/consumer/usage/certification,
+  https://docs.thanx.com/consumer/rewards/grant-reward,
+  https://docs.thanx.com/consumer/purchases/create-purchase.
+description: >-
+  Thanx runs a full sandbox on parallel hostnames (thanxsandbox.com) rather than test-mode keys
+  on the production host. Credentials are NOT self-serve — client id, client secret, merchant
+  key, partner token and a test user are handed out by Thanx Developer Support during
+  onboarding, and production credentials are only issued after a mandatory certification. Two
+  endpoints exist ONLY in sandbox, and several sandbox behaviors (multi-minute ingestion
+  latency, fraud rejection of shared test PANs) look like bugs until you know about them, which
+  is why Thanx publishes a dedicated gotchas page.
+access:
+  self_serve: false
+  credential_source: Thanx Developer Support (developer.support@thanx.com) during onboarding
+  credentials_issued: [client_id, client_secret, merchant_key, partner_token, test_user]
+  production_gate: >-
+    Mandatory certification against the sandbox before production credentials are released;
+    each new integration use-case is re-certified.
+  docs: https://docs.thanx.com/consumer/usage/certification
+modes:
+  - name: sandbox
+    hosts:
+      consumer_partner: https://api.thanxsandbox.com
+      consumer_partner_pci: https://secure.api.thanxsandbox.com
+      loyalty: https://loyalty.thanxsandbox.com/api/
+    notes: >-
+      Isolated environment. All integrations are developed here first. Runs on a lower-priority
+      worker pool, so purchase processing lags well behind production.
+  - name: production
+    hosts:
+      consumer_partner: https://api.thanx.com
+      consumer_partner_pci: https://secure.api.thanx.com
+      loyalty: https://loyalty.thanx.com/api/
+key_formats:
+  note: >-
+    Thanx uses no test/live key PREFIX convention — the environment is selected by hostname.
+    The same header set (Authorization, X-ClientId or Merchant-Key, Accept-Version) applies in
+    both, so a misconfigured base URL is the single most likely cause of "my sandbox
+    credentials do not work in production".
+sandbox_only_operations:
+  - operation: grantReward
+    path: POST /rewards/grant
+    docs: https://docs.thanx.com/consumer/rewards/grant-reward
+    purpose: >-
+      Issue any configured campaign's reward directly to a user without triggering a campaign or
+      satisfying earn conditions.
+    availability: sandbox only — disabled in production
+    parameters:
+      campaign_id: >-
+        The HASHID form of the program's external_uid, NOT the numeric program id. A numeric id
+        will not resolve. Obtain the hashids from Dev Support or the merchant admin.
+      user_id: The user to grant the reward to.
+  - operation: createPurchase
+    path: POST /purchases
+    docs: https://docs.thanx.com/consumer/purchases/create-purchase
+    purpose: >-
+      Simulate a completed purchase to exercise points accrual, tier progression and
+      campaign triggers without a live POS or payment processor.
+    availability: >-
+      Sandbox only for this testing purpose. Processed asynchronously; returns no JSON body.
+    note: >-
+      Loyalty API integrations use POST /baskets with state=billed instead; POST /purchases is
+      the Consumer API sandbox path.
+timing:
+  purchase_processing:
+    production: near real-time
+    sandbox: 15 minutes, commonly 30+ minutes
+    cause: sandbox runs on a lower-priority worker pool
+  polling_recipe:
+    first_poll_after: 60s
+    strategy: exponential backoff, doubling to a 5-minute cap
+    give_up_after: ~45 minutes
+    stop_condition: as soon as the purchase appears in GET /purchases
+    production_guidance: >-
+      Do NOT carry this polling pattern into production — the latency is a sandbox artifact.
+test_data:
+  cards:
+    warning: >-
+      Commonly-used shared test card numbers (the standard Visa/MC test PANs) are flagged
+      high-risk by the Thanx fraud engine.
+    failure_mode: >-
+      On fraud-protected reward types (intro, birthday, winback, signup) the reward silently
+      fails to earn or activate — no error is returned, the reward simply never appears.
+    workaround: >-
+      Register a UNIQUE card number per test user for fraud-protected flows. Only the first 6
+      and last 4 digits need to be valid; the middle digits can be random but must be
+      consistent.
+    unaffected: points products and free-item rewards — shared test cards are fine there.
+  published_test_values: none
+  note: >-
+    Thanx publishes no test card PANs, test tokens, magic amounts or fixture library. Test data
+    is provisioned per-integration by Developer Support, so nothing here is a value you can
+    copy — that is the finding, not an omission.
+tooling:
+  test_clocks: false
+  event_triggers: false
+  cli: false
+  postman_collections: https://docs.thanx.com/overview/api_collections
+  note: >-
+    No time simulation, no fixture/trigger CLI. The Postman collections (mirrored in this repo
+    under collections/ and postman/) are the shipped exercise harness, with placeholder
+    credentials the integrator swaps for their Thanx-issued sandbox values.
+common_pitfalls:
+  - Array filters require bracket notation — states[]=available&states[]=active, not states=available,active.
+  - Campaign grants take the hashid form of external_uid, never the numeric program id.
+  - Do not send Reward-Redemption-Token together with an Authorization bearer on the Loyalty API — it returns 404 or 401.
+  - Wait ~30 minutes before reporting "points not accruing" in sandbox.
+related:
+  - https://docs.thanx.com/overview/guides/basket-lifecycle
+  - https://docs.thanx.com/overview/guides/pos-kiosk
+  - https://docs.thanx.com/overview/guides/consumer-ux

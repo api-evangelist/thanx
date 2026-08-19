@@ -1,0 +1,204 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  Derived from the schemas and $ref links in openapi/*.yml (30 operations, 14 tag-split
+  documents; sources in openapi/_original/) plus the id-reference fields those schemas declare.
+  Entity domains and identifier semantics cross-checked against the object reference at
+  https://docs.thanx.com/consumer/overview and the data-export model pages at
+  https://docs.thanx.com/data/models/.
+description: >-
+  The Thanx entity graph. The User is the hub: cards, purchases, rewards and gift cards all
+  belong to a user, and merchants own locations, campaigns and reward templates. Loyalty runs
+  through two parallel value systems that hang off the same Account — earned Rewards and
+  spendable Points — and the Basket is where both are applied at checkout. Note the graph
+  spans THREE API families on two hosts, so the same conceptual user appears as User (Consumer),
+  PartnerUser (Partner) and Account (Loyalty) with different field sets.
+identifiers:
+  format: alphanumeric lowercase strings
+  prefixes: none — Thanx does not use typed id prefixes
+  note: >-
+    Campaign identifiers in the sandbox grant flow are the HASHID form of a program's
+    external_uid, not the numeric program id.
+entities:
+  - name: User
+    api: openapi/thanx-users-api-openapi.yml
+    domain: consumer
+    key: id
+    fields: [id, email, phone, first_name, last_name, birth_date, zip_code]
+    envelope: UserEnvelope
+    operations: [getUser, createUser]
+  - name: PartnerUser
+    api: openapi/thanx-users-api-openapi.yml
+    domain: partner
+    key: id
+    fields: [id, email, phone, first_name, last_name]
+    operations: [getPartnerUser, getPartnerUsers]
+    note: The Partner API projection of the same person, scoped to a merchant.
+  - name: Account
+    api: openapi/thanx-account-api-openapi.yml
+    domain: loyalty
+    key: id
+    fields: [id, email, rewards, points_products, points_balances]
+    operations: [getAccount]
+    note: >-
+      The Loyalty (POS/ordering) projection — a user plus everything redeemable at the register
+      in one payload.
+  - name: BirthDate
+    api: openapi/thanx-users-api-openapi.yml
+    key: null
+    fields: [year, month, day]
+    note: Value object embedded in User/UserInput, not an independent resource.
+  - name: Authorization
+    api: openapi/thanx-users-api-openapi.yml
+    domain: auth
+    fields: [token_type, scope, created_at, access_token, refresh_token]
+    note: OAuth 2.0 token response from the SSO flow; scope is "passwordless" for consumer tokens.
+  - name: Card
+    api: openapi/thanx-cards-api-openapi.yml
+    domain: consumer
+    key: id
+    fields: [id, user_id, last4, type, zip_code]
+    envelope: CardEnvelope
+    operations: [createCard, getCards, deleteCard]
+    note: >-
+      PAN is never stored on the object — enrollment is tokenized through Visa/Mastercard/Amex.
+      Deleting a card unenrolls it from the networks.
+  - name: GiftCard
+    api: openapi/thanx-gift-cards-api-openapi.yml
+    domain: consumer
+    key: id
+    fields: [id, user_id, balance, code]
+    operations: [getGiftCards, createGiftCard]
+  - name: Purchase
+    api: openapi/thanx-purchases-api-openapi.yml
+    domain: consumer
+    key: id
+    fields: [id, user_id, merchant_id, location_id, purchased_at, amount, order]
+    operations: [getPurchases, createPurchase]
+    note: Created asynchronously — the write returns no body; the read is the confirmation.
+  - name: Reward
+    api: openapi/thanx-rewards-api-openapi.yml
+    domain: consumer
+    key: id
+    fields: [id, olo_uid, user_id, merchant_id, campaign_id, state, earn, redeem, coupon_code, fine_print, instructions, available_at, activated_at, retire_at, used_at, uses_dynamic_coupon_codes]
+    envelope: RewardEnvelope
+    operations: [getRewards, getReward, activateReward, finalizeReward]
+    state_machine: available -> active (activateReward) -> used (finalizeReward)
+    note: >-
+      Bonus-point (static) rewards jump straight to used on activation. olo_uid is the
+      cross-reference into an online-ordering provider.
+  - name: LoyaltyReward
+    api: openapi/thanx-account-api-openapi.yml
+    domain: loyalty
+    key: id
+    fields: [id, value, label, state, type]
+    note: The compact POS-facing projection of a Reward, returned inside Account.
+  - name: PointsProduct
+    api: openapi/thanx-account-api-openapi.yml
+    domain: loyalty
+    key: id
+    fields: [id, label, cost]
+    note: A points-purchasable item; cost is denominated in points.
+  - name: Basket
+    api: openapi/thanx-baskets-api-openapi.yml
+    domain: loyalty
+    key: id
+    fields: [id, state, discount]
+    operations: [createUpdateBasket]
+  - name: BasketInput
+    api: openapi/thanx-baskets-api-openapi.yml
+    domain: loyalty
+    fields: [id, state, order_timestamp, location_uid, rewards, points_products, payments, items, subtotal]
+    note: >-
+      The write shape. rewards[] and points_products[] carry IDs, which is how redemption is
+      applied at checkout. Resending the same basket is idempotent — it will not redeem twice.
+  - name: BasketItem
+    api: openapi/thanx-baskets-api-openapi.yml
+    fields: [id, name, price, categories, modifiers]
+  - name: Payment
+    api: openapi/thanx-baskets-api-openapi.yml
+    fields: [issuer, last4, amount, authorized_at]
+  - name: Location
+    api: openapi/thanx-locations-api-openapi.yml
+    key: id
+    fields: [id, merchant_id, street, city, state, zip, name, phone, loyalty_redemption_type]
+    operations: [getLocations, getPartnerLocations]
+  - name: Merchant
+    api: openapi/thanx-metadata-api-openapi.yml
+    key: id
+    operations: [getMerchants]
+    note: >-
+      Returned by the Partner metadata endpoint but not modelled as a component schema in
+      openapi/; referenced by merchant_id across Location, Purchase and Reward.
+  - name: Campaign
+    api: openapi/thanx-campaigns-api-openapi.yml
+    domain: partner
+    key: id
+    fields: [id, name, objective, start_at, end_at, redeemable_from, redeemable_to, time_zone, fine_print, variants]
+    operations: [createCampaign, listCampaigns, getCampaign]
+  - name: CampaignVariant
+    api: openapi/thanx-campaigns-api-openapi.yml
+    domain: partner
+    fields: [name, reward_template_id]
+    note: A/B variant of a campaign; binds the campaign to a reward template.
+  - name: IssuanceJob
+    api: openapi/thanx-issuance-jobs-api-openapi.yml
+    domain: partner
+    key: id
+    fields: [id, state, requested_count, issued_count, failed_count, created_at, updated_at]
+    operations: [issueRewards, getIssuanceJob, revokeIssuanceJob]
+    note: >-
+      The async handle for batch reward issuance (up to 10,000 identifiers). Completion is also
+      announced by the reward_batch.completed webhook.
+  - name: Pagination
+    api: openapi/thanx-locations-api-openapi.yml
+    fields: [total_page, per_page, current_page]
+    note: Envelope value object, not a resource.
+  - name: Error
+    api: openapi/thanx-users-api-openapi.yml
+    fields: [code, message]
+    detail: errors/thanx-problem-types.yml
+relationships:
+  - {from: Card, to: User, type: belongs_to, via: user_id}
+  - {from: GiftCard, to: User, type: belongs_to, via: user_id}
+  - {from: Purchase, to: User, type: belongs_to, via: user_id}
+  - {from: Purchase, to: Merchant, type: belongs_to, via: merchant_id}
+  - {from: Purchase, to: Location, type: belongs_to, via: location_id}
+  - {from: Reward, to: User, type: belongs_to, via: user_id}
+  - {from: Reward, to: Merchant, type: belongs_to, via: merchant_id}
+  - {from: Reward, to: Campaign, type: belongs_to, via: campaign_id}
+  - {from: User, to: BirthDate, type: has_one, via: 'birth_date ($ref)'}
+  - {from: UserEnvelope, to: User, type: has_one, via: 'user ($ref)'}
+  - {from: CardEnvelope, to: Card, type: has_one, via: 'card ($ref)'}
+  - {from: RewardEnvelope, to: Reward, type: has_one, via: 'reward ($ref)'}
+  - {from: Account, to: LoyaltyReward, type: has_many, via: 'rewards[] ($ref)'}
+  - {from: Account, to: PointsProduct, type: has_many, via: 'points_products[] ($ref)'}
+  - {from: Account, to: PointsBalance, type: has_many, via: 'points_balances[] (untyped object)'}
+  - {from: BasketInput, to: BasketItem, type: has_many, via: 'items[] ($ref)'}
+  - {from: BasketInput, to: Payment, type: has_many, via: 'payments[] ($ref)'}
+  - {from: BasketInput, to: Reward, type: has_many, via: 'rewards[] (array of reward ids)'}
+  - {from: BasketInput, to: PointsProduct, type: has_many, via: 'points_products[] (array of product ids)'}
+  - {from: BasketInput, to: Location, type: belongs_to, via: location_uid}
+  - {from: Location, to: Merchant, type: belongs_to, via: merchant_id}
+  - {from: Campaign, to: CampaignVariant, type: has_many, via: 'variants[]'}
+  - {from: CampaignVariant, to: RewardTemplate, type: belongs_to, via: reward_template_id}
+  - {from: CampaignInput, to: Merchant, type: belongs_to, via: merchant_id}
+  - {from: IssuanceJob, to: Campaign, type: belongs_to, via: 'campaign_id (request parameter on issueRewards)'}
+  - {from: PartnerUser, to: Merchant, type: belongs_to, via: 'merchant scope of the credential'}
+projections:
+  note: >-
+    User (Consumer), PartnerUser (Partner) and Account (Loyalty) are three projections of the
+    same person across three API families. Reward and LoyaltyReward are likewise two
+    projections of one reward. An integration touching more than one family must reconcile them
+    on id.
+export_models:
+  note: >-
+    The data-export surface publishes its own model docs, a superset of the API objects:
+    campaigns, communication-preferences, memberships, nps-feedback, points-accounts,
+    points-transactions, programs, purchases, rewards, loyalty-reward-progress (legacy).
+  docs: https://docs.thanx.com/data/overview
+summary:
+  entities: 22
+  relationships: 26
+  hub_entity: User
+  render: null

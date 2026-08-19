@@ -1,0 +1,108 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  Derived by aligning the live MCP tool list read from https://docs.thanx.com/mcp
+  (mcp/thanx-mcp.yml, probed 2026-08-13) with the REST OpenAPI split one-per-tag under
+  openapi/ (30 operations; sources archived in openapi/_original/).
+purpose: >-
+  Bind each MCP tool to the REST operation(s) that back it, so an agent can see which surface
+  actually does the work. For Thanx the answer is the interesting one: the two surfaces do NOT
+  overlap. Thanx's MCP server is a DOCUMENTATION server — it searches and reads docs.thanx.com —
+  while every loyalty capability (users, rewards, points, baskets, campaigns, issuance) is REST
+  only. There is no MCP tool that issues a reward, and no REST operation that searches the docs.
+  An agent that connects only to the MCP server can read about Thanx but cannot transact with it.
+surfaces:
+  rest_openapi: openapi/          # 14 tag-split documents, 30 operations; hosts api.thanx.com + loyalty.thanx.com
+  mcp: https://docs.thanx.com/mcp # remote, anonymous, tools/list returned 200 with real inputSchemas
+  graphql: null                   # Thanx publishes no GraphQL surface
+  gated: none                     # neither surface required credentials to enumerate
+crosswalk: []
+mcp_only:
+  - tool: search_thanx
+    reason: >-
+      Documentation search over docs.thanx.com content. No REST operation exposes documentation
+      search; the API surface is loyalty data only.
+  - tool: query_docs_filesystem_thanx
+    reason: >-
+      Read-only queries against a virtualized filesystem of documentation pages and specs. Has
+      no REST analogue.
+  - tool: submit_feedback
+    reason: >-
+      Files documentation feedback with the Thanx docs team. Not a product API operation and
+      not present in any OpenAPI.
+rest_only:
+  - operation: getAccount
+    api: openapi/thanx-account-api-openapi.yml
+    note: GET /api/account (Loyalty API)
+  - operation: createUpdateBasket
+    api: openapi/thanx-baskets-api-openapi.yml
+    note: POST /api/baskets (Loyalty API)
+  - operation: createToken
+    api: openapi/thanx-auth-api-openapi.yml
+  - operation: createCampaign
+    api: openapi/thanx-campaigns-api-openapi.yml
+  - operation: listCampaigns
+    api: openapi/thanx-campaigns-api-openapi.yml
+  - operation: getCampaign
+    api: openapi/thanx-campaigns-api-openapi.yml
+  - operation: issueRewards
+    api: openapi/thanx-campaigns-api-openapi.yml
+  - operation: createCard
+    api: openapi/thanx-cards-api-openapi.yml
+  - operation: getCards
+    api: openapi/thanx-cards-api-openapi.yml
+  - operation: deleteCard
+    api: openapi/thanx-cards-api-openapi.yml
+  - operation: getGiftCards
+    api: openapi/thanx-gift-cards-api-openapi.yml
+  - operation: createGiftCard
+    api: openapi/thanx-gift-cards-api-openapi.yml
+  - operation: getIssuanceJob
+    api: openapi/thanx-issuance-jobs-api-openapi.yml
+  - operation: revokeIssuanceJob
+    api: openapi/thanx-issuance-jobs-api-openapi.yml
+  - operation: getLocations
+    api: openapi/thanx-locations-api-openapi.yml
+  - operation: getMerchants
+    api: openapi/thanx-metadata-api-openapi.yml
+  - operation: getPartnerLocations
+    api: openapi/thanx-metadata-api-openapi.yml
+  - operation: getScopes
+    api: openapi/thanx-metadata-api-openapi.yml
+  - operation: getPointsBalance
+    api: openapi/thanx-points-api-openapi.yml
+  - operation: getPurchases
+    api: openapi/thanx-purchases-api-openapi.yml
+  - operation: createPurchase
+    api: openapi/thanx-purchases-api-openapi.yml
+  - operation: getRewards
+    api: openapi/thanx-rewards-api-openapi.yml
+  - operation: getReward
+    api: openapi/thanx-rewards-api-openapi.yml
+  - operation: activateReward
+    api: openapi/thanx-rewards-api-openapi.yml
+  - operation: finalizeReward
+    api: openapi/thanx-rewards-api-openapi.yml
+  - operation: createSubscriber
+    api: openapi/thanx-subscribers-api-openapi.yml
+  - operation: getUser
+    api: openapi/thanx-users-api-openapi.yml
+  - operation: createUser
+    api: openapi/thanx-users-api-openapi.yml
+  - operation: getPartnerUser
+    api: openapi/thanx-users-api-openapi.yml
+  - operation: getPartnerUsers
+    api: openapi/thanx-users-api-openapi.yml
+coverage:
+  mcp_tools: 3
+  mcp_tools_bound_to_rest: 0
+  mcp_only: 3
+  rest_operations: 30
+  rest_operations_with_a_tool: 0
+  rest_only: 30
+  overlap_pct: 0
+note: >-
+  Thanx's docs also describe a Promotions family (create/list/get promotion, list/generate
+  promotion codes) that is not yet captured in openapi/. Those operations are absent from
+  rest_only[] because this crosswalk maps only what exists in the repo's specs — nothing here
+  is invented from prose.

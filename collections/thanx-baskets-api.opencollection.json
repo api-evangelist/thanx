@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thanx Consumer Account Baskets API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Baskets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create And Update Basket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thanx.com/api/baskets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates an ordering basket and computes applicable loyalty discounts. Only a single reward or points product can be redeemed per order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

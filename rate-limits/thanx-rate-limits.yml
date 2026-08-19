@@ -4,7 +4,10 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Thanx
 providerId: thanx
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: searched
+source: https://docs.thanx.com/partner/overview#global-rate-limits
 reconciled: false
 tags:
   - Rate Limiting
@@ -12,58 +15,102 @@ tags:
   - Guest Engagement
   - Restaurant
 description: >-
-  Thanx does not publish numeric request-rate or concurrency limits in its
-  developer documentation, and the documented error catalog does not include a
-  429 / Too Many Requests code. The actionable throughput guidance Thanx does
-  publish is batch-oriented: reward issuance via the Partner API should collect
-  identifiers and submit them in batches of up to 10,000 per request for optimal
-  throughput and to avoid rate limiting. Collection endpoints are paginated.
-  Treat the numeric values here as documentation-derived guidance rather than
-  contractual limits; confirm production limits with Thanx.
+  Thanx publishes global, numeric, hard rate limits: 5 requests per second and 2,000 requests
+  per 15 minutes, enforced with 429 Too Many Requests. This CORRECTS the previous revision of
+  this artifact (2026-06-03), which recorded "not published" — the limits now appear on the
+  Partner API overview and in the campaign/subscriber integration guides. Thanx documents the
+  numbers and the retry strategy but publishes NO rate-limit response headers, so a client
+  cannot read its remaining budget at runtime and must rely on catching the 429 and backing
+  off. Higher throughput is available by request through developer support.
 sources:
-  - https://docs.thanx.com/partner/campaigns/issue-rewards.md
-  - https://docs.thanx.com/consumer/usage/errors.md
-  - https://docs.thanx.com/consumer/usage/patterns.md
+  - https://docs.thanx.com/partner/overview
+  - https://docs.thanx.com/overview/guides/campaign-reward-issuance
+  - https://docs.thanx.com/overview/guides/subscriber-ingestion
+  - https://docs.thanx.com/partner/campaigns/issue-rewards
+  - https://docs.thanx.com/consumer/usage/errors
+limit_count: 4
 responseCodes:
   badRequest: 400
   unauthorized: 401
   forbidden: 403
   notFound: 404
+  tooManyRequests: 429
+  unprocessable: 422
+responseHeaders:
+  published: false
+  note: >-
+    Thanx documents no X-RateLimit-* / RateLimit-* / Retry-After headers. The only runtime
+    signal is the 429 status itself.
 limits:
-  - name: General request rate
-    scope: client
+  - name: Global request rate (per second)
+    scope: per-credential
     metric: requests_per_second
-    limit: 'not published — confirm with Thanx'
+    window: 1s
+    limit: 5
+    burst: not published
+    hard: true
+    status_on_exhaustion: 429
     notes: >-
-      No per-second or per-minute request limit is documented. No 429 response
-      code is listed in the Consumer API error catalog.
+      "Integration partners should not exceed a rate of 5 requests per second ... These default
+      rate limits are hard-limits and APIs will return 429 Too Many Requests once these limits
+      are crossed."
+  - name: Global request volume (per 15 minutes)
+    scope: per-credential
+    metric: requests_per_window
+    window: 15m
+    limit: 2000
+    hard: true
+    status_on_exhaustion: 429
+    notes: Applies alongside the per-second ceiling; both are enforced.
   - name: Reward issuance batch size (Partner API)
-    scope: account
+    scope: per-request
     metric: identifiers_per_request
     limit: 10000
     notes: >-
-      Submit campaign reward identifiers in batches of up to 10,000 per request
-      to the Issue Rewards endpoint for optimal throughput and to avoid rate
-      limiting. Issuance is processed asynchronously via an issuance job.
+      Submit campaign reward identifiers in batches of up to 10,000 per request to
+      POST /partner/campaigns/issue. Per-user requests are explicitly called out as
+      "significantly less efficient and may result in rate limiting under the global rate
+      limits". Issuance is asynchronous via an issuance job.
+  - name: Promotion code generation batch size
+    scope: per-request
+    metric: codes_per_request
+    limit: 100000
+    notes: >-
+      1–100,000 codes per generate-codes request; exceeding it returns 422 Unprocessable
+      Entity. Up to 4,000,000 codes may be requested via code_count at promotion creation.
   - name: Partner access token lifetime
     scope: token
     metric: seconds
     limit: 3600
     notes: >-
-      Privileged end-user access tokens accept an optional expires_in between
-      60 and 3600 seconds.
+      Privileged end-user access tokens accept an optional expires_in between 60 and 3600
+      seconds. Not a rate limit; recorded here because it bounds retry windows.
 policies:
+  - name: Exponential backoff on 429
+    description: >-
+      "Rate-limited API requests can and should be retried. One such strategy to handle this is
+      through an exponential backoff strategy."
+  - name: Request an increase
+    description: >-
+      Integrations needing higher throughput email developer.support@thanx.com to request an
+      increase to the default values. Limits are therefore per-credential defaults, not a
+      platform ceiling.
   - name: Batch over loop
     description: >-
-      Prefer batched reward issuance (up to 10,000 identifiers per request) over
-      issuing rewards one at a time; this is the documented mechanism for
-      avoiding rate limiting.
+      Prefer batched reward issuance (up to 10,000 identifiers per request) over issuing
+      rewards one at a time; this is the documented mechanism for staying under the global
+      limits.
   - name: Asynchronous processing
     description: >-
-      Reward issuance returns 202 Accepted with an issuance job; poll the
-      issuance-job endpoint for completion rather than blocking.
+      Reward issuance returns 202 Accepted with an issuance job; poll getIssuanceJob or consume
+      the reward_batch.completed webhook rather than blocking or polling tightly.
   - name: Pagination
     description: >-
-      Collection endpoints (rewards, purchases, locations, campaigns, users)
-      return a pagination object (total_page, per_page, current_page); page
-      through results instead of requesting large pages.
+      Collection endpoints (rewards, purchases, locations, campaigns, users) return a
+      pagination object (total_page, per_page, current_page); page through results instead of
+      requesting large pages.
+  - name: Do not poll in production
+    description: >-
+      Sandbox purchase ingestion is slow enough that Thanx documents a backoff polling recipe,
+      but explicitly states production integrations should not poll — sandbox latency is a
+      sandbox artifact.

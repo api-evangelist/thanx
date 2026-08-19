@@ -1,0 +1,77 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.thanx.com/data/changelog
+description: >-
+  Thanx runs TWO change surfaces and neither is an API changelog. docs.thanx.com/data/changelog
+  is a dated changelog scoped to DATA EXPORT SCHEMA changes, and it carries the platform's only
+  written compatibility contract (additive-only columns, retired columns emptied rather than
+  dropped). thanx.launchnotes.io is a product-release feed for the merchant-facing product,
+  organized by category and subscribable, with a public roadmap section. The REST APIs
+  themselves have no dated changelog: version changes are announced to partners directly and
+  the client pins with Accept-Version: v4.0.
+surfaces:
+  - name: Data export changelog
+    url: https://docs.thanx.com/data/changelog
+    scope: SFTP / Connex export schema
+    dated: true
+    machine_readable: false
+    subscribable: false
+  - name: Thanx Product Updates (LaunchNotes)
+    url: https://thanx.launchnotes.io/
+    scope: merchant-facing product releases
+    dated: true
+    subscribable: true
+    categories: [Integrations, Ordering, Loyalty, Guest Engagement, Marketing Automation, Toast, ThanxAI, Offers & Rewards, Reporting & Insights, Org Management & Settings, App Experience]
+    roadmap: true
+  - name: Releases listing
+    url: https://www.thanx.com/releases-listing
+    scope: marketing-site summary of product releases
+  - name: REST API changelog
+    url: null
+    scope: Consumer / Partner / Loyalty APIs
+    exists: false
+    note: >-
+      No dated API changelog is published. "Thanx will notify you when a new API version is
+      available" (https://docs.thanx.com/consumer/usage/headers).
+versioning:
+  scheme: explicit version token per API family
+  consumer_partner: {header: Accept-Version, current: v4.0}
+  loyalty: {header: Accept, current: application/vnd.thanx-v1+json}
+  detail: lifecycle/thanx-lifecycle.yml
+compatibility_policy:
+  name: Schema management policy
+  url: https://docs.thanx.com/data/changelog
+  scope: data exports
+  rules:
+    - Attributes are ADDED as new columns on the right; consumers must parse by header name and ignore unknown columns.
+    - Attributes are NOT removed; a retired column stays in the schema and is emptied.
+    - Data types are NOT changed; calculation changes are announced with an effective date.
+  enforcement: >-
+    Stated as a requirement on consumers — "All consumers of Thanx SFTP exports are required to
+    build their integrations to comply with the rules below."
+entries:
+  - date: '2026-05-11'
+    breaking: false
+    additions:
+      - 'memberships.alternate_pos_id — alternate user identifier sent to certain in-store POS systems when loyalty is applied at the register; currently only the Toast POS integration, where it matches APPLIED_LOYALTY_ID on Toast POS reports.'
+    highlights: [Toast POS identifier exposed in the memberships export]
+  - date: '2025-06-01'
+    breaking: false
+    additions:
+      - 'rewards.redemption_pos_order_id — POS ID of the order the reward was redeemed against (merchants with in-store POS integrations).'
+      - 'rewards.redemption_pos_provider — POS provider for the integrated in-store redemption.'
+      - 'purchases.pos_id — POS ID of the order, set for brands using POS check-in loyalty.'
+      - 'purchases.pos_provider — POS provider of the order, present only for in-store check-in purchases.'
+    improvements:
+      - 'rewards.discount — more accurate discount amounts for integrated redemption.'
+    highlights: [In-store POS redemption attribution added to the rewards and purchases exports]
+recent_product_updates:
+  note: >-
+    Captured from https://thanx.launchnotes.io/ on 2026-08-13 for context; these are product
+    releases, not API contract changes.
+  entries:
+    - {date: '2026-08-12', title: 'Insights Lab renamed to All reports, with Favorites', category: Reporting & Insights}
+    - {date: '2026-08-11', title: 'Deliverect-powered ordering added to the ordering middleware options', category: Integrations}
+    - {date: '2026-07-28', title: 'Spend minimums and discount caps configurable in reward templates', category: Offers & Rewards}
+    - {date: '2026-03-11', title: 'Launch of the Product Updates feed itself', category: Org Management & Settings}
+window: recent entries only — the live pages are the source of truth

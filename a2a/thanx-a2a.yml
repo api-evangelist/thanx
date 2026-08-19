@@ -1,0 +1,71 @@
+generated: '2026-08-13'
+method: probed
+source: https://docs.thanx.com/.well-known/agent-card.json
+description: >-
+  A2A Agent Card observed at /.well-known/agent-card.json on docs.thanx.com. Grade is measured
+  against the A2A 1.0.0 AgentCard object: 'conformant' passes every structural check,
+  'near-conformant' is correctly shaped but omits optional fields, 'flavored' fails a hard check
+  and is an agent card in spirit rather than in schema. Provider-published by construction —
+  served from Thanx's own documentation host; nothing here is derived or generated. The same
+  host also serves the linked Agent Skill referenced by the single skill entry
+  (/.well-known/agent-skills/thanx/skill.md), saved verbatim at skills/thanx-loyalty-api.md.
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: docs.thanx.com
+  notes: >-
+    The pre-0.3 path /.well-known/agent.json returned 404 on this host, and every /.well-known/
+    path returned 404 on www.thanx.com, api.thanx.com and loyalty.thanx.com. Only the canonical
+    path on the docs host serves a card.
+conformance:
+  spec: A2A 1.0.0
+  grade: conformant
+  hard_checks:
+    capabilities_is_object: true
+    protocol_version_present: true
+    skills_is_array: true
+  optional_fields:
+    preferred_transport: HTTP+JSON
+    default_input_modes: ['text/plain']
+    default_output_modes: ['text/plain']
+  protocol_version: '0.3'
+  deviations:
+    - >-
+      protocolVersion is '0.3', which predates A2A 1.0.0 — the card is structurally valid but
+      declares an older protocol revision.
+    - >-
+      Uses supportedInterfaces[] (the 0.3 spelling) rather than 1.0.0's additionalInterfaces[].
+    - >-
+      url, provider.url and documentationUrl all point at the documentation site
+      (https://docs.thanx.com/) rather than at an A2A JSON-RPC or MCP endpoint, so the card
+      advertises documentation rather than a callable agent transport. The callable agent
+      surface Thanx does run is the MCP server at https://docs.thanx.com/mcp
+      (see mcp/thanx-mcp.yml).
+    - skills[0].tags is an empty array.
+    - No securitySchemes / security block is declared.
+card:
+  name: Thanx
+  url: https://docs.thanx.com/
+  version: 1.0.0
+  protocol_version: '0.3'
+  preferred_transport: HTTP+JSON
+  provider:
+    organization: Thanx
+    url: https://docs.thanx.com/
+  documentation_url: https://docs.thanx.com/
+  capabilities:
+    streaming: false
+    pushNotifications: false
+  skills: 1
+  skill_ids:
+    - id: thanx
+      name: Thanx
+      url: https://docs.thanx.com/.well-known/agent-skills/thanx/skill.md
+  file: thanx-agent-card.json
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://docs.thanx.com/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json
+  last_modified: 'Wed, 12 Aug 2026 21:24:34 GMT'
+  note: Verbatim body saved alongside this manifest. No field inferred.

@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thanx Consumer Account Metadata API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Merchants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/metadata/merchants"
+          },
+          "docs": "Lists merchants accessible to the partner."
+        },
+        {
+          "info": {
+            "name": "Get Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/metadata/locations",
+            "params": [
+              {
+                "name": "merchant_id",
+                "value": "92b7b0dac4",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists locations accessible to the partner."
+        },
+        {
+          "info": {
+            "name": "Get Scopes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thanx.com/partner/metadata/scopes"
+          },
+          "docs": "Lists the OAuth scopes available to the partner."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

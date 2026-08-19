@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Thanx Consumer Account Baskets API
+  title: Thanx Loyalty Baskets API
   description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
   version: v4.0
   contact:
@@ -9,17 +9,13 @@ info:
   license:
     name: Proprietary
 servers:
-- url: https://api.thanx.com
+- url: https://loyalty.thanx.com
   description: Production
-- url: https://api.thanxsandbox.com
+- url: https://loyalty.thanxsandbox.com
   description: Sandbox
-- url: https://secure.api.thanx.com
-  description: Production (PCI-scoped card endpoints)
-- url: https://secure.api.thanxsandbox.com
-  description: Sandbox (PCI-scoped card endpoints)
 security:
 - bearerAuth: []
-  clientId: []
+  merchantKey: []
 tags:
 - name: Baskets
   description: Create and update ordering baskets and redeem rewards or points products.
@@ -218,8 +214,8 @@ components:
       type: http
       scheme: bearer
       description: End-user access token acquired through Thanx SSO.
-    clientId:
+    merchantKey:
       type: apiKey
       in: header
-      name: X-ClientId
-      description: Client-specific identifier provided by Thanx.
+      name: Merchant-Key
+      description: Merchant key provided by Thanx. Required on every Loyalty API request.

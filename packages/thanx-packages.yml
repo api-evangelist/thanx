@@ -1,0 +1,103 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://github.com/thanx (org repo listing), https://github.com/thanx/Specs (the private
+  CocoaPods spec repo Thanx publishes for ThanxSDK), https://github.com/thanx/thanx-sdk-android-distribution
+  (Maven-style binary distribution), https://rubygems.org/api/v1/gems/thanx-style.json, and the
+  npm / PyPI / RubyGems / Packagist registry searches that returned no first-party Thanx client.
+description: >-
+  Thanx publishes no client library on any public package registry. Its two first-party SDKs
+  were mobile-only and are both DEPRECATED and archived: the iOS SDK was distributed as a
+  CocoaPod through the company's own private spec repo (never pushed to CocoaPods trunk — the
+  trunk API returns 404 for ThanxSDK), and the Android SDK as .aar binaries committed to a
+  distribution repo. Both stopped shipping in 2021, four years before the v4.0 API surface and
+  the Partner/Promotions endpoints documented today, so nothing here wraps the current API.
+  Integrators are expected to call the REST APIs directly and start from the Postman
+  collections (see collections/ and https://docs.thanx.com/overview/api_collections).
+packages:
+  - language: swift
+    registry: cocoapods
+    name: ThanxSDK
+    url: https://github.com/thanx/Specs/tree/master/ThanxSDK/0.0.15
+    source: https://github.com/thanx/thanx-sdk-ios
+    install: "pod 'ThanxSDK' # requires the private spec repo: https://github.com/thanx/Specs"
+    official: true
+    deprecated: true
+    version: 0.0.15
+    published: '2021-12-29'
+    license: Proprietary
+    note: >-
+      Read from the podspec at Specs/ThanxSDK/0.0.15/ThanxSDK.podspec and the commit date of
+      that path. Not on CocoaPods trunk (https://trunk.cocoapods.org/api/v1/pods/ThanxSDK →
+      404), so it resolves only through the private spec repo. The SDK repo README opens with
+      "⚠️ Deprecated ⚠️ This SDK has been deprecated and is no longer maintained" and the repo
+      is archived (last push 2021-12-30).
+  - language: kotlin
+    registry: maven
+    name: thanx-sdk-android
+    url: https://github.com/thanx/thanx-sdk-android-distribution/tree/master/binaries/1.0.0
+    source: https://github.com/thanx/thanx-sdk-android-distribution
+    install: "Consume binaries/<version>/thanx-sdk-android-release.aar served via Maven from the distribution repo"
+    official: true
+    deprecated: true
+    version: 1.0.0
+    published: '2021-05-06'
+    docs: https://eng.thanx.com/thanx-sdk-android-distribution/
+    note: >-
+      Not on Maven Central — the .aar binaries are committed to a GitHub distribution repo.
+      Version read from the binaries/ directory listing; published date is the commit that added
+      binaries/1.0.0. The companion source repo thanx/thanx-sdk-android is archived and marked
+      "[DEPRECATED]" in its description (last push 2021-04-27).
+  - language: ruby
+    registry: rubygems
+    name: thanx-style
+    url: https://rubygems.org/gems/thanx-style
+    source: https://github.com/thanx/style-guide
+    install: gem install thanx-style
+    official: true
+    version: 0.0.30
+    published: '2021-04-05'
+    category: internal-tooling
+    note: >-
+      First-party but NOT an API client — it packages Thanx's internal Ruby style and linting
+      rules. Version and date read from rubygems.org/api/v1/versions/thanx-style.json. Listed
+      for completeness so the absence of a Thanx API client on RubyGems is not mistaken for a
+      failed lookup.
+registries_checked:
+  - registry: npm
+    result: no first-party package
+    note: registry.npmjs.org search for "thanx" returned only unrelated third-party packages.
+  - registry: pypi
+    result: no first-party package
+    note: https://pypi.org/pypi/thanx/json → 404.
+  - registry: rubygems
+    result: internal tooling only
+    note: thanx-style (style guide) and thanx-knockoff (a fork of a read-replica gem) — no API client.
+  - registry: cocoapods-trunk
+    result: not published
+    note: https://trunk.cocoapods.org/api/v1/pods/ThanxSDK → 404; distributed via a private spec repo instead.
+  - registry: maven-central
+    result: not published
+    note: Android SDK distributed as committed .aar binaries, not through Maven Central.
+  - registry: packagist
+    result: no first-party package
+  - registry: crates.io
+    result: no first-party package
+  - registry: pkg.go.dev
+    result: no first-party package
+related_repositories:
+  - name: thanx-agent-starter
+    url: https://github.com/thanx/thanx-agent-starter
+    description: >-
+      "Starter kit for building your personal AI development ecosystem" — a Shell/markdown
+      scaffold, not a distributable package and not a Thanx API client. Active (last push
+      2026-06-01) and already wired in apis.yml as a Tools pointer.
+summary:
+  package_count: 3
+  official_count: 3
+  api_clients: 2
+  api_clients_current: 0
+  newest_api_client_release: '2021-12-29'
+  finding: >-
+    Every first-party Thanx API client is deprecated and more than four years stale; the live
+    v4.0 REST surface has no maintained SDK in any language.

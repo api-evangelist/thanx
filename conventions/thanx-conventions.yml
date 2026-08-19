@@ -1,0 +1,179 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.thanx.com/consumer/usage/headers, https://docs.thanx.com/consumer/usage/patterns,
+  https://docs.thanx.com/consumer/usage/errors, https://docs.thanx.com/loyalty/headers,
+  https://docs.thanx.com/partner/overview, https://docs.thanx.com/partner/campaigns/issue-rewards,
+  https://docs.thanx.com/partner/promotions/generate-codes,
+  https://docs.thanx.com/overview/sandbox-faq, https://docs.thanx.com/webhooks/overview;
+  cross-checked against openapi/*.yml.
+description: >-
+  How the Thanx APIs behave across every operation — the cross-cutting request/response
+  semantics OpenAPI does not fully express. Thanx runs three API families on two hosts with
+  DIFFERENT conventions: Consumer and Partner share api.thanx.com and version through an
+  Accept-Version header, while the Loyalty (POS/ordering) API sits on loyalty.thanx.com and
+  versions through a vendor media type. Getting the header set wrong is the most common
+  first-week integration failure, so the differences are recorded explicitly.
+api_style: REST over HTTPS, JSON request and response bodies
+hosts:
+  consumer_partner:
+    production: https://api.thanx.com
+    sandbox: https://api.thanxsandbox.com
+    pci_scoped: [https://secure.api.thanx.com, https://secure.api.thanxsandbox.com]
+    partner_path_prefix: /partner/*
+  loyalty:
+    production: https://loyalty.thanx.com/api/
+    sandbox: https://loyalty.thanxsandbox.com/api/
+    private_link: https://docs.thanx.com/loyalty/private-link
+
+authentication:
+  scheme: 'OAuth 2.0 bearer access token (Authorization: Bearer <token>) plus a client identifier header'
+  consumer:
+    client_header: X-ClientId
+    token_source: Thanx SSO — OAuth 2.0 authorization code grant, passwordless via email
+  partner:
+    client_header: X-ClientId
+    token_source: POST /partner/oauth/token (scope-limited partner credentials)
+  loyalty:
+    client_header: Merchant-Key
+    alternate: >-
+      Reward-Redemption-Token may replace the user Authorization bearer for token-only
+      redemption flows. Never send both — with a bearer present the basket call returns 404
+      (merchant lacks indirect loyalty integration) or 401 (token resolves to no reward).
+  detail: authentication/thanx-authentication.yml
+  docs: https://docs.thanx.com/consumer/usage/headers
+
+required_headers:
+  consumer_partner:
+    - {name: Content-Type, value: application/json}
+    - {name: Accept, value: application/json}
+    - {name: Accept-Version, value: v4.0, required: true}
+    - {name: X-ClientId, value: '<client id issued by Thanx>', required: true}
+    - {name: Authorization, value: 'Bearer <access_token>', required: 'except on the unauthenticated endpoints'}
+  loyalty:
+    - {name: Content-Type, value: application/json}
+    - {name: Accept, value: application/vnd.thanx-v1+json, required: true}
+    - {name: Merchant-Key, value: '<merchant key issued by Thanx>', required: true}
+    - {name: User-Agent, value: '{partner}/1.0.0', required: true, note: identifies the partner for debugging}
+    - {name: Authorization, value: 'Bearer <access_token>', required: 'unless Reward-Redemption-Token is supplied'}
+
+idempotency:
+  supported: true
+  mechanism: X-Idempotency-Key request header
+  applies_to:
+    - POST /partner/campaigns/issue (issueRewards) — prevents duplicate issuance jobs
+    - POST /partner/promotions/{id}/codes (generate promotion codes) — prevents double-generating a code pool
+  key_format: Client-generated unique value; docs use a UUID v4 (e.g. 550e8400-e29b-41d4-a716-446655440000)
+  replay_behavior: >-
+    A duplicate request carrying the same key returns the CACHED response from the original
+    request rather than re-executing.
+  conflict_behavior: >-
+    Reusing a key with a different request body returns 422 Unprocessable Entity.
+  retention: not published
+  scope: not published (per-credential assumed; Thanx does not state it)
+  docs: https://docs.thanx.com/partner/campaigns/issue-rewards#idempotency
+  notes: >-
+    Idempotency is scoped to the two Partner write operations above — it is not a
+    platform-wide guarantee on every POST. Thanx's own guidance calls it out as strongly
+    recommended for code generation so a retry cannot silently double-generate. Separately, the
+    Loyalty basket call is naturally idempotent: resending the same basket will not redeem a
+    reward twice.
+
+pagination:
+  style: page-number
+  request_params:
+    page: page number to fetch
+    per_page: page size
+  response_fields:
+    total_page: total number of pages
+    per_page: results per page
+    current_page: page currently returned
+  schema: openapi components.schemas.Pagination (locations, purchases, rewards)
+  notes: >-
+    Collection endpoints return the collection under a top-level key alongside a pagination
+    object. Thanx does not publish a cursor API.
+
+array_parameters:
+  convention: bracket notation
+  correct: "GET /rewards?states[]=available&states[]=active"
+  incorrect: "GET /rewards?states=available,active"
+  note: >-
+    Dropping the brackets makes the server read the whole value as a single string. Applies to
+    every array-valued filter across the Consumer, Partner and Loyalty APIs.
+  docs: https://docs.thanx.com/overview/sandbox-faq
+
+envelopes:
+  convention: >-
+    Every endpoint's payload carries a top-level key naming the resource (user, card, reward,
+    purchase) — the SSO/OAuth endpoints are the documented exception.
+  examples: [UserEnvelope, CardEnvelope, RewardEnvelope]
+  docs: https://docs.thanx.com/consumer/usage/patterns
+
+identifiers:
+  format: alphanumeric lowercase strings
+  note: >-
+    Every ID returned by the API is an alphanumeric lowercase string — not an integer, not a
+    UUID. Campaign identifiers in the sandbox grant flow are the hashid form of a program's
+    external_uid, NOT the numeric program id.
+
+field_semantics:
+  user_scoping: >-
+    A bearer token grants a user access to their own resources. When an endpoint offers a
+    user_id filter AND a bearer token is present, the user_id filter is ignored.
+  expansion: not supported
+  sparse_fields: not supported
+  metadata: >-
+    Attribute "tags" act as the extensibility mechanism on users and purchases (GET/PUT/DELETE
+    tags), rather than a generic metadata map.
+
+error_envelope:
+  shape: '{"error": {"code": "<STABLE_CODE>", "message": "<human message>"}}'
+  code_stability: >-
+    The code is static; the message may change at any time. Thanx may add new codes at any
+    time, so consumers must tolerate unknown codes.
+  rfc9457: false
+  content_type: application/json
+  detail: errors/thanx-problem-types.yml
+  docs: https://docs.thanx.com/consumer/usage/errors
+
+rate_limiting:
+  published: true
+  limits: [5 requests per second, 2000 requests per 15 minutes]
+  status_on_exhaustion: 429 Too Many Requests
+  retry_guidance: Retry with exponential backoff; request an increase via developer.support@thanx.com
+  response_headers: not published
+  detail: rate-limits/thanx-rate-limits.yml
+  docs: https://docs.thanx.com/partner/overview#global-rate-limits
+
+batching:
+  reward_issuance: >-
+    Collect identifiers and submit up to 10,000 per POST /partner/campaigns/issue request.
+    Per-user requests are explicitly discouraged and will hit the global rate limits.
+  promotion_codes: 1–100,000 codes per generate request; up to 4,000,000 at promotion creation.
+
+async_processing:
+  operations:
+    - {operation: createPurchase, behavior: 'processed asynchronously; no response body; poll GET /purchases'}
+    - {operation: issueRewards, behavior: 'returns 202 Accepted with an issuance job; poll getIssuanceJob or consume the reward_batch.completed webhook'}
+  sandbox_latency: 15–30+ minutes (see sandbox/thanx-sandbox.yml)
+
+versioning:
+  consumer_partner: {mechanism: Accept-Version header, current: v4.0}
+  loyalty: {mechanism: vendor media type in Accept, current: application/vnd.thanx-v1+json}
+  detail: lifecycle/thanx-lifecycle.yml
+
+request_tracing:
+  request_id_header: not published
+  note: >-
+    Thanx publishes no correlation/request-id response header; User-Agent is the documented
+    debugging handle on the Loyalty API.
+
+webhooks:
+  signature_header: X-Thanx-Signature
+  algorithm: hex-encoded HMAC-SHA256 over the raw request payload, keyed with a Thanx-issued webhook secret
+  delivery: at-least-once, best-effort — no retries on failure, duplicates are the common case
+  consumer_requirement: >-
+    Deduplicate on the payload's stable identifier (id for purchases) and treat repeat
+    deliveries as updates; prefer the latest delivery where a field can be refined.
+  timeout: receivers must respond within 15 seconds
+  detail: asyncapi/thanx-webhooks.yml

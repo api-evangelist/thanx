@@ -1,0 +1,126 @@
+generated: '2026-08-13'
+method: searched
+docs: https://docs.thanx.com/partner/metadata/get-scopes
+source: >-
+  Read from the "Scope required" callout published on every Partner API endpoint page across
+  https://docs.thanx.com (Auth, Campaigns, Feedbacks, Issuance Jobs, Promotions, Purchases,
+  Reward Templates, Subscribers, Tags, Users), plus
+  https://docs.thanx.com/partner/overview (scope model) and
+  https://docs.thanx.com/consumer/sso/overview (consumer OAuth scope).
+description: >-
+  Thanx's Partner API is scope-limited: each API credential is provisioned with an agreed-upon
+  set of scopes granting access to a subset of endpoints, and every Partner endpoint page names
+  the scope it requires. The scopes are NOT declared in an OpenAPI oauth2 securityScheme —
+  running derive-oauth-scopes.py against openapi/ found zero oauth2 schemes and therefore zero
+  scopes — so this catalog is read from the documentation, endpoint by endpoint. Scopes are
+  introspectable at runtime: GET /partner/scopes returns the list the calling credential holds.
+model:
+  grant: Assigned by Thanx per API credential during partnership onboarding; not self-serve.
+  introspection:
+    operation: getScopes
+    path: GET /partner/scopes
+    returns: '{"scopes": ["subscribers.write"]}'
+    docs: https://docs.thanx.com/partner/metadata/get-scopes
+  naming: '<resource>.<action> — read / write, plus the resource-specific issue and create verbs'
+  enforcement_status: 403 Forbidden when the credential lacks the required scope
+  consumer_api: >-
+    The Consumer API does not use these scopes. Thanx SSO issues user access tokens through the
+    OAuth 2.0 authorization code grant with the scope value "passwordless"; authorization is by
+    user identity, not by scope.
+scopes:
+  - name: auth.create
+    description: Mint privileged end-user access tokens on behalf of a merchant's users.
+    operations: [createToken]
+    endpoints: ['POST /partner/oauth/token']
+    docs: https://docs.thanx.com/partner/auth/create-token
+  - name: rewards.issue
+    description: >-
+      Create and read campaigns and reward templates, and issue or revoke rewards against a
+      campaign variant. The broadest Partner scope — it spans the whole issuance flow.
+    operations: [createCampaign, listCampaigns, getCampaign, issueRewards, getIssuanceJob, revokeIssuanceJob]
+    endpoints:
+      - 'POST /partner/campaigns'
+      - 'GET /partner/campaigns'
+      - 'GET /partner/campaigns/{id}'
+      - 'POST /partner/campaigns/issue'
+      - 'GET /partner/issuance_jobs/{id}'
+      - 'POST /partner/issuance_jobs/{id}/revoke'
+      - 'GET /partner/reward_templates'
+      - 'GET /partner/reward_templates/{id}'
+    docs: https://docs.thanx.com/partner/campaigns/issue-rewards
+  - name: subscribers.write
+    description: Ingest subscribers (email/SMS marketing opt-ins) for a merchant.
+    operations: [createSubscriber]
+    endpoints: ['POST /partner/subscribers']
+    docs: https://docs.thanx.com/partner/subscribers/create-subscriber
+  - name: purchases.write
+    description: Submit purchases to Thanx for processing so loyalty points accrue.
+    operations: [createPurchase]
+    endpoints: ['POST /partner/purchases']
+    docs: https://docs.thanx.com/partner/purchases/create-purchase
+  - name: users.read
+    description: Read the users of a merchant, individually or as a collection.
+    operations: [getPartnerUser, getPartnerUsers]
+    endpoints: ['GET /partner/users', 'GET /partner/users/{id}']
+    docs: https://docs.thanx.com/partner/users/get-users
+  - name: users.write
+    description: Update a merchant's user records.
+    operations: []
+    endpoints: ['PUT /partner/users/{id}']
+    docs: https://docs.thanx.com/partner/users/update-user
+    note: Documented endpoint not yet captured in openapi/.
+  - name: tags.read
+    description: Read attribute tags on a merchant's users.
+    operations: []
+    endpoints: ['GET /partner/tags']
+    docs: https://docs.thanx.com/partner/tags/get-tags
+    note: Documented endpoint not yet captured in openapi/.
+  - name: tags.write
+    description: Create, update and delete attribute tags.
+    operations: []
+    endpoints: ['PUT /partner/tags', 'DELETE /partner/tags']
+    docs: https://docs.thanx.com/partner/tags/upsert-tags
+    note: Documented endpoints not yet captured in openapi/.
+  - name: feedbacks.read
+    description: Read guest feedback records for a merchant.
+    operations: []
+    endpoints: ['GET /partner/feedbacks']
+    docs: https://docs.thanx.com/partner/feedbacks/get-feedbacks
+    note: Documented endpoint not yet captured in openapi/.
+  - name: feedbacks.write
+    description: Respond to a guest feedback record.
+    operations: []
+    endpoints: ['POST /partner/feedbacks/{id}/response']
+    docs: https://docs.thanx.com/partner/feedbacks/feedback-response
+    note: Documented endpoint not yet captured in openapi/.
+  - name: promos.read
+    description: Read promotions and the codes in a promotion's active pool.
+    operations: []
+    endpoints: ['GET /partner/promotions', 'GET /partner/promotions/{id}', 'GET /partner/promotions/{id}/codes']
+    docs: https://docs.thanx.com/partner/promotions/overview
+    note: Documented endpoints not yet captured in openapi/.
+  - name: promos.write
+    description: Create promotions and generate batches of single-use promotion codes.
+    operations: []
+    endpoints: ['POST /partner/promotions', 'POST /partner/promotions/{id}/codes']
+    docs: https://docs.thanx.com/partner/promotions/create-promotion
+    note: >-
+      Documented endpoints not yet captured in openapi/. Both accept X-Idempotency-Key — see
+      conventions/thanx-conventions.yml.
+consumer_oauth:
+  grant_type: authorization_code
+  spec: RFC 6749 §4.1
+  scope_value: passwordless
+  endpoints:
+    - 'POST /oauth/authorize — passwordless flow, emails an auth code link'
+    - 'POST /oauth/authorize-cross-domain — issues a code for an already-authenticated user, no email'
+    - 'POST /oauth/token — exchange authorization code for access token'
+    - 'POST /oauth/revoke — revoke an access token'
+  docs: https://docs.thanx.com/consumer/sso/overview
+summary:
+  scope_count: 12
+  scopes_in_openapi: 0
+  scopes_documented: 12
+  gap: >-
+    Every Partner scope is documented in prose but none is declared in an OpenAPI
+    securityScheme, so no generated client or agent can enforce or discover them from the spec.

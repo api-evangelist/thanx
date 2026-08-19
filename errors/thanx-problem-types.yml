@@ -1,0 +1,141 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.thanx.com/consumer/usage/errors (the published error-code reference), enriched
+  with the status codes actually declared in openapi/*.yml responses and the failure modes
+  documented on https://docs.thanx.com/loyalty/headers,
+  https://docs.thanx.com/partner/campaigns/issue-rewards,
+  https://docs.thanx.com/partner/promotions/generate-codes and
+  https://docs.thanx.com/partner/overview.
+description: >-
+  Thanx's error catalog. It is NOT RFC 9457 — responses are application/json carrying a custom
+  envelope, {"error": {"code", "message"}}, where the code is a stable SCREAMING_SNAKE string
+  and the message is explicitly allowed to change at any time. Match on code, never on message.
+  Thanx states it may expand the list at any time, so clients must tolerate unknown codes.
+format: custom
+rfc9457: false
+content_type: application/json
+envelope:
+  shape: '{"error": {"code": "STRING", "message": "STRING"}}'
+  fields:
+    code: Stable machine-readable identifier. Match on this.
+    message: Human-readable text. May change at any time; do not parse or match on it.
+  openapi_schema: components.schemas.Error
+  note: >-
+    The Error schema in openapi/*.yml types `code` as an integer, which does not match the
+    published catalog (the codes are strings). Captured here as documented by Thanx; the spec
+    is the weaker source and is flagged in overlays/.
+docs: https://docs.thanx.com/consumer/usage/errors
+
+status_codes:
+  - status: 400
+    title: Bad Request
+    note: >-
+      Always accompanied by an error object with code + message. Declared on createUser and
+      createSubscriber in openapi/.
+  - status: 401
+    title: Unauthorized
+    note: >-
+      Missing/invalid bearer token, or — on the Loyalty API — a Reward-Redemption-Token that
+      does not resolve to a reward. Declared on getAccount, createUpdateBasket, createCard and
+      getUser in openapi/.
+  - status: 403
+    title: Forbidden
+    note: Credential lacks the scope required by the endpoint (see scopes/thanx-scopes.yml).
+  - status: 404
+    title: Not Found
+    note: >-
+      Also returned by the Loyalty basket call when a Reward-Redemption-Token is sent to a
+      merchant without indirect loyalty integration enabled.
+  - status: 422
+    title: Unprocessable Entity
+    note: >-
+      Returned when an X-Idempotency-Key is replayed with a DIFFERENT request body, and when a
+      promotion code-generation request exceeds 100,000 codes.
+  - status: 429
+    title: Too Many Requests
+    note: >-
+      Global rate limits exceeded (5 req/s, 2,000 req/15min). Retry with exponential backoff.
+      See rate-limits/thanx-rate-limits.yml.
+
+problem_types:
+  - code: BAD_REQUEST
+    status: 400
+    title: An error occurred.
+    remediation: Generic request rejection — inspect the request body against the endpoint's parameter reference.
+  - code: FORBIDDEN
+    status: 403
+    title: You do not have access to this resource.
+    remediation: >-
+      Confirm the credential holds the scope the endpoint requires via GET /partner/scopes;
+      request the scope from Thanx if missing.
+  - code: GENERIC_ERROR
+    status: 500
+    title: Something went wrong
+    remediation: Server-side failure. Retry with backoff; escalate to developer.support@thanx.com if persistent.
+  - code: RESOURCE_NOT_FOUND
+    status: 404
+    title: The resource you requested was not found.
+    remediation: Verify the identifier — Thanx IDs are alphanumeric lowercase strings, and campaign grants take the hashid, not the numeric program id.
+  - code: AUTHENTICATION_GENERIC
+    status: 401
+    title: There was an error authenticating you.
+    remediation: >-
+      Re-acquire the access token through Thanx SSO; confirm Authorization, X-ClientId and
+      Accept-Version headers are all present.
+  - code: USER_EMAIL_INVALID
+    status: 400
+    title: The email entered is invalid.
+    remediation: Validate the email client-side before calling createUser / SSO authorize.
+  - code: USER_PHONE_INVALID
+    status: 400
+    title: The phone entered is invalid.
+    remediation: Send phone numbers in E.164 format (e.g. +12025551234).
+  - code: USER_NAME_REQUIRED
+    status: 400
+    title: First and last name are required fields.
+    remediation: Supply both first_name and last_name on user creation/update.
+  - code: REWARD_ALREADY_USED
+    status: 400
+    title: This reward has already been used.
+    remediation: >-
+      The reward is in the used state. Re-read the reward with getReward before attempting
+      activate/finalize; do not retry the redemption.
+  - code: REWARD_EXPIRED
+    status: 400
+    title: This reward is no longer valid.
+    remediation: Check retire_at / redeemable window before offering the reward in the UI.
+  - code: REWARD_INAPPLICABLE
+    status: 400
+    title: Required item not present.
+    remediation: >-
+      The basket does not qualify. Use the qualifying-rewards dry run
+      (https://docs.thanx.com/loyalty/qualifying-baskets) before applying a reward at checkout.
+  - code: REWARD_FRAUDULENT
+    status: 400
+    title: You appear to have already used one of these rewards.
+    remediation: >-
+      Fraud engine rejection. In sandbox this is commonly triggered by shared test card PANs on
+      fraud-protected reward types — use a unique card number per test user.
+  - code: CARD_GENERIC
+    status: 400
+    title: Unable to register this card due to an issue at Visa.
+    remediation: Upstream network failure during card enrollment. Retry later; surface a neutral message to the guest.
+  - code: CARD_INVALID
+    status: 400
+    title: This type of card is not accepted.
+    remediation: Only supported card networks can be enrolled; validate the BIN client-side.
+  - code: POINTS_EXCHANGE_FAILURE
+    status: 400
+    title: Points exchange has failed.
+    remediation: >-
+      Re-read the balance with getPointsBalance and the product cost before retrying the
+      exchange; the balance may have moved.
+
+catalog:
+  documented_codes: 15
+  documented_statuses: 6
+  code_stability: guaranteed by Thanx; messages explicitly not stable
+  extensibility: >-
+    "Thanx can expand this list at any time" — treat an unrecognized code as a generic failure
+    of its HTTP status class rather than crashing.

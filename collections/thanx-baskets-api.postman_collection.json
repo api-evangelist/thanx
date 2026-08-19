@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "dbacd65d-0ec1-4aef-bd03-aa44181c256e",
+      "name": "Baskets",
+      "description": {
+        "content": "Create and update ordering baskets and redeem rewards or points products.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8ec8a56a-0278-438d-a255-eb845b23a410",
+          "name": "Create And Update Basket",
+          "request": {
+            "name": "Create And Update Basket",
+            "description": {
+              "content": "Creates or updates an ordering basket and computes applicable loyalty discounts. Only a single reward or points product can be redeemed per order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "baskets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.thanx-v1+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"state\": \"<string>\",\n  \"order_timestamp\": \"<dateTime>\",\n  \"location_uid\": \"<string>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"price\": \"<double>\",\n          \"item_base_price\": \"<double>\"\n        }\n      ]\n    }\n  ],\n  \"subtotal\": \"<double>\",\n  \"id\": \"<string>\",\n  \"rewards\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"points_products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"payments\": [\n    {\n      \"issuer\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"authorized_at\": \"<dateTime>\"\n    },\n    {\n      \"issuer\": \"<string>\",\n      \"last4\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"authorized_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "45d38d77-5887-4478-9a36-3423f2cc2a69",
+              "name": "The created or updated basket.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "baskets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.thanx-v1+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"92b7b0dac4\",\n  \"state\": \"open\",\n  \"order_timestamp\": \"2025-06-01T18:02:05Z\",\n  \"location_uid\": \"92b7b0dac4\",\n  \"rewards\": [\n    \"example\"\n  ],\n  \"points_products\": [\n    \"example\"\n  ],\n  \"payments\": [\n    {\n      \"issuer\": \"example\",\n      \"last4\": \"1234\",\n      \"amount\": 9.99,\n      \"authorized_at\": \"2025-06-01T18:02:05Z\"\n    }\n  ],\n  \"items\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"name\": \"Pizza Town Co\",\n      \"price\": 9.99,\n      \"categories\": [\n        \"example\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"92b7b0dac4\",\n          \"name\": \"Pizza Town Co\",\n          \"price\": 9.99,\n          \"item_base_price\": 9.99\n        }\n      ]\n    }\n  ],\n  \"subtotal\": 9.99\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.thanx-v1+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"92b7b0dac4\",\n  \"state\": \"CA\",\n  \"discount\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb388d3e-0c6b-4fba-945e-d3b43971f6d9",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "baskets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"92b7b0dac4\",\n  \"state\": \"open\",\n  \"order_timestamp\": \"2025-06-01T18:02:05Z\",\n  \"location_uid\": \"92b7b0dac4\",\n  \"rewards\": [\n    \"example\"\n  ],\n  \"points_products\": [\n    \"example\"\n  ],\n  \"payments\": [\n    {\n      \"issuer\": \"example\",\n      \"last4\": \"1234\",\n      \"amount\": 9.99,\n      \"authorized_at\": \"2025-06-01T18:02:05Z\"\n    }\n  ],\n  \"items\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"name\": \"Pizza Town Co\",\n      \"price\": 9.99,\n      \"categories\": [\n        \"example\"\n      ],\n      \"modifiers\": [\n        {\n          \"id\": \"92b7b0dac4\",\n          \"name\": \"Pizza Town Co\",\n          \"price\": 9.99,\n          \"item_base_price\": 9.99\n        }\n      ]\n    }\n  ],\n  \"subtotal\": 9.99\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1,\n  \"message\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thanx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b340b4d-6f94-46e4-be05-9d2d9cda6274",
+    "name": "Thanx Consumer Account Baskets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

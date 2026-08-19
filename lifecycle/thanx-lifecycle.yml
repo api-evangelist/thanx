@@ -1,0 +1,132 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.thanx.com/consumer/usage/headers, https://docs.thanx.com/loyalty/headers,
+  https://docs.thanx.com/data/changelog, https://docs.thanx.com/partner/overview,
+  https://docs.thanx.com/consumer/usage/certification, https://status.thanx.com,
+  https://thanx.launchnotes.io/, https://www.thanx.com/open-platform-apis, and the archived
+  first-party SDK repositories under https://github.com/thanx.
+description: >-
+  How Thanx versions, announces and retires its API surface. Two versioning mechanisms run in
+  parallel — an Accept-Version header on the Consumer/Partner APIs and a vendor media type on
+  the Loyalty API — and neither has ever produced a published breaking-change migration guide.
+  The one place Thanx writes down a formal compatibility contract is its DATA EXPORT schema
+  management policy, which is additive-only by rule. Deprecation is signalled editorially (repo
+  archival, doc notes, changelog entries), not with RFC 8594 Sunset/Deprecation headers.
+versioning:
+  consumer_partner:
+    scheme: explicit version token
+    mechanism: Accept-Version request header
+    current: v4.0
+    required: true
+    docs: https://docs.thanx.com/consumer/usage/headers
+    notes: >-
+      "This header is required for every request. Thanx will notify you when a new API version
+      is available." Notification is via the Thanx relationship, not a published feed.
+  loyalty:
+    scheme: vendor media type
+    mechanism: Accept request header
+    current: application/vnd.thanx-v1+json
+    required: true
+    docs: https://docs.thanx.com/loyalty/headers
+  url_versioning: false
+  notes: >-
+    No version appears in the path. api.thanx.com serves Consumer at the root and Partner under
+    /partner/*; loyalty.thanx.com serves the Loyalty API under /api/.
+
+deprecation:
+  policy_url: https://docs.thanx.com/data/changelog
+  policy_name: Schema management policy (data exports)
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  rules:
+    - >-
+      Attribute addition — new attributes are appended as new columns to the RIGHT of each CSV
+      export. Consumers MUST parse by header name, not column position, and MUST ignore unknown
+      columns rather than failing.
+    - >-
+      Attribute removal — attributes are not removed under normal operations. If a column must
+      be retired (regulatory or security driven), the column REMAINS in the schema and is
+      emptied rather than dropped.
+    - >-
+      Attribute update — data types are not adjusted. Calculation changes are announced in the
+      changelog with an effective date and applied to all exports on that date.
+  api_surface_note: >-
+    This policy is explicitly scoped to data exports. Thanx publishes no equivalent written
+    compatibility or deprecation policy for the REST APIs; API changes are communicated through
+    the Accept-Version notification path and Launch Notes.
+  deprecated_operations:
+    - source: openapi/
+      finding: >-
+        No operation in any openapi/*.yml carries deprecated: true. Field-level deprecations do
+        appear in the docs (a deprecated attribute slated for removal end of Q3 2023, a
+        deprecated `loyalty` object, and deprecated unique_sent_sms_users /
+        unique_delivered_sms_users export metrics).
+  deprecated_products:
+    - name: Thanx iOS SDK (ThanxSDK)
+      url: https://github.com/thanx/thanx-sdk-ios
+      status: deprecated
+      evidence: >-
+        README opens "⚠️ Deprecated ⚠️ This SDK has been deprecated and is no longer
+        maintained. Please reach to success@thanx.com if you want to integrate with the Thanx
+        platform." Repository archived; last release 0.0.15 (2021-12-29).
+      replacement: Direct REST integration (Consumer API) — no successor SDK published.
+    - name: Thanx Android SDK
+      url: https://github.com/thanx/thanx-sdk-android
+      status: deprecated
+      evidence: Repository archived and titled "[DEPRECATED]"; last binary 1.0.0 (2021-05-06).
+      replacement: Direct REST integration (Consumer API) — no successor SDK published.
+  detail: packages/thanx-packages.yml
+
+certification:
+  required: true
+  scope: Consumer, Partner and Loyalty integrations
+  process: >-
+    Integrations are built against the sandbox and must pass a "lightweight but mandatory"
+    certification with Thanx before production credentials are issued. Typically a few days.
+    Each NEW integration use-case must be re-certified; launching additional merchants on an
+    already-certified use-case does not.
+  docs:
+    - https://docs.thanx.com/consumer/usage/certification
+    - https://docs.thanx.com/partner/overview#certification
+  note: >-
+    This is a lifecycle gate as much as an onboarding one — production access is a
+    per-use-case grant, not a self-serve signup.
+
+status_page:
+  url: https://status.thanx.com/
+  http_status: 200
+  provider: hosted status page with 90-day per-component uptime history
+  components:
+    - {name: Authentication, host: auth.thanx.services, uptime_90d: '100.000%'}
+    - {name: Consumer API, uptime_90d: '100.000%'}
+    - {name: Merchant API, uptime_90d: '99.925%'}
+    - {name: Merchant UI, uptime_90d: '100.000%'}
+    - {name: Signup UI, uptime_90d: '99.991%'}
+    - {name: Ordering UI, uptime_90d: operational}
+    - {name: Ordering Service, uptime_90d: operational}
+  maintenance_announcements: true
+  observed: '2026-08-13 — all systems operational; scheduled platform maintenance announced for 2026-08-21 01:00–02:00 PST'
+  subscribe: https://status.thanx.com/ ("Get updates")
+
+sla:
+  public_uptime_target: '>99.95%'
+  source: https://www.thanx.com/open-platform-apis
+  contractual: false
+  notes: >-
+    ">99.95% platform and API uptime" is a marketing-page commitment on the Thanx Data Platform
+    page, not a published SLA document with credits or remedies. Contractual terms sit in the
+    customer agreement at https://dashboard.thanx.com/terms.
+
+release_communication:
+  changelog: https://docs.thanx.com/data/changelog
+  product_updates: https://thanx.launchnotes.io/
+  releases_listing: https://www.thanx.com/releases-listing
+  detail: changelog/thanx-changelog.yml
+
+support:
+  developer: developer.support@thanx.com
+  partnerships: partnerships@thanx.com
+  success: success@thanx.com
+  help_center: https://help.thanx.com/hc/en-us

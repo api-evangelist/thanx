@@ -1,0 +1,120 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.thanx.com/webhooks/overview and the five event pages beneath it —
+  /webhooks/purchases, /webhooks/reward-issued, /webhooks/reward-batch-completed,
+  /webhooks/communication-settings, /webhooks/sms-subscriptions.
+description: >-
+  Thanx's event surface, captured as a webhook catalog. Thanx publishes NO AsyncAPI document —
+  probing found no /asyncapi.yaml, no event schema files and no spec in the GitHub org — so
+  this artifact records the documented catalog rather than fabricating a specification. The
+  delivery contract is the important part and it is unusually candid: at-least-once at best,
+  with NO retries on failure, meaning both duplicates and permanent loss are expected and the
+  integrator is told to backfill from the bulk data exports.
+asyncapi_published: false
+asyncapi_probe:
+  - {url: 'https://docs.thanx.com/asyncapi.yaml', result: not-served}
+  - {url: 'https://api.thanx.com/asyncapi.json', result: not-served}
+  - {source: 'https://github.com/thanx (72 repos)', result: 'no event schema or AsyncAPI repository'}
+enablement:
+  self_serve: false
+  process: >-
+    Webhooks are enabled per integration partner by the Thanx team — email
+    developer.support@thanx.com. There is no webhook management API and no dashboard-registered
+    endpoint documented.
+transport:
+  protocol: HTTPS
+  method: POST
+  endpoint_requirement: Webhook endpoints must be valid HTTPS URLs.
+  timeout: Receivers must respond within 15 seconds.
+  content_type: application/json
+delivery:
+  guarantee: at-least-once, best-effort
+  exactly_once: false
+  retries: false
+  retry_note: >-
+    "By default, webhooks are not configured to retry if the receiving server responds with an
+    error. Any missed data can be collected via bulk data transfer mechanisms."
+  ordering: >-
+    No delivery sequence number and no delivery timestamp in the payload. Treat the LAST
+    delivery received for an id as current state; for purchases, authorization and settlement
+    fires are typically days apart so arrival order tracks lifecycle order.
+  duplicates: >-
+    Expected and common, most pronounced on purchase events — a single purchase is re-sent as
+    it moves through authorization and settlement and across payment rails, every delivery
+    carrying the same purchase id.
+  consumer_requirement: >-
+    Be idempotent. Deduplicate on the payload's stable identifier (id for purchases) and treat
+    repeat deliveries as updates rather than new events. Where a field can be refined over the
+    resource's lifecycle (such as purchase amount or products), prefer the latest delivery.
+security:
+  signature_header: X-Thanx-Signature
+  algorithm: HMAC-SHA256, hex-encoded, over the raw request payload
+  secret: issued by the Thanx team per integration
+  verification_examples: [ruby, python]
+  docs: https://docs.thanx.com/webhooks/overview#verification
+  query_parameters:
+    supported: true
+    behavior: >-
+      Static query parameters may be appended to the registered URL and are sent with every
+      delivery. They are not modified or validated by Thanx.
+    warning: >-
+      Thanx explicitly warns that sensitive values must not be placed in query parameters. A
+      query-parameter apiKey is fixed at registration — rotating it requires re-registering the
+      webhook URL with Thanx, and a stale credential will make the endpoint reject deliveries.
+events:
+  - name: purchase
+    event_field: 'purchase.event (create)'
+    docs: https://docs.thanx.com/webhooks/purchases
+    trigger: Any qualifying user purchase detected by Thanx.
+    payload_root: purchase
+    fields: 'id, amount, purchased_at, event, user{id,email,first_name,last_name}, merchant{id,name}, location, order, products'
+    idempotency_key: id
+    note: >-
+      The highest-duplicate event. amount and products may be refined between deliveries for
+      the same id.
+    related_entity: Purchase (data-model/thanx-data-model.yml)
+  - name: reward.issued
+    event_field: reward.issued
+    docs: https://docs.thanx.com/webhooks/reward-issued
+    trigger: >-
+      Each individual reward successfully issued during a partner issuance job. A batch of 100
+      identifiers may produce up to 100 of these.
+    payload_root: 'event, timestamp, data'
+    fields: 'event, timestamp, data{issuance_job_id, merchant_id, reward_id, identifier{type,index}, user_id, state, expires_at, campaign}'
+    related_entity: Reward / IssuanceJob
+  - name: reward_batch.completed
+    event_field: reward_batch.completed
+    docs: https://docs.thanx.com/webhooks/reward-batch-completed
+    trigger: >-
+      Once, when an entire issuance job finishes processing — fires whether or not every reward
+      succeeded.
+    payload_root: 'event, timestamp, data'
+    fields: 'event, timestamp, data{issuance_job_id, merchant_id, state, total_count, issued_count, failed_count, failures[]{user_identifier, ...}}'
+    states: [completed, failed]
+    related_entity: IssuanceJob
+    note: The completion signal that replaces polling getIssuanceJob.
+  - name: communication_settings
+    docs: https://docs.thanx.com/webhooks/communication-settings
+    trigger: Any update to a user's communication settings.
+    fields: [id, merchant_id, user_id, reward_progress, ...]
+    related_entity: Communication Preferences (data export model)
+  - name: sms_subscription
+    docs: https://docs.thanx.com/webhooks/sms-subscriptions
+    trigger: A user opts into SMS marketing.
+    fields: [user_id, merchant_id, phone]
+    phone_format: E.164 (e.g. +14157582345)
+    note: >-
+      Thanx does not synchronize downstream SMS opt-in status and prompts a user for a phone
+      number only once; SMS marketing partners own confirmation of consent.
+alternatives:
+  bulk_export: >-
+    SFTP daily CSV snapshots, Snowflake Secure Data Sharing, and Thanx Connex managed loading
+    are the documented backfill path for anything a webhook failed to deliver.
+  docs: https://docs.thanx.com/data/overview
+summary:
+  event_count: 5
+  signed: true
+  retries: false
+  asyncapi: false
+  management_api: false

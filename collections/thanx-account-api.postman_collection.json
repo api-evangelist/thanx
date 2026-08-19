@@ -1,0 +1,210 @@
+{
+  "item": [
+    {
+      "id": "3d2c26ed-6856-4853-8e65-01b83df0762a",
+      "name": "Account",
+      "description": {
+        "content": "Retrieve a user's loyalty account, rewards, and points balances.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e4e887e1-4113-41fd-b2b0-41eaee7713f4",
+          "name": "Get Account",
+          "request": {
+            "name": "Get Account",
+            "description": {
+              "content": "Retrieves the authenticated user's loyalty account, including available rewards, points products for redemption, loyalty progress, and points balances across configured experiences.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<string>",
+                  "description": "Thanx Location UID."
+                },
+                {
+                  "disabled": false,
+                  "key": "redemption_venue",
+                  "value": "online",
+                  "description": "Venue where the redemption occurs."
+                },
+                {
+                  "disabled": false,
+                  "key": "reward_states[]",
+                  "value": "delivered",
+                  "description": "Filter rewards by state."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.thanx-v1+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "858b13d8-a1da-48f8-9033-acfb457b3fe9",
+              "name": "The loyalty account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_id",
+                      "value": "92b7b0dac4"
+                    },
+                    {
+                      "key": "redemption_venue",
+                      "value": "instore"
+                    },
+                    {
+                      "key": "reward_states[]",
+                      "value": "delivered"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.thanx-v1+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.thanx-v1+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"92b7b0dac4\",\n  \"email\": \"jane.smith@example.com\",\n  \"rewards\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"value\": 1,\n      \"label\": \"A free hamburger\",\n      \"state\": \"redeemable\",\n      \"type\": \"amount\"\n    }\n  ],\n  \"points_products\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"label\": \"A free hamburger\",\n      \"cost\": 1\n    }\n  ],\n  \"points_balances\": [\n    {\n      \"points_experience_id\": \"92b7b0dac4\",\n      \"balance\": 10\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fec61e6-f183-4fa6-bcf3-b3a2ce681b41",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_id",
+                      "value": "92b7b0dac4"
+                    },
+                    {
+                      "key": "redemption_venue",
+                      "value": "instore"
+                    },
+                    {
+                      "key": "reward_states[]",
+                      "value": "delivered"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1,\n  \"message\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thanx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "22278178-8c57-4a15-92ea-e5971b07337a",
+    "name": "Thanx Consumer Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

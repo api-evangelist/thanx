@@ -4,8 +4,22 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Thanx
 providerId: thanx
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: searched
+source: https://www.thanx.com/pricing
+plan_count: 1
+published_tiers: 0
 reconciled: false
+x-verification:
+  checked: '2026-08-13'
+  url: https://www.thanx.com/pricing
+  http_status: 200
+  finding: >-
+    Re-read on 2026-08-13. The pricing page still publishes no tier names, no list prices, no
+    quotas and no overage rates — it is an ROI narrative that routes to "Talk to Sales". The
+    single enterprise plan below therefore records a contact-sales model, which is the honest
+    measurement, not a missing one.
 tags:
   - Loyalty
   - Guest Engagement

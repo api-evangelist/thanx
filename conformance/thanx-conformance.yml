@@ -1,0 +1,157 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  Compliance claims from https://www.thanx.com/open-platform-apis and
+  https://www.thanx.com/enterprise-loyalty-program-management-software; protocol behavior from
+  https://docs.thanx.com/consumer/sso/overview, /consumer/usage/headers, /consumer/usage/errors,
+  /loyalty/headers, /partner/overview, /webhooks/overview; structural checks derived from
+  openapi/*.yml and the live probes recorded in well-known/thanx-well-known.yml.
+description: >-
+  Which cross-cutting standards the Thanx platform actually conforms to, with evidence for each
+  assertion. Thanx is a strong OAuth 2.0 and webhook-signing implementer with real published
+  certifications, and a non-implementer of the discovery-layer standards — no OIDC metadata, no
+  security.txt, no RFC 9457 problem details, no RFC 8594 sunset headers.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      Consumer SSO uses the OAuth 2.0 Authorization Code grant and cites RFC 6749 §4.1
+      explicitly; endpoints are POST /oauth/authorize, /oauth/authorize-cross-domain,
+      /oauth/token and /oauth/revoke. The Partner API mints tokens at POST /partner/oauth/token.
+      (https://docs.thanx.com/consumer/sso/overview)
+  - id: oauth2-scopes
+    conforms: true
+    evidence: >-
+      Partner credentials are scope-limited (auth.create, rewards.issue, promos.read/write,
+      users.read/write, tags.read/write, feedbacks.read/write, subscribers.write,
+      purchases.write) with runtime introspection at GET /partner/scopes. Documented per
+      endpoint, though not declared in any OpenAPI securityScheme. See scopes/thanx-scopes.yml.
+  - id: bearer-token-auth
+    conforms: true
+    evidence: openapi securitySchemes declare http/bearer plus apiKey headers X-ClientId (Consumer/Partner) and Merchant-Key (Loyalty).
+  - id: oidc
+    conforms: false
+    evidence: >-
+      /.well-known/openid-configuration returned 404 on docs.thanx.com, www.thanx.com,
+      api.thanx.com and loyalty.thanx.com. No OIDC discovery, no id_token in the SSO flow.
+  - id: oauth2-server-metadata
+    conforms: false
+    evidence: >-
+      RFC 8414 /.well-known/oauth-authorization-server and RFC 9728
+      /.well-known/oauth-protected-resource both 404 on every host, including the MCP host.
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      Errors are a custom envelope, {"error": {"code", "message"}}, served as application/json
+      — not application/problem+json and not type/title/status/detail/instance.
+      (https://docs.thanx.com/consumer/usage/errors)
+  - id: idempotency
+    conforms: true
+    partial: true
+    evidence: >-
+      X-Idempotency-Key is supported on POST /partner/campaigns/issue and on promotion
+      code generation: a replayed key returns the cached original response, and a replay with a
+      different body returns 422. It is not a platform-wide guarantee on every POST, and no
+      retention window is published.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      Page-number pagination with a Pagination object (total_page, per_page, current_page)
+      declared in openapi components across locations, purchases and rewards.
+  - id: rate-limit-headers
+    conforms: false
+    evidence: >-
+      Numeric limits are published (5 req/s, 2,000 req/15min, 429 on exhaustion) but Thanx
+      documents no RateLimit-* / X-RateLimit-* / Retry-After response headers, so remaining
+      budget is not observable at runtime.
+  - id: rfc8594-sunset
+    conforms: false
+    evidence: >-
+      No Sunset or Deprecation headers. Deprecation is communicated editorially — repo
+      archival, doc notes, and the data-export changelog. See lifecycle/thanx-lifecycle.yml.
+  - id: webhook-signing
+    conforms: true
+    evidence: >-
+      Every webhook carries X-Thanx-Signature, a hex-encoded HMAC-SHA256 of the raw payload
+      keyed with a Thanx-issued secret; Ruby and Python verification examples are published.
+      (https://docs.thanx.com/webhooks/overview)
+  - id: standard-webhooks
+    conforms: false
+    evidence: >-
+      Custom header name and no timestamp/versioned-signature scheme, so it does not follow the
+      Standard Webhooks specification. Delivery is best-effort with no retries.
+  - id: asyncapi
+    conforms: false
+    evidence: >-
+      Thanx documents five webhook event types in prose but publishes no AsyncAPI document. See
+      asyncapi/thanx-webhooks.yml for the captured catalog.
+  - id: openapi
+    conforms: partial
+    evidence: >-
+      Thanx does not publish an OpenAPI at any probed location (api.thanx.com/openapi.json,
+      /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs all 404;
+      docs.thanx.com/openapi.json 404). It publishes Postman collections per API family
+      instead. The specs under openapi/ are API Evangelist artifacts derived from the
+      documentation, not provider-published.
+  - id: mcp
+    conforms: true
+    evidence: >-
+      A hosted remote MCP server answers at https://docs.thanx.com/mcp with protocolVersion
+      2025-06-18, three tools with real inputSchemas and one resource. Anonymous, read-only.
+      See mcp/thanx-mcp.yml.
+  - id: a2a
+    conforms: true
+    evidence: >-
+      A2A Agent Card served at https://docs.thanx.com/.well-known/agent-card.json, graded
+      conformant against A2A 1.0.0 (capabilities object, protocolVersion present, skills
+      array), though it declares protocolVersion 0.3. See a2a/thanx-a2a.yml.
+  - id: agent-skills
+    conforms: true
+    evidence: >-
+      A provider-authored Agent Skill is published at
+      https://docs.thanx.com/.well-known/agent-skills/thanx/skill.md and mirrored as an MCP
+      resource (mintlify://skills/thanx). Saved verbatim at skills/thanx-loyalty-api.md.
+  - id: llmstxt
+    conforms: true
+    evidence: >-
+      https://docs.thanx.com/llms.txt (21 KB index of 177 pages) and
+      https://www.thanx.com/llms.txt (marketing-site index) both return 200 text/plain; an
+      llms-full.txt (611 KB) is also served.
+  - id: soc2-type2
+    conforms: true
+    evidence: >-
+      "SOC 2 Type 2 Compliant" and "SOC 2 Type 2 and PCI DSS Level 1 certified, with continuous
+      monitoring" published on https://www.thanx.com/open-platform-apis. Attestation report not
+      publicly downloadable — no trust portal.
+  - id: pci-dss
+    conforms: true
+    level: Level 1 Service Provider
+    evidence: >-
+      "PCI DSS Level 1 Service Provider" published on https://www.thanx.com/open-platform-apis.
+      Corroborated architecturally by the dedicated secure.api.thanx.com /
+      secure.api.thanxsandbox.com hosts in the OpenAPI servers[] and by card enrollment being
+      network-tokenized through Visa/Mastercard/Amex.
+  - id: security-txt
+    conforms: false
+    evidence: RFC 9116 /.well-known/security.txt returned 404 on all four hosts probed.
+  - id: dnssec
+    conforms: false
+    evidence: 'thanx.com: DNSSEC not enabled, no CAA records. See security/thanx-domain-security.yml.'
+  - id: email-authentication
+    conforms: true
+    evidence: 'thanx.com publishes SPF and a DMARC record with policy p=reject.'
+  - id: hsts
+    conforms: true
+    evidence: >-
+      HSTS enabled on www.thanx.com (max-age 31536000), docs.thanx.com (63072000) and
+      api.thanx.com (31536000), all over TLS 1.3.
+  - id: e164
+    conforms: true
+    evidence: Phone numbers are required in E.164 format on reward issuance identifiers and SMS subscription webhooks.
+summary:
+  asserted: 24
+  conforming: 14
+  non_conforming: 9
+  partial: 1
+  strengths: [oauth2, webhook-signing, pci-dss, soc2-type2, mcp, a2a, agent-skills, llmstxt]
+  gaps: [oidc, oauth2-server-metadata, rfc9457, rfc8594-sunset, rate-limit-headers, security-txt, asyncapi, provider-published-openapi]

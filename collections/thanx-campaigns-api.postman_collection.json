@@ -1,0 +1,434 @@
+{
+  "item": [
+    {
+      "id": "3e1736e6-d8da-4008-85e2-4f1b0560f335",
+      "name": "Campaigns",
+      "description": {
+        "content": "Create, retrieve, list campaigns and issue rewards.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4183c1bc-f306-4eea-99b8-9be74f2b7cda",
+          "name": "Create Campaign",
+          "request": {
+            "name": "Create Campaign",
+            "description": {
+              "content": "Creates a marketing campaign with treatment and control variants.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campaign\": {\n    \"merchant_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"start_at\": \"<dateTime>\",\n    \"end_at\": \"<dateTime>\",\n    \"redeemable_from\": \"<dateTime>\",\n    \"redeemable_to\": \"<dateTime>\",\n    \"objective\": \"<string>\",\n    \"fine_print\": \"<string>\",\n    \"variants\": [\n      {\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"reward_template_id\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a614251-3ed5-46b9-8b0b-f6bd6f23af81",
+              "name": "The created campaign.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaign\": {\n    \"merchant_id\": \"92b7b0dac4\",\n    \"name\": \"Pizza Town Co\",\n    \"objective\": \"Free coffee for loyal customers.\",\n    \"fine_print\": \"Free coffee for loyal customers.\",\n    \"start_at\": \"2025-06-01T18:02:05Z\",\n    \"end_at\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_from\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_to\": \"2025-06-01T18:02:05Z\",\n    \"variants\": [\n      {\n        \"name\": \"Pizza Town Co\",\n        \"reward_template_id\": \"92b7b0dac4\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaign\": {\n    \"id\": \"92b7b0dac4\",\n    \"name\": \"Pizza Town Co\",\n    \"objective\": \"Free coffee for loyal customers.\",\n    \"start_at\": \"2025-06-01T18:02:05Z\",\n    \"end_at\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_from\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_to\": \"2025-06-01T18:02:05Z\",\n    \"time_zone\": \"example\",\n    \"fine_print\": \"Free coffee for loyal customers.\",\n    \"variants\": [\n      {\n        \"id\": \"92b7b0dac4\",\n        \"name\": \"Pizza Town Co\",\n        \"reward_template_id\": \"92b7b0dac4\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfd9a64b-c9fe-44f8-ae69-564a7e60783c",
+          "name": "List Campaigns",
+          "request": {
+            "name": "List Campaigns",
+            "description": {
+              "content": "Lists campaigns for a merchant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b669451e-ba04-4509-ba33-739e51a3f45d",
+              "name": "A list of campaigns.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_id",
+                      "value": "92b7b0dac4"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaigns\": [\n    {\n      \"id\": \"92b7b0dac4\",\n      \"name\": \"Pizza Town Co\",\n      \"objective\": \"Free coffee for loyal customers.\",\n      \"start_at\": \"2025-06-01T18:02:05Z\",\n      \"end_at\": \"2025-06-01T18:02:05Z\",\n      \"redeemable_from\": \"2025-06-01T18:02:05Z\",\n      \"redeemable_to\": \"2025-06-01T18:02:05Z\",\n      \"time_zone\": \"example\",\n      \"fine_print\": \"Free coffee for loyal customers.\",\n      \"variants\": [\n        {\n          \"id\": \"92b7b0dac4\",\n          \"name\": \"Pizza Town Co\",\n          \"reward_template_id\": \"92b7b0dac4\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c0e3e9e-3212-439d-b0f2-eb3e5adcc363",
+          "name": "Get Campaign",
+          "request": {
+            "name": "Get Campaign",
+            "description": {
+              "content": "Retrieves a single campaign by identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "campaigns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "291c1165-c258-46b1-8b88-f1758a3c0993",
+              "name": "The campaign.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaign\": {\n    \"id\": \"92b7b0dac4\",\n    \"name\": \"Pizza Town Co\",\n    \"objective\": \"Free coffee for loyal customers.\",\n    \"start_at\": \"2025-06-01T18:02:05Z\",\n    \"end_at\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_from\": \"2025-06-01T18:02:05Z\",\n    \"redeemable_to\": \"2025-06-01T18:02:05Z\",\n    \"time_zone\": \"example\",\n    \"fine_print\": \"Free coffee for loyal customers.\",\n    \"variants\": [\n      {\n        \"id\": \"92b7b0dac4\",\n        \"name\": \"Pizza Town Co\",\n        \"reward_template_id\": \"92b7b0dac4\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2aeee2a8-9fb5-4bc5-b2d2-6c1fad4b697d",
+          "name": "Issue Rewards",
+          "request": {
+            "name": "Issue Rewards",
+            "description": {
+              "content": "Issues campaign rewards to a batch of identifiers (up to 10,000 per request). Returns an asynchronous issuance job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "campaigns",
+                "issue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campaign_id\": \"<string>\",\n  \"merchant_id\": \"<string>\",\n  \"variant_id\": \"<string>\",\n  \"identifiers\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "00f878b0-3bfb-4d56-92d2-45f3a23c825c",
+              "name": "The reward issuance job was accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "campaigns",
+                    "issue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaign_id\": \"92b7b0dac4\",\n  \"merchant_id\": \"92b7b0dac4\",\n  \"variant_id\": \"92b7b0dac4\",\n  \"identifiers\": [\n    {\n      \"type\": \"email\",\n      \"value\": \"example\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuance_job\": {\n    \"id\": \"92b7b0dac4\",\n    \"state\": \"CA\",\n    \"requested_count\": 3,\n    \"issued_count\": 3,\n    \"failed_count\": 3,\n    \"created_at\": \"2025-06-01T18:02:05Z\",\n    \"updated_at\": \"2025-06-01T18:02:05Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thanx.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b7eedc0-7612-4d60-9833-d1f0fb070d22",
+    "name": "Thanx Consumer Account Campaigns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

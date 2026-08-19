@@ -1,0 +1,96 @@
+generated: '2026-08-13'
+method: probed
+status: published
+source: https://docs.thanx.com/ai/docs-mcp
+description: >-
+  Thanx runs a hosted, remote MCP server for its API documentation. It is reachable
+  anonymously — the tool list below was read live from the server, not from prose — and is
+  read-only apart from a documentation-feedback tool. It is a DOCS MCP server: it searches and
+  reads docs.thanx.com content, it does not call the Consumer / Partner / Loyalty APIs. An
+  agent still integrates with Thanx over REST (see openapi/), which is why every tool here
+  lands in mcp_only[] in the tool crosswalk.
+deployment:
+  mode: remote
+  endpoint: https://docs.thanx.com/mcp
+  auth: none
+  verified: probed
+server:
+  name: Thanx
+  version: 1.0.0
+  transport: http
+  protocol_version: '2025-06-18'
+  install:
+    claude_code_cli: claude mcp add thanx-docs https://docs.thanx.com/mcp --transport http
+    mcp_json: |
+      {
+        "mcpServers": {
+          "thanx-docs": {
+            "type": "http",
+            "url": "https://docs.thanx.com/mcp",
+            "description": "Thanx Docs MCP server for searching and interacting Thanx API Docs"
+          }
+        }
+      }
+  instructions: >-
+    Server-declared: provides search and retrieval tools for the Thanx site; read-only and
+    scoped to Thanx apart from submit_feedback; also exposes resources containing skill
+    guidance.
+  capabilities:
+    tools: true
+    resources: true
+    prompts: false
+tool_count: 3
+tools:
+  - name: search_thanx
+    title: Search documentation
+    category: search
+    description: >-
+      Search across the Thanx knowledge base to find relevant information, code examples, API
+      references and guides; returns contextual content with titles and direct links.
+    input_schema:
+      query: {type: string, required: true, description: Search query}
+    annotations: {readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false}
+  - name: query_docs_filesystem_thanx
+    category: retrieval
+    description: >-
+      Run a read-only shell-like query (rg, grep, find, tree, ls, cat, head, tail, jq, ...)
+      against a virtualized in-memory filesystem containing only the Thanx documentation pages
+      and OpenAPI specs. Stateless per call; output truncated to 30KB.
+    input_schema:
+      command: {type: string, required: true, description: Shell command to run against the virtual docs filesystem}
+    annotations: {readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false}
+  - name: submit_feedback
+    title: Submit documentation feedback
+    category: feedback
+    description: Report a problem with a documentation page so the docs team can fix it.
+    input_schema:
+      path: {type: string, required: true, description: The documentation page path the feedback is about}
+      feedback: {type: string, required: true, description: Description of the documentation issue or suggestion}
+    annotations: {readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true}
+resources:
+  - uri: mintlify://skills/thanx
+    name: thanx
+    mime_type: text/markdown
+    description: >-
+      Skill guidance for building loyalty integrations for merchants, POS systems, mobile apps,
+      kiosks or partner platforms. Same skill Thanx publishes at
+      /.well-known/agent-skills/thanx/skill.md (saved verbatim at skills/thanx-loyalty-api.md).
+x-evidence:
+  fetched: '2026-08-13'
+  initialize:
+    url: https://docs.thanx.com/mcp
+    http_status: 200
+    content_type: text/event-stream
+    server_info: {name: Thanx, version: 1.0.0}
+  tools_list:
+    url: https://docs.thanx.com/mcp
+    http_status: 200
+    tools_returned: 3
+  resources_list:
+    url: https://docs.thanx.com/mcp
+    http_status: 200
+    resources_returned: 1
+  note: >-
+    No OAuth challenge and no credentials were sent; the schemas above are the server's own
+    inputSchema objects, transcribed, not inferred. /.well-known/oauth-authorization-server and
+    /.well-known/oauth-protected-resource both 404 on this host (see well-known/).

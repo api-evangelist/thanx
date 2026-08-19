@@ -1,0 +1,104 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  Live probes of the /.well-known/ discovery surface on every host named in apis.yml (baseURL)
+  and in the OpenAPI servers[] blocks, plus the documentation host. Status is the HTTP code
+  observed at fetch time. Only documents that returned a real, correctly-typed payload were
+  saved; nothing was generated.
+description: >-
+  Thanx serves no security.txt, OpenID/OAuth discovery document, api-catalog or ai-plugin.json
+  on any host. The one real /.well-known/ document is the A2A Agent Card on the documentation
+  host, docs.thanx.com, which in turn links a provider-published Agent Skill under
+  /.well-known/agent-skills/. Both are saved verbatim elsewhere in this repo
+  (a2a/thanx-agent-card.json, skills/thanx-loyalty-api.md) rather than duplicated here.
+hosts:
+  - host: https://docs.thanx.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 200
+        type: application/json
+        file: ../a2a/thanx-agent-card.json
+        note: Real A2A AgentCard object; graded in a2a/thanx-a2a.yml.
+      - path: /.well-known/agent.json
+        status: 404
+        note: Pre-0.3 legacy path; not served.
+      - path: /.well-known/agent-skills/thanx/skill.md
+        status: 200
+        type: text/markdown
+        file: ../skills/thanx-loyalty-api.md
+        note: >-
+          Provider-published Agent Skill, referenced by skills[0].url in the agent card.
+          Saved verbatim under skills/.
+  - host: https://www.thanx.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://api.thanx.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://loyalty.thanx.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+summary:
+  hosts_probed: 4
+  paths_probed_per_host: 8
+  real_documents: 2
+  security_txt: false
+  oauth_discovery: false
+  agent_card: true

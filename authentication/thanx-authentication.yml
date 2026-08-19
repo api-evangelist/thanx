@@ -1,33 +1,134 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/thanx-consumer-api-openapi.yml, openapi/thanx-loyalty-api-openapi.yml, openapi/thanx-partner-api-openapi.yml
+generated: '2026-08-13'
+method: searched
+docs: https://docs.thanx.com/consumer/usage/headers
+source: >-
+  https://docs.thanx.com/consumer/usage/headers, https://docs.thanx.com/consumer/sso/overview,
+  https://docs.thanx.com/loyalty/headers, https://docs.thanx.com/partner/overview,
+  https://docs.thanx.com/partner/auth/create-token,
+  https://docs.thanx.com/partner/metadata/get-scopes — upgraded from the derived profile
+  (openapi/*.yml securitySchemes), which understated the surface: the specs declare two schemes
+  while Thanx actually runs four distinct credential types across three API families.
+description: >-
+  Thanx authenticates in three different ways depending on which API family you are calling.
+  Consumer apps carry a user access token minted by Thanx SSO (passwordless OAuth 2.0
+  authorization code) plus an X-ClientId. Partner server-to-server integrations carry a
+  scope-limited token from POST /partner/oauth/token, also with X-ClientId. The Loyalty
+  (POS/ordering) API on loyalty.thanx.com uses a Merchant-Key instead of X-ClientId, and accepts
+  a Reward-Redemption-Token as an ALTERNATIVE to the user bearer for token-only redemption.
+  No credential is self-serve — all are issued by Thanx, and production credentials only after
+  certification.
 summary:
-  types:
-  - apiKey
-  - http
-  api_key_in:
-  - header
+  types: [apiKey, http, oauth2]
+  api_key_in: [header]
+  oauth2_grants: [authorization_code]
+  self_serve: false
+  mfa_for_api: not applicable
 schemes:
-- name: bearerAuth
-  type: http
-  scheme: bearer
-  description: End-user access token acquired through Thanx SSO.
-  sources:
-  - openapi/thanx-consumer-api-openapi.yml
-  - openapi/thanx-loyalty-api-openapi.yml
-  - openapi/thanx-partner-api-openapi.yml
-- name: clientId
-  type: apiKey
-  in: header
-  parameter: X-ClientId
-  description: Client-specific identifier provided by Thanx.
-  sources:
-  - openapi/thanx-consumer-api-openapi.yml
-  - openapi/thanx-partner-api-openapi.yml
-- name: merchantKey
-  type: apiKey
-  in: header
-  parameter: Merchant-Key
-  description: Merchant key provided by Thanx.
-  sources:
-  - openapi/thanx-loyalty-api-openapi.yml
+  - name: bearerAuth
+    type: http
+    scheme: bearer
+    header: 'Authorization: Bearer <access_token>'
+    description: >-
+      End-user access token. On the Consumer and Loyalty APIs it is acquired through Thanx SSO;
+      on the Partner API it is minted at POST /partner/oauth/token.
+    applies_to: [Consumer, Partner, Loyalty]
+    required: >-
+      Yes, except on the documented unauthenticated endpoints (e.g. GET communication settings
+      by UID) and on Loyalty calls that instead supply a Reward-Redemption-Token.
+    sources:
+      - https://docs.thanx.com/consumer/usage/headers
+      - openapi/*.yml (components.securitySchemes.bearerAuth)
+  - name: clientId
+    type: apiKey
+    in: header
+    parameter: X-ClientId
+    description: Client-specific identifier issued by Thanx. Required on every Consumer and Partner request.
+    applies_to: [Consumer, Partner]
+    required: true
+    sources:
+      - https://docs.thanx.com/consumer/usage/headers
+      - openapi/*.yml (components.securitySchemes.clientId)
+  - name: merchantKey
+    type: apiKey
+    in: header
+    parameter: Merchant-Key
+    description: >-
+      Identifies the merchant to the Loyalty API. Issued by Thanx. This replaces X-ClientId on
+      loyalty.thanx.com — sending the Consumer header set to the Loyalty host is a common
+      first-week failure.
+    applies_to: [Loyalty]
+    required: true
+    sources:
+      - https://docs.thanx.com/loyalty/headers
+      - openapi/thanx-account-api-openapi.yml
+      - openapi/thanx-baskets-api-openapi.yml
+  - name: rewardRedemptionToken
+    type: apiKey
+    in: header
+    parameter: Reward-Redemption-Token
+    description: >-
+      Token-only redemption credential for the Loyalty basket flow. Send it INSTEAD OF the user
+      Authorization bearer, never alongside it — if both are present the call returns 404 when
+      the merchant lacks indirect loyalty integration, or 401 when the token resolves to no
+      reward.
+    applies_to: [Loyalty]
+    required: false
+    mutually_exclusive_with: bearerAuth
+    sources:
+      - https://docs.thanx.com/loyalty/headers
+oauth2:
+  spec: RFC 6749 §4.1 (Authorization Code grant)
+  flavor: passwordless — the user is authenticated by an emailed auth link, not a password
+  scope_value: passwordless
+  endpoints:
+    - {name: authorize, path: 'POST /oauth/authorize', note: 'Sends the auth email. Returns 401 when no account exists for the email — create one with POST /users.'}
+    - {name: authorize-cross-domain, path: 'POST /oauth/authorize-cross-domain', note: 'Issues an authorization code for an already-authenticated user with no email, for domain-to-domain SSO handoff.'}
+    - {name: token, path: 'POST /oauth/token', note: 'Exchanges the authorization code for an access token.'}
+    - {name: revoke, path: 'POST /oauth/revoke', note: "Revokes a user's access token."}
+  token_response_schema: components.schemas.Authorization (token_type, scope, created_at, access_token, refresh_token)
+  refresh_tokens: true
+  pkce: not documented
+  openid_connect: false
+  discovery: none — /.well-known/openid-configuration and /.well-known/oauth-authorization-server 404 on every host
+  important: >-
+    SSO authenticates a user and issues a token; it does NOT enrol them with the merchant. A
+    user who signs in without a membership receives empty tier and reward responses until
+    POST /users enrols them.
+  docs: https://docs.thanx.com/consumer/sso/overview
+partner_tokens:
+  mint: 'POST /partner/oauth/token (operationId createToken)'
+  scope_required: auth.create
+  expires_in: optional, 60–3600 seconds
+  scope_model: >-
+    Each credential is provisioned with an agreed-upon set of scopes; endpoints declare the
+    scope they require and return 403 without it. Introspect with GET /partner/scopes.
+  detail: scopes/thanx-scopes.yml
+required_headers:
+  consumer_partner:
+    - 'Authorization: Bearer <access_token>'
+    - 'X-ClientId: <client id>'
+    - 'Accept-Version: v4.0'
+    - 'Content-Type: application/json'
+    - 'Accept: application/json'
+  loyalty:
+    - 'Authorization: Bearer <access_token>  # or Reward-Redemption-Token'
+    - 'Merchant-Key: <merchant key>'
+    - 'Accept: application/vnd.thanx-v1+json'
+    - 'Content-Type: application/json'
+    - 'User-Agent: {partner}/1.0.0'
+provisioning:
+  self_serve: false
+  sandbox: >-
+    Sandbox client id, client secret, merchant key, partner token and a test user are issued by
+    Thanx Developer Support during onboarding (developer.support@thanx.com).
+  production: >-
+    Released only after a mandatory certification of the integration against the sandbox; each
+    new use-case is re-certified.
+  contacts: {developer: developer.support@thanx.com, partnerships: partnerships@thanx.com}
+  detail: sandbox/thanx-sandbox.yml
+transport_security:
+  tls: TLS 1.3 on www.thanx.com, docs.thanx.com and api.thanx.com
+  hsts: enabled on all three
+  private_link: AWS PrivateLink available for the Loyalty API (https://docs.thanx.com/loyalty/private-link)
+  pci_hosts: [https://secure.api.thanx.com, https://secure.api.thanxsandbox.com]
+  detail: security/thanx-domain-security.yml
