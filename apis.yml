@@ -31,6 +31,17 @@ tags:
   - Marketing
   - CRM
   - Online Ordering
+  - Webhook
+  - Points
+  - Rewards
+  - Campaigns
+tags_raw:
+  - Restaurant
+  - Loyalty
+  - Guest Engagement
+  - Marketing
+  - CRM
+  - Online Ordering
   - Webhooks
   - Points
   - Rewards
@@ -244,6 +255,8 @@ apis:
   humanURL: https://docs.thanx.com/consumer/overview
   baseURL: https://api.thanx.com
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -2620,6 +2633,8 @@ apis:
   humanURL: https://docs.thanx.com/consumer/overview
   baseURL: https://api.thanx.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
