@@ -10,6 +10,18 @@ description: >-
   brands and processes over a billion transactions annually. It also publishes a hosted Docs MCP server for
   natural-language API search and an open agent-skills starter kit.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
