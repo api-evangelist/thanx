@@ -1457,6 +1457,8 @@ apis:
   humanURL: https://docs.thanx.com/consumer/overview
   baseURL: https://api.thanx.com
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
