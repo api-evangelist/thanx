@@ -3,10 +3,10 @@ info:
   title: API Evangelist enhancements for Thanx Consumer Account Metadata API
   version: 1.0.0
 extends: openapi/thanx-metadata-api-openapi.yml
-generated: '2026-08-13'
-method: generated
-source: openapi/thanx-metadata-api-openapi.yml
-description: Captures API Evangelist enrichment as an OpenAPI Overlay. Nothing here mutates the underlying
+x-generated: '2026-08-13'
+x-method: generated
+x-source: openapi/thanx-metadata-api-openapi.yml
+x-description: Captures API Evangelist enrichment as an OpenAPI Overlay. Nothing here mutates the underlying
   document — apply it to layer the cross-cutting semantics Thanx publishes in prose (headers, versioning,
   scopes, idempotency, rate limits, error envelope) onto the machine-readable contract.
 actions:

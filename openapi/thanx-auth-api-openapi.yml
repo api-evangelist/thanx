@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Thanx Consumer Account Auth API
-  description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+  title: Thanx Partner Auth API
+  description: The Thanx Partner API provides privileged endpoints supporting custom integration use cases, including end-user token issuance, campaign management and reward issuance, subscriber ingestion, feedback handling, tags, and metadata lookups for merchants, locations, and scopes. It is intended for approved partners building deeper integrations with the Thanx engagement and marketing platform.
   version: v4.0
   contact:
     name: Kin Lane
@@ -13,10 +13,6 @@ servers:
   description: Production
 - url: https://api.thanxsandbox.com
   description: Sandbox
-- url: https://secure.api.thanx.com
-  description: Production (PCI-scoped card endpoints)
-- url: https://secure.api.thanxsandbox.com
-  description: Sandbox (PCI-scoped card endpoints)
 security:
 - bearerAuth: []
   clientId: []
@@ -99,7 +95,7 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-      description: End-user access token acquired through Thanx SSO.
+      description: Partner access token.
     clientId:
       type: apiKey
       in: header

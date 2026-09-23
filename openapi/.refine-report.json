@@ -1,40 +1,51 @@
 {
   "provider": "thanx",
   "sources": [
-    "thanx-account-api-openapi.yml",
-    "thanx-auth-api-openapi.yml",
-    "thanx-baskets-api-openapi.yml",
-    "thanx-campaigns-api-openapi.yml",
-    "thanx-cards-api-openapi.yml",
-    "thanx-gift-cards-api-openapi.yml",
-    "thanx-issuance-jobs-api-openapi.yml",
-    "thanx-locations-api-openapi.yml",
-    "thanx-metadata-api-openapi.yml",
-    "thanx-points-api-openapi.yml",
-    "thanx-purchases-api-openapi.yml",
-    "thanx-rewards-api-openapi.yml",
-    "thanx-subscribers-api-openapi.yml",
-    "thanx-users-api-openapi.yml"
+    "_original/thanx-consumer-api-openapi.yml",
+    "_original/thanx-loyalty-api-openapi.yml",
+    "_original/thanx-partner-api-openapi.yml"
   ],
   "outputs": [
-    "thanx-account-api-openapi.yml",
-    "thanx-auth-api-openapi.yml",
-    "thanx-baskets-api-openapi.yml",
-    "thanx-campaigns-api-openapi.yml",
     "thanx-cards-api-openapi.yml",
     "thanx-gift-cards-api-openapi.yml",
-    "thanx-issuance-jobs-api-openapi.yml",
     "thanx-locations-api-openapi.yml",
-    "thanx-metadata-api-openapi.yml",
     "thanx-points-api-openapi.yml",
     "thanx-purchases-api-openapi.yml",
     "thanx-rewards-api-openapi.yml",
-    "thanx-subscribers-api-openapi.yml",
-    "thanx-users-api-openapi.yml"
+    "thanx-users-api-openapi.yml",
+    "thanx-account-api-openapi.yml",
+    "thanx-baskets-api-openapi.yml",
+    "thanx-auth-api-openapi.yml",
+    "thanx-campaigns-api-openapi.yml",
+    "thanx-issuance-jobs-api-openapi.yml",
+    "thanx-metadata-api-openapi.yml",
+    "thanx-subscribers-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "thanx-consumer-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "thanx-loyalty-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "thanx-partner-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Users' spans 2 source specs (thanx-consumer-api-openapi.yml, thanx-partner-api-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "thanx-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-baskets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-campaigns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-cards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-gift-cards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-issuance-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-points-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-purchases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-rewards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-subscribers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thanx-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

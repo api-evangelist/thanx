@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Thanx Consumer Account Locations API
+  title: Thanx Consumer Locations API
   description: The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
   version: v4.0
   contact:
@@ -76,32 +76,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    PerPage:
-      name: per_page
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        minimum: 1
   schemas:
-    Pagination:
-      type: object
-      properties:
-        total_page:
-          type: integer
-          example: 1
-        per_page:
-          type: integer
-          example: 1
-        current_page:
-          type: integer
-          example: 1
     Location:
       type: object
       properties:
@@ -136,6 +111,31 @@ components:
           - indirect
           - none
           example: direct
+    Pagination:
+      type: object
+      properties:
+        total_page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 1
+        current_page:
+          type: integer
+          example: 1
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
   securitySchemes:
     bearerAuth:
       type: http
