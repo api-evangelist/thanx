@@ -90,32 +90,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    LoyaltyReward:
+    PointsProduct:
       type: object
       properties:
         id:
           type: string
           example: 92b7b0dac4
-        value:
-          type: number
-          example: 1.0
         label:
           type: string
           example: A free hamburger
-        state:
-          type: string
-          enum:
-          - redeemable
-          - delivered
-          - active
-          example: redeemable
-        type:
-          type: string
-          enum:
-          - amount
-          - percent
-          - item
-          example: amount
+        cost:
+          type: number
+          format: double
+          example: 1.0
     Account:
       type: object
       properties:
@@ -144,19 +131,32 @@ components:
               balance:
                 type: number
                 format: double
-    PointsProduct:
+    LoyaltyReward:
       type: object
       properties:
         id:
           type: string
           example: 92b7b0dac4
+        value:
+          type: number
+          example: 1.0
         label:
           type: string
           example: A free hamburger
-        cost:
-          type: number
-          format: double
-          example: 1.0
+        state:
+          type: string
+          enum:
+          - redeemable
+          - delivered
+          - active
+          example: redeemable
+        type:
+          type: string
+          enum:
+          - amount
+          - percent
+          - item
+          example: amount
     Error:
       type: object
       properties:

@@ -234,34 +234,6 @@ paths:
       description: Sandbox
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-        code:
-          type: integer
-          example: 1
-        message:
-          type: string
-          example: example
-    BirthDate:
-      type: object
-      properties:
-        year:
-          type: integer
-          example: 1987
-        month:
-          type: integer
-          example: 8
-        day:
-          type: integer
-          example: 14
     User:
       type: object
       properties:
@@ -292,24 +264,18 @@ components:
       properties:
         user:
           $ref: '#/components/schemas/User'
-    Authorization:
+    BirthDate:
       type: object
       properties:
-        token_type:
-          type: string
-          example: 945148251b603ae34561d90acfe4050e
-        scope:
-          type: string
-          example: passwordless
-        created_at:
+        year:
           type: integer
-          example: 1577836800
-        access_token:
-          type: string
-          example: 945148251b603ae34561d90acfe4050e
-        refresh_token:
-          type: string
-          example: 945148251b603ae34561d90acfe4050e
+          example: 1987
+        month:
+          type: integer
+          example: 8
+        day:
+          type: integer
+          example: 14
     UserInput:
       type: object
       required:
@@ -338,6 +304,40 @@ components:
         signup_program_id:
           type: string
           example: 92b7b0dac4
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+        code:
+          type: integer
+          example: 1
+        message:
+          type: string
+          example: example
+    Authorization:
+      type: object
+      properties:
+        token_type:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
+        scope:
+          type: string
+          example: passwordless
+        created_at:
+          type: integer
+          example: 1577836800
+        access_token:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
+        refresh_token:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
     PartnerUser:
       type: object
       properties:

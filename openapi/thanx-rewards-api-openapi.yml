@@ -278,6 +278,11 @@ components:
         type: integer
         minimum: 1
   schemas:
+    RewardEnvelope:
+      type: object
+      properties:
+        reward:
+          $ref: '#/components/schemas/Reward'
     Reward:
       type: object
       properties:
@@ -355,11 +360,6 @@ components:
         uses_dynamic_coupon_codes:
           type: boolean
           example: true
-    RewardEnvelope:
-      type: object
-      properties:
-        reward:
-          $ref: '#/components/schemas/Reward'
     Pagination:
       type: object
       properties:

@@ -85,13 +85,16 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
+    Basket:
       type: object
       properties:
-        code:
-          type: integer
-          example: 1
-        message:
+        id:
+          type: string
+          example: 92b7b0dac4
+        state:
+          type: string
+          example: CA
+        discount:
           type: string
           example: example
     BasketInput:
@@ -141,6 +144,32 @@ components:
           type: number
           format: double
           example: 9.99
+    Payment:
+      type: object
+      properties:
+        issuer:
+          type: string
+          example: example
+        last4:
+          type: string
+          example: '1234'
+        amount:
+          type: number
+          format: double
+          example: 9.99
+        authorized_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 1
+        message:
+          type: string
+          example: example
     BasketItem:
       type: object
       properties:
@@ -173,35 +202,6 @@ components:
               item_base_price:
                 type: number
                 format: double
-    Basket:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 92b7b0dac4
-        state:
-          type: string
-          example: CA
-        discount:
-          type: string
-          example: example
-    Payment:
-      type: object
-      properties:
-        issuer:
-          type: string
-          example: example
-        last4:
-          type: string
-          example: '1234'
-        amount:
-          type: number
-          format: double
-          example: 9.99
-        authorized_at:
-          type: string
-          format: date-time
-          example: '2025-06-01T18:02:05Z'
   responses:
     Unauthorized:
       description: Authentication failed.

@@ -135,7 +135,32 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        user_id:
+          type: string
+          example: 92b7b0dac4
+        last4:
+          type: string
+          example: '1234'
+        type:
+          type: string
+          example: visa
+        zip_code:
+          type: string
+          example: '94105'
     CardEnvelope:
       type: object
       properties:
@@ -157,31 +182,6 @@ components:
         message:
           type: string
           example: example
-    Card:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 92b7b0dac4
-        user_id:
-          type: string
-          example: 92b7b0dac4
-        last4:
-          type: string
-          example: '1234'
-        type:
-          type: string
-          example: visa
-        zip_code:
-          type: string
-          example: '94105'
-  parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   responses:
     Unauthorized:
       description: Authentication failed.
