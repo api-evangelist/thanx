@@ -77,6 +77,18 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        total_page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 1
+        current_page:
+          type: integer
+          example: 1
     Location:
       type: object
       properties:
@@ -111,27 +123,15 @@ components:
           - indirect
           - none
           example: direct
-    Pagination:
-      type: object
-      properties:
-        total_page:
-          type: integer
-          example: 1
-        per_page:
-          type: integer
-          example: 1
-        current_page:
-          type: integer
-          example: 1
   parameters:
-    PerPage:
-      name: per_page
+    Page:
+      name: page
       in: query
       schema:
         type: integer
         minimum: 1
-    Page:
-      name: page
+    PerPage:
+      name: per_page
       in: query
       schema:
         type: integer

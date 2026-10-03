@@ -135,14 +135,28 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+        code:
+          type: integer
+          example: 1
+        message:
+          type: string
+          example: example
+    CardEnvelope:
+      type: object
+      properties:
+        card:
+          $ref: '#/components/schemas/Card'
     Card:
       type: object
       properties:
@@ -161,27 +175,13 @@ components:
         zip_code:
           type: string
           example: '94105'
-    CardEnvelope:
-      type: object
-      properties:
-        card:
-          $ref: '#/components/schemas/Card'
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-        code:
-          type: integer
-          example: 1
-        message:
-          type: string
-          example: example
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Authentication failed.

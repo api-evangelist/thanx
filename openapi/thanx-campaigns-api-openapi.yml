@@ -254,18 +254,32 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    CampaignVariantInput:
+    IssuanceJob:
       type: object
-      required:
-      - name
       properties:
-        name:
+        id:
           type: string
-          example: Pizza Town Co
-        reward_template_id:
-          type: string
-          description: Required for treatment variants, omitted for control.
           example: 92b7b0dac4
+        state:
+          type: string
+          example: CA
+        requested_count:
+          type: integer
+          example: 3
+        issued_count:
+          type: integer
+          example: 3
+        failed_count:
+          type: integer
+          example: 3
+        created_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
     CampaignInput:
       type: object
       required:
@@ -308,32 +322,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CampaignVariantInput'
-    IssuanceJob:
+    CampaignVariantInput:
       type: object
+      required:
+      - name
       properties:
-        id:
+        name:
           type: string
+          example: Pizza Town Co
+        reward_template_id:
+          type: string
+          description: Required for treatment variants, omitted for control.
           example: 92b7b0dac4
-        state:
-          type: string
-          example: CA
-        requested_count:
-          type: integer
-          example: 3
-        issued_count:
-          type: integer
-          example: 3
-        failed_count:
-          type: integer
-          example: 3
-        created_at:
-          type: string
-          format: date-time
-          example: '2025-06-01T18:02:05Z'
-        updated_at:
-          type: string
-          format: date-time
-          example: '2025-06-01T18:02:05Z'
     Campaign:
       type: object
       properties:

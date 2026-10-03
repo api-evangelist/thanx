@@ -91,13 +91,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     IssuanceJob:
       type: object
@@ -125,6 +118,13 @@ components:
           type: string
           format: date-time
           example: '2025-06-01T18:02:05Z'
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

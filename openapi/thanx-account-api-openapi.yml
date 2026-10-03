@@ -90,19 +90,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    PointsProduct:
+    Error:
       type: object
       properties:
-        id:
+        code:
+          type: integer
+          example: 1
+        message:
           type: string
-          example: 92b7b0dac4
-        label:
-          type: string
-          example: A free hamburger
-        cost:
-          type: number
-          format: double
-          example: 1.0
+          example: example
     Account:
       type: object
       properties:
@@ -131,6 +127,19 @@ components:
               balance:
                 type: number
                 format: double
+    PointsProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        label:
+          type: string
+          example: A free hamburger
+        cost:
+          type: number
+          format: double
+          example: 1.0
     LoyaltyReward:
       type: object
       properties:
@@ -157,15 +166,6 @@ components:
           - percent
           - item
           example: amount
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 1
-        message:
-          type: string
-          example: example
   responses:
     Unauthorized:
       description: Authentication failed.
