@@ -1,0 +1,43 @@
+slug: thanx
+provider: Thanx
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Rewards
+  spec_file: thanx-rewards-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.85
+  evidence: POST /rewards/{id}/activate  activateReward; POST /rewards/{id}/finalize  finalizeReward
+  reason: Listing, activating and finalising consumer rewards is the redemption mechanics of a loyalty
+    programme on an explicitly described "loyalty and CRM platform".
+- tag: Account
+  spec_file: thanx-account-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.84
+  evidence: '"connect to a brand''s Thanx loyalty program, apply rewards and points products, and track
+    loyalty progress"; schemas Account, PointsProduct, LoyaltyReward'
+  reason: Account lookup here returns loyalty membership state, points products and rewards — loyalty
+    programme management rather than generic customer master data.
+- tag: Points
+  spec_file: thanx-points-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.8
+  evidence: GET /points_experiences/{id}/balance  getPointsBalance  Get Points Balance
+  reason: Retrieving a consumer's loyalty points balance on a loyalty/CRM platform is squarely loyalty
+    programme operation; only slight ambiguity about sub-capability placement.
