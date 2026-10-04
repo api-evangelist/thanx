@@ -254,32 +254,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    IssuanceJob:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 92b7b0dac4
-        state:
-          type: string
-          example: CA
-        requested_count:
-          type: integer
-          example: 3
-        issued_count:
-          type: integer
-          example: 3
-        failed_count:
-          type: integer
-          example: 3
-        created_at:
-          type: string
-          format: date-time
-          example: '2025-06-01T18:02:05Z'
-        updated_at:
-          type: string
-          format: date-time
-          example: '2025-06-01T18:02:05Z'
     CampaignInput:
       type: object
       required:
@@ -322,6 +296,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CampaignVariantInput'
+    IssuanceJob:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        state:
+          type: string
+          example: CA
+        requested_count:
+          type: integer
+          example: 3
+        issued_count:
+          type: integer
+          example: 3
+        failed_count:
+          type: integer
+          example: 3
+        created_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
     CampaignVariantInput:
       type: object
       required:

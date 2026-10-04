@@ -90,15 +90,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 1
-        message:
-          type: string
-          example: example
     Account:
       type: object
       properties:
@@ -127,6 +118,15 @@ components:
               balance:
                 type: number
                 format: double
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 1
+        message:
+          type: string
+          example: example
     PointsProduct:
       type: object
       properties:

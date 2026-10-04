@@ -152,11 +152,6 @@ components:
         message:
           type: string
           example: example
-    CardEnvelope:
-      type: object
-      properties:
-        card:
-          $ref: '#/components/schemas/Card'
     Card:
       type: object
       properties:
@@ -175,13 +170,11 @@ components:
         zip_code:
           type: string
           example: '94105'
-  parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
+    CardEnvelope:
+      type: object
+      properties:
+        card:
+          $ref: '#/components/schemas/Card'
   responses:
     Unauthorized:
       description: Authentication failed.
@@ -189,6 +182,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

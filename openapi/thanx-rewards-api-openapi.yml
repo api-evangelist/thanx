@@ -258,7 +258,31 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
   schemas:
+    RewardEnvelope:
+      type: object
+      properties:
+        reward:
+          $ref: '#/components/schemas/Reward'
     Pagination:
       type: object
       properties:
@@ -348,30 +372,6 @@ components:
         uses_dynamic_coupon_codes:
           type: boolean
           example: true
-    RewardEnvelope:
-      type: object
-      properties:
-        reward:
-          $ref: '#/components/schemas/Reward'
-  parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-    PerPage:
-      name: per_page
-      in: query
-      schema:
-        type: integer
-        minimum: 1
   securitySchemes:
     bearerAuth:
       type: http

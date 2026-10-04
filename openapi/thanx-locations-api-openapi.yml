@@ -124,14 +124,14 @@ components:
           - none
           example: direct
   parameters:
-    Page:
-      name: page
+    PerPage:
+      name: per_page
       in: query
       schema:
         type: integer
         minimum: 1
-    PerPage:
-      name: per_page
+    Page:
+      name: page
       in: query
       schema:
         type: integer

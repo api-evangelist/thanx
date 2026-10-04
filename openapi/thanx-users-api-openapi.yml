@@ -233,83 +233,20 @@ paths:
     - url: https://api.thanxsandbox.com
       description: Sandbox
 components:
+  responses:
+    BadRequest:
+      description: The request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    BirthDate:
-      type: object
-      properties:
-        year:
-          type: integer
-          example: 1987
-        month:
-          type: integer
-          example: 8
-        day:
-          type: integer
-          example: 14
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-        code:
-          type: integer
-          example: 1
-        message:
-          type: string
-          example: example
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 92b7b0dac4
-        email:
-          type: string
-          format: email
-          example: jane.smith@example.com
-        phone:
-          type: string
-          description: E.164 formatted phone number.
-          example: '+14158672345'
-        first_name:
-          type: string
-          example: Jane
-        last_name:
-          type: string
-          example: Smith
-        birth_date:
-          $ref: '#/components/schemas/BirthDate'
-        zip_code:
-          type: string
-          example: '94105'
-    UserEnvelope:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-    Authorization:
-      type: object
-      properties:
-        token_type:
-          type: string
-          example: 945148251b603ae34561d90acfe4050e
-        scope:
-          type: string
-          example: passwordless
-        created_at:
-          type: integer
-          example: 1577836800
-        access_token:
-          type: string
-          example: 945148251b603ae34561d90acfe4050e
-        refresh_token:
-          type: string
-          example: 945148251b603ae34561d90acfe4050e
     UserInput:
       type: object
       required:
@@ -338,6 +275,82 @@ components:
         signup_program_id:
           type: string
           example: 92b7b0dac4
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+        code:
+          type: integer
+          example: 1
+        message:
+          type: string
+          example: example
+    UserEnvelope:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        email:
+          type: string
+          format: email
+          example: jane.smith@example.com
+        phone:
+          type: string
+          description: E.164 formatted phone number.
+          example: '+14158672345'
+        first_name:
+          type: string
+          example: Jane
+        last_name:
+          type: string
+          example: Smith
+        birth_date:
+          $ref: '#/components/schemas/BirthDate'
+        zip_code:
+          type: string
+          example: '94105'
+    BirthDate:
+      type: object
+      properties:
+        year:
+          type: integer
+          example: 1987
+        month:
+          type: integer
+          example: 8
+        day:
+          type: integer
+          example: 14
+    Authorization:
+      type: object
+      properties:
+        token_type:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
+        scope:
+          type: string
+          example: passwordless
+        created_at:
+          type: integer
+          example: 1577836800
+        access_token:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
+        refresh_token:
+          type: string
+          example: 945148251b603ae34561d90acfe4050e
     PartnerUser:
       type: object
       properties:
@@ -357,19 +370,6 @@ components:
         last_name:
           type: string
           example: Smith
-  responses:
-    BadRequest:
-      description: The request was invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     PathId:
       name: id

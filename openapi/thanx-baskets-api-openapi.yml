@@ -85,18 +85,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Basket:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 92b7b0dac4
-        state:
-          type: string
-          example: CA
-        discount:
-          type: string
-          example: example
     Error:
       type: object
       properties:
@@ -202,6 +190,18 @@ components:
           type: string
           format: date-time
           example: '2025-06-01T18:02:05Z'
+    Basket:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        state:
+          type: string
+          example: CA
+        discount:
+          type: string
+          example: example
   responses:
     Unauthorized:
       description: Authentication failed.
