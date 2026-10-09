@@ -75,3 +75,21 @@ plans:
       - name: Loyalty API Access
       - name: Webhooks
       - name: Data Exports (Connex)
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - negotiated
+  - period
+  plans:
+  - name: Thanx Platform (Custom)
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    - period
+    periods:
+    - month
