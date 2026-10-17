@@ -296,44 +296,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CampaignVariantInput'
-    IssuanceJob:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 92b7b0dac4
-        state:
-          type: string
-          example: CA
-        requested_count:
-          type: integer
-          example: 3
-        issued_count:
-          type: integer
-          example: 3
-        failed_count:
-          type: integer
-          example: 3
-        created_at:
-          type: string
-          format: date-time
-          example: '2025-06-01T18:02:05Z'
-        updated_at:
-          type: string
-          format: date-time
-          example: '2025-06-01T18:02:05Z'
-    CampaignVariantInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          example: Pizza Town Co
-        reward_template_id:
-          type: string
-          description: Required for treatment variants, omitted for control.
-          example: 92b7b0dac4
     Campaign:
       type: object
       properties:
@@ -380,6 +342,44 @@ components:
               reward_template_id:
                 type: string
                 nullable: true
+    CampaignVariantInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          example: Pizza Town Co
+        reward_template_id:
+          type: string
+          description: Required for treatment variants, omitted for control.
+          example: 92b7b0dac4
+    IssuanceJob:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 92b7b0dac4
+        state:
+          type: string
+          example: CA
+        requested_count:
+          type: integer
+          example: 3
+        issued_count:
+          type: integer
+          example: 3
+        failed_count:
+          type: integer
+          example: 3
+        created_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2025-06-01T18:02:05Z'
   parameters:
     PathId:
       name: id

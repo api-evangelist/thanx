@@ -136,22 +136,11 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
+    CardEnvelope:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-        code:
-          type: integer
-          example: 1
-        message:
-          type: string
-          example: example
+        card:
+          $ref: '#/components/schemas/Card'
     Card:
       type: object
       properties:
@@ -170,11 +159,22 @@ components:
         zip_code:
           type: string
           example: '94105'
-    CardEnvelope:
+    Error:
       type: object
       properties:
-        card:
-          $ref: '#/components/schemas/Card'
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+        code:
+          type: integer
+          example: 1
+        message:
+          type: string
+          example: example
   responses:
     Unauthorized:
       description: Authentication failed.
