@@ -1,4 +1,4 @@
-# Thanx (thanx)
+# Thanx
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,219 +66,325 @@
 
 Thanx is a customer engagement, loyalty, and marketing automation platform for restaurants and other offline businesses, built to acquire, engage, and retain best customers and grow customer lifetime value. The platform combines data infrastructure, lifecycle marketing, loyalty and CRM, and digital ordering experiences. Thanx is API-first and publishes a public developer portal documenting a Consumer API for custom consumer experiences, a Partner API for privileged integration use cases, and a Loyalty API for digital ordering and kiosk providers, along with webhooks and Connex data-export integrations to warehouses like Snowflake and BigQuery. Thanx serves roughly 500 brands and processes over a billion transactions annually. It also publishes a hosted Docs MCP server for natural-language API search and an open agent-skills starter kit.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/thanx/refs/heads/main/apis.yml)
+**Areas:** Restaurant · Loyalty · Guest Engagement · Marketing · CRM · Online Ordering · Webhook · Points · Rewards · Campaigns · A2A · Loyalty & Incentives
 
-## Scope
+## Thanx on APIs.io
 
-- **Type:** Index
+Everything profiled for Thanx is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/thanx/](https://apis.io/providers/thanx/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (14)
 
-- Restaurant
-- Loyalty
-- Guest Engagement
-- Marketing
-- CRM
-- Online Ordering
-- Webhooks
-- Points
-- Rewards
-- Campaigns
+- [Thanx Account API](https://apis.io/apis/thanx/thanx-account-api/) — Retrieve a user's loyalty account, rewards, and points balances.
+- [Thanx Auth API](https://apis.io/apis/thanx/thanx-auth-api/) — Acquire privileged end-user access tokens.
+- [Thanx Baskets API](https://apis.io/apis/thanx/thanx-baskets-api/) — Create and update ordering baskets and redeem rewards or points products.
+- [Thanx Campaigns API](https://apis.io/apis/thanx/thanx-campaigns-api/) — Create, retrieve, list campaigns and issue rewards.
+- [Thanx Cards API](https://apis.io/apis/thanx/thanx-cards-api/) — Register and manage payment cards for card-linked loyalty.
+- [Thanx Gift Cards API](https://apis.io/apis/thanx/thanx-gift-cards-api/) — Create, retrieve, and delete digital gift cards.
+- [Thanx Issuance Jobs API](https://apis.io/apis/thanx/thanx-issuance-jobs-api/) — Track and revoke asynchronous reward issuance jobs.
+- [Thanx Locations API](https://apis.io/apis/thanx/thanx-locations-api/) — Retrieve merchant locations.
+- [Thanx Metadata API](https://apis.io/apis/thanx/thanx-metadata-api/) — Look up merchants, locations, and scopes.
+- [Thanx Points API](https://apis.io/apis/thanx/thanx-points-api/) — Points balances, products, experiences, and multipliers.
+- [Thanx Purchases API](https://apis.io/apis/thanx/thanx-purchases-api/) — Retrieve and report consumer purchases.
+- [Thanx Rewards API](https://apis.io/apis/thanx/thanx-rewards-api/) — Retrieve, activate, finalize, and grant loyalty rewards.
+- [Thanx Subscribers API](https://apis.io/apis/thanx/thanx-subscribers-api/) — Ingest marketing subscribers.
+- [Thanx Users API](https://apis.io/apis/thanx/thanx-users-api/) — Create, retrieve, update, and delete Thanx users.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-06-02
-- **Modified:** 2026-06-03
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Thanx Consumer API
+Event-driven and webhook contracts.
 
-The Thanx Consumer API lets brands integrate Thanx into a custom consumer experience, covering users and authentication, cards, gift cards, rewards, purchases, points and loyalty balances, locations, and feedback. It powers branded apps and digital experiences built on top of the Thanx loyalty and CRM platform. Endpoints are protected and authorized via end-user access tokens acquired through Thanx SSO.
+- [Thanx Webhooks](https://apis.io/asyncapis/thanx/thanx-webhooks/)
 
-- **Human URL:** [https://docs.thanx.com/consumer/overview](https://docs.thanx.com/consumer/overview)
-- **Base URL:** `https://api.thanx.com`
+#### MCP servers (1)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- Loyalty
-- Rewards
-- Users
-- Gifts
-- Points
-- Purchases
-- Cards
+- [Thanx](https://apis.io/servers/thanx/thanx/)
 
-#### Properties
+#### Agentic access (1)
 
-- [OpenAPI](openapi/thanx-consumer-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/thanx-consumer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/thanx-consumer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.thanx.com/consumer/overview)
-- [API Reference](https://docs.thanx.com/consumer/overview)
-- [Authentication](https://docs.thanx.com/consumer/usage/headers)
-- [SDK](https://github.com/thanx/thanx-sdk-ios)
-- [SDK](https://github.com/thanx/thanx-sdk-android)
-- [Best Practices](https://docs.thanx.com/consumer/best-practices/design)
-- [Errors](https://docs.thanx.com/consumer/usage/errors)
-- [JSON Schema](json-schema/consumer-api-authorization-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-birth-date-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-card-envelope-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-card-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-gift-card-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-location-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-pagination-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-purchase-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-reward-envelope-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-reward-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-user-envelope-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-user-input-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/consumer-api-user-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/consumer-api-authorization-structure.json)
-- [JSON Structure](json-structure/consumer-api-birth-date-structure.json)
-- [JSON Structure](json-structure/consumer-api-card-envelope-structure.json)
-- [JSON Structure](json-structure/consumer-api-card-structure.json)
-- [JSON Structure](json-structure/consumer-api-gift-card-structure.json)
-- [JSON Structure](json-structure/consumer-api-location-structure.json)
-- [JSON Structure](json-structure/consumer-api-pagination-structure.json)
-- [JSON Structure](json-structure/consumer-api-purchase-structure.json)
-- [JSON Structure](json-structure/consumer-api-reward-envelope-structure.json)
-- [JSON Structure](json-structure/consumer-api-reward-structure.json)
-- [JSON Structure](json-structure/consumer-api-user-envelope-structure.json)
-- [JSON Structure](json-structure/consumer-api-user-input-structure.json)
-- [JSON Structure](json-structure/consumer-api-user-structure.json)
-- [Example](examples/consumer-api-authorization-example.json)
-- [Example](examples/consumer-api-birth-date-example.json)
-- [Example](examples/consumer-api-card-envelope-example.json)
-- [Example](examples/consumer-api-card-example.json)
-- [Example](examples/consumer-api-gift-card-example.json)
-- [Example](examples/consumer-api-location-example.json)
-- [Example](examples/consumer-api-pagination-example.json)
-- [Example](examples/consumer-api-purchase-example.json)
-- [Example](examples/consumer-api-reward-envelope-example.json)
-- [Example](examples/consumer-api-reward-example.json)
-- [Example](examples/consumer-api-user-envelope-example.json)
-- [Example](examples/consumer-api-user-example.json)
-- [Example](examples/consumer-api-user-input-example.json)
-- [JSON-LD](json-ld/thanx-consumer-api-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Thanx Partner API
+- [Thanx Agentic Access](https://apis.io/agentic-access/thanx/thanx-agentic-access/)
 
-The Thanx Partner API provides privileged endpoints supporting custom integration use cases, including end-user token issuance, campaign management and reward issuance, subscriber ingestion, feedback handling, tags, and metadata lookups for merchants, locations, and scopes. It is intended for approved partners building deeper integrations with the Thanx engagement and marketing platform.
+#### JSON Schema (25)
 
-- **Human URL:** [https://docs.thanx.com/partner/overview](https://docs.thanx.com/partner/overview)
-- **Base URL:** `https://api.thanx.com`
+The data models the API reads and writes.
 
-#### Tags
+- [Authorization](https://apis.io/schemas/thanx/consumer-api-authorization/)
+- [BirthDate](https://apis.io/schemas/thanx/consumer-api-birth-date/)
+- [Card](https://apis.io/schemas/thanx/consumer-api-card/)
+- [CardEnvelope](https://apis.io/schemas/thanx/consumer-api-card-envelope/)
+- [GiftCard](https://apis.io/schemas/thanx/consumer-api-gift-card/)
+- [Location](https://apis.io/schemas/thanx/consumer-api-location/)
+- [Pagination](https://apis.io/schemas/thanx/consumer-api-pagination/)
+- [Purchase](https://apis.io/schemas/thanx/consumer-api-purchase/)
+- [Reward](https://apis.io/schemas/thanx/consumer-api-reward/)
+- [RewardEnvelope](https://apis.io/schemas/thanx/consumer-api-reward-envelope/)
+- [User](https://apis.io/schemas/thanx/consumer-api-user/)
+- [UserEnvelope](https://apis.io/schemas/thanx/consumer-api-user-envelope/)
+- [UserInput](https://apis.io/schemas/thanx/consumer-api-user-input/)
+- [Account](https://apis.io/schemas/thanx/loyalty-api-account/)
+- [Basket](https://apis.io/schemas/thanx/loyalty-api-basket/)
+- [BasketInput](https://apis.io/schemas/thanx/loyalty-api-basket-input/)
+- [BasketItem](https://apis.io/schemas/thanx/loyalty-api-basket-item/)
+- [LoyaltyReward](https://apis.io/schemas/thanx/loyalty-api-loyalty-reward/)
+- [Payment](https://apis.io/schemas/thanx/loyalty-api-payment/)
+- [PointsProduct](https://apis.io/schemas/thanx/loyalty-api-points-product/)
+- [Campaign](https://apis.io/schemas/thanx/partner-api-campaign/)
+- [CampaignInput](https://apis.io/schemas/thanx/partner-api-campaign-input/)
+- [CampaignVariantInput](https://apis.io/schemas/thanx/partner-api-campaign-variant-input/)
+- [IssuanceJob](https://apis.io/schemas/thanx/partner-api-issuance-job/)
+- [PartnerUser](https://apis.io/schemas/thanx/partner-api-partner-user/)
 
-- Campaigns
-- Subscribers
-- Marketing
-- Rewards
-- Merchants
+#### JSON Structure (25)
 
-#### Properties
+Data models expressed in JSON Structure.
 
-- [OpenAPI](openapi/thanx-partner-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/thanx-partner-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/thanx-partner-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.thanx.com/partner/overview)
-- [API Reference](https://docs.thanx.com/partner/overview)
-- [Authentication](https://docs.thanx.com/consumer/usage/headers)
-- [Getting Started](https://docs.thanx.com/overview/guides/campaign-reward-issuance)
-- [Getting Started](https://docs.thanx.com/overview/guides/subscriber-ingestion)
-- [JSON Schema](json-schema/partner-api-campaign-input-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/partner-api-campaign-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/partner-api-campaign-variant-input-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/partner-api-issuance-job-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/partner-api-partner-user-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/partner-api-campaign-input-structure.json)
-- [JSON Structure](json-structure/partner-api-campaign-structure.json)
-- [JSON Structure](json-structure/partner-api-campaign-variant-input-structure.json)
-- [JSON Structure](json-structure/partner-api-issuance-job-structure.json)
-- [JSON Structure](json-structure/partner-api-partner-user-structure.json)
-- [Example](examples/partner-api-campaign-example.json)
-- [Example](examples/partner-api-campaign-input-example.json)
-- [Example](examples/partner-api-campaign-variant-input-example.json)
-- [Example](examples/partner-api-issuance-job-example.json)
-- [Example](examples/partner-api-partner-user-example.json)
-- [JSON-LD](json-ld/thanx-partner-api-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Consumer Api Authorization Structure](https://apis.io/json-structure/thanx/consumer-api-authorization-structure/)
+- [Consumer Api Birth Date Structure](https://apis.io/json-structure/thanx/consumer-api-birth-date-structure/)
+- [Consumer Api Card Envelope Structure](https://apis.io/json-structure/thanx/consumer-api-card-envelope-structure/)
+- [Consumer Api Card Structure](https://apis.io/json-structure/thanx/consumer-api-card-structure/)
+- [Consumer Api Gift Card Structure](https://apis.io/json-structure/thanx/consumer-api-gift-card-structure/)
+- [Consumer Api Location Structure](https://apis.io/json-structure/thanx/consumer-api-location-structure/)
+- [Consumer Api Pagination Structure](https://apis.io/json-structure/thanx/consumer-api-pagination-structure/)
+- [Consumer Api Purchase Structure](https://apis.io/json-structure/thanx/consumer-api-purchase-structure/)
+- [Consumer Api Reward Envelope Structure](https://apis.io/json-structure/thanx/consumer-api-reward-envelope-structure/)
+- [Consumer Api Reward Structure](https://apis.io/json-structure/thanx/consumer-api-reward-structure/)
+- [Consumer Api User Envelope Structure](https://apis.io/json-structure/thanx/consumer-api-user-envelope-structure/)
+- [Consumer Api User Input Structure](https://apis.io/json-structure/thanx/consumer-api-user-input-structure/)
+- [Consumer Api User Structure](https://apis.io/json-structure/thanx/consumer-api-user-structure/)
+- [Loyalty Api Account Structure](https://apis.io/json-structure/thanx/loyalty-api-account-structure/)
+- [Loyalty Api Basket Input Structure](https://apis.io/json-structure/thanx/loyalty-api-basket-input-structure/)
+- [Loyalty Api Basket Item Structure](https://apis.io/json-structure/thanx/loyalty-api-basket-item-structure/)
+- [Loyalty Api Basket Structure](https://apis.io/json-structure/thanx/loyalty-api-basket-structure/)
+- [Loyalty Api Loyalty Reward Structure](https://apis.io/json-structure/thanx/loyalty-api-loyalty-reward-structure/)
+- [Loyalty Api Payment Structure](https://apis.io/json-structure/thanx/loyalty-api-payment-structure/)
+- [Loyalty Api Points Product Structure](https://apis.io/json-structure/thanx/loyalty-api-points-product-structure/)
+- [Partner Api Campaign Input Structure](https://apis.io/json-structure/thanx/partner-api-campaign-input-structure/)
+- [Partner Api Campaign Structure](https://apis.io/json-structure/thanx/partner-api-campaign-structure/)
+- [Partner Api Campaign Variant Input Structure](https://apis.io/json-structure/thanx/partner-api-campaign-variant-input-structure/)
+- [Partner Api Issuance Job Structure](https://apis.io/json-structure/thanx/partner-api-issuance-job-structure/)
+- [Partner Api Partner User Structure](https://apis.io/json-structure/thanx/partner-api-partner-user-structure/)
 
-### Thanx Loyalty API
+#### JSON-LD (3)
 
-The Thanx Loyalty API supports integrations with digital ordering and kiosk providers, exposing account lookup and basket lifecycle operations so external ordering systems can connect to a brand's Thanx loyalty program, apply rewards and points products, and track loyalty progress. All endpoints are authorized via end-user access tokens and a merchant key.
+Linked-data contexts for the provider's vocabulary.
 
-- **Human URL:** [https://docs.thanx.com/loyalty/overview](https://docs.thanx.com/loyalty/overview)
-- **Base URL:** `https://loyalty.thanx.com`
+- [Thanx Consumer Api Context](https://apis.io/jsonld/thanx/thanx-consumer-api-context/)
+- [Thanx Loyalty Api Context](https://apis.io/jsonld/thanx/thanx-loyalty-api-context/)
+- [Thanx Partner Api Context](https://apis.io/jsonld/thanx/thanx-partner-api-context/)
 
-#### Tags
+#### Vocabulary (1)
 
-- Loyalty
-- Points
-- Online Ordering
-- Baskets
+The provider's domain terms, defined.
 
-#### Properties
+- [Thanx Vocabulary](https://apis.io/vocabularies/thanx/thanx-vocabulary/)
 
-- [OpenAPI](openapi/thanx-loyalty-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/thanx-loyalty-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/thanx-loyalty-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://docs.thanx.com/loyalty/overview)
-- [API Reference](https://docs.thanx.com/loyalty/overview)
-- [Authentication](https://docs.thanx.com/consumer/usage/headers)
-- [Getting Started](https://docs.thanx.com/overview/guides/pos-kiosk)
-- [Regions](https://docs.thanx.com/loyalty/private-link)
-- [JSON Schema](json-schema/loyalty-api-account-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/loyalty-api-basket-input-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/loyalty-api-basket-item-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/loyalty-api-basket-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/loyalty-api-loyalty-reward-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/loyalty-api-payment-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/loyalty-api-points-product-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/loyalty-api-account-structure.json)
-- [JSON Structure](json-structure/loyalty-api-basket-input-structure.json)
-- [JSON Structure](json-structure/loyalty-api-basket-item-structure.json)
-- [JSON Structure](json-structure/loyalty-api-basket-structure.json)
-- [JSON Structure](json-structure/loyalty-api-loyalty-reward-structure.json)
-- [JSON Structure](json-structure/loyalty-api-payment-structure.json)
-- [JSON Structure](json-structure/loyalty-api-points-product-structure.json)
-- [Example](examples/loyalty-api-account-example.json)
-- [Example](examples/loyalty-api-basket-example.json)
-- [Example](examples/loyalty-api-basket-input-example.json)
-- [Example](examples/loyalty-api-basket-item-example.json)
-- [Example](examples/loyalty-api-loyalty-reward-example.json)
-- [Example](examples/loyalty-api-payment-example.json)
-- [Example](examples/loyalty-api-points-product-example.json)
-- [JSON-LD](json-ld/thanx-loyalty-api-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+#### Examples (25)
 
-## Common Properties
+Example requests and responses.
+
+- [Consumer Api Authorization Example](https://apis.io/examples/thanx/consumer-api-authorization-example/)
+- [Consumer Api Birth Date Example](https://apis.io/examples/thanx/consumer-api-birth-date-example/)
+- [Consumer Api Card Envelope Example](https://apis.io/examples/thanx/consumer-api-card-envelope-example/)
+- [Consumer Api Card Example](https://apis.io/examples/thanx/consumer-api-card-example/)
+- [Consumer Api Gift Card Example](https://apis.io/examples/thanx/consumer-api-gift-card-example/)
+- [Consumer Api Location Example](https://apis.io/examples/thanx/consumer-api-location-example/)
+- [Consumer Api Pagination Example](https://apis.io/examples/thanx/consumer-api-pagination-example/)
+- [Consumer Api Purchase Example](https://apis.io/examples/thanx/consumer-api-purchase-example/)
+- [Consumer Api Reward Envelope Example](https://apis.io/examples/thanx/consumer-api-reward-envelope-example/)
+- [Consumer Api Reward Example](https://apis.io/examples/thanx/consumer-api-reward-example/)
+- [Consumer Api User Envelope Example](https://apis.io/examples/thanx/consumer-api-user-envelope-example/)
+- [Consumer Api User Example](https://apis.io/examples/thanx/consumer-api-user-example/)
+- [Consumer Api User Input Example](https://apis.io/examples/thanx/consumer-api-user-input-example/)
+- [Loyalty Api Account Example](https://apis.io/examples/thanx/loyalty-api-account-example/)
+- [Loyalty Api Basket Example](https://apis.io/examples/thanx/loyalty-api-basket-example/)
+- [Loyalty Api Basket Input Example](https://apis.io/examples/thanx/loyalty-api-basket-input-example/)
+- [Loyalty Api Basket Item Example](https://apis.io/examples/thanx/loyalty-api-basket-item-example/)
+- [Loyalty Api Loyalty Reward Example](https://apis.io/examples/thanx/loyalty-api-loyalty-reward-example/)
+- [Loyalty Api Payment Example](https://apis.io/examples/thanx/loyalty-api-payment-example/)
+- [Loyalty Api Points Product Example](https://apis.io/examples/thanx/loyalty-api-points-product-example/)
+- [Partner Api Campaign Example](https://apis.io/examples/thanx/partner-api-campaign-example/)
+- [Partner Api Campaign Input Example](https://apis.io/examples/thanx/partner-api-campaign-input-example/)
+- [Partner Api Campaign Variant Input Example](https://apis.io/examples/thanx/partner-api-campaign-variant-input-example/)
+- [Partner Api Issuance Job Example](https://apis.io/examples/thanx/partner-api-issuance-job-example/)
+- [Partner Api Partner User Example](https://apis.io/examples/thanx/partner-api-partner-user-example/)
+
+#### Collections (31)
+
+Postman and Open Collection request collections.
+
+- [Thanx Consumer Account API](https://apis.io/collections/thanx/open-thanx-account-api/)
+- [Thanx Consumer Account Auth API](https://apis.io/collections/thanx/open-thanx-auth-api/)
+- [Thanx Consumer Account Baskets API](https://apis.io/collections/thanx/open-thanx-baskets-api/)
+- [Thanx Consumer Account Campaigns API](https://apis.io/collections/thanx/open-thanx-campaigns-api/)
+- [Thanx Consumer Account Cards API](https://apis.io/collections/thanx/open-thanx-cards-api/)
+- [Thanx Consumer API](https://apis.io/collections/thanx/open-thanx-consumer-api/)
+- [Thanx Consumer Account Gift Cards API](https://apis.io/collections/thanx/open-thanx-gift-cards-api/)
+- [Thanx Consumer Account Issuance Jobs API](https://apis.io/collections/thanx/open-thanx-issuance-jobs-api/)
+- [Thanx Consumer Account Locations API](https://apis.io/collections/thanx/open-thanx-locations-api/)
+- [Thanx Loyalty API](https://apis.io/collections/thanx/open-thanx-loyalty-api/)
+- [Thanx Consumer Account Metadata API](https://apis.io/collections/thanx/open-thanx-metadata-api/)
+- [Thanx Partner API](https://apis.io/collections/thanx/open-thanx-partner-api/)
+- [Thanx Consumer Account Points API](https://apis.io/collections/thanx/open-thanx-points-api/)
+- [Thanx Consumer Account Purchases API](https://apis.io/collections/thanx/open-thanx-purchases-api/)
+- [Thanx Consumer Account Rewards API](https://apis.io/collections/thanx/open-thanx-rewards-api/)
+- [Thanx Consumer Account Subscribers API](https://apis.io/collections/thanx/open-thanx-subscribers-api/)
+- [Thanx Consumer Account Users API](https://apis.io/collections/thanx/open-thanx-users-api/)
+- [Thanx Consumer Account API](https://apis.io/collections/thanx/postman-thanx-account-api/)
+- [Thanx Consumer Account Auth API](https://apis.io/collections/thanx/postman-thanx-auth-api/)
+- [Thanx Consumer Account Baskets API](https://apis.io/collections/thanx/postman-thanx-baskets-api/)
+- [Thanx Consumer Account Campaigns API](https://apis.io/collections/thanx/postman-thanx-campaigns-api/)
+- [Thanx Consumer Account Cards API](https://apis.io/collections/thanx/postman-thanx-cards-api/)
+- [Thanx Consumer Account Gift Cards API](https://apis.io/collections/thanx/postman-thanx-gift-cards-api/)
+- [Thanx Consumer Account Issuance Jobs API](https://apis.io/collections/thanx/postman-thanx-issuance-jobs-api/)
+- [Thanx Consumer Account Locations API](https://apis.io/collections/thanx/postman-thanx-locations-api/)
+- …and 6 more published on APIs.io
+
+#### Overlays (28)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Thanx Account Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-account-api-phrasing-overlay/)
+- [Thanx Account Overlay](https://apis.io/overlays/thanx/thanx-account-overlay/)
+- [Thanx Auth Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-auth-api-phrasing-overlay/)
+- [Thanx Auth Overlay](https://apis.io/overlays/thanx/thanx-auth-overlay/)
+- [Thanx Baskets Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-baskets-api-phrasing-overlay/)
+- [Thanx Baskets Overlay](https://apis.io/overlays/thanx/thanx-baskets-overlay/)
+- [Thanx Campaigns Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-campaigns-api-phrasing-overlay/)
+- [Thanx Campaigns Overlay](https://apis.io/overlays/thanx/thanx-campaigns-overlay/)
+- [Thanx Cards Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-cards-api-phrasing-overlay/)
+- [Thanx Cards Overlay](https://apis.io/overlays/thanx/thanx-cards-overlay/)
+- [Thanx Gift Cards Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-gift-cards-api-phrasing-overlay/)
+- [Thanx Gift Cards Overlay](https://apis.io/overlays/thanx/thanx-gift-cards-overlay/)
+- [Thanx Issuance Jobs Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-issuance-jobs-api-phrasing-overlay/)
+- [Thanx Issuance Jobs Overlay](https://apis.io/overlays/thanx/thanx-issuance-jobs-overlay/)
+- [Thanx Locations Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-locations-api-phrasing-overlay/)
+- [Thanx Locations Overlay](https://apis.io/overlays/thanx/thanx-locations-overlay/)
+- [Thanx Metadata Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-metadata-api-phrasing-overlay/)
+- [Thanx Metadata Overlay](https://apis.io/overlays/thanx/thanx-metadata-overlay/)
+- [Thanx Points Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-points-api-phrasing-overlay/)
+- [Thanx Points Overlay](https://apis.io/overlays/thanx/thanx-points-overlay/)
+- [Thanx Purchases Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-purchases-api-phrasing-overlay/)
+- [Thanx Purchases Overlay](https://apis.io/overlays/thanx/thanx-purchases-overlay/)
+- [Thanx Rewards Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-rewards-api-phrasing-overlay/)
+- [Thanx Rewards Overlay](https://apis.io/overlays/thanx/thanx-rewards-overlay/)
+- [Thanx Subscribers Api Phrasing Overlay](https://apis.io/overlays/thanx/thanx-subscribers-api-phrasing-overlay/)
+- …and 3 more published on APIs.io
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Thanx — jsonschema rules](https://apis.io/rules/thanx/thanx-jsonschema-spectral-rules/)
+- [Thanx API Rules](https://apis.io/rules/thanx/thanx-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Thanx Authentication](https://apis.io/security/thanx/thanx-authentication/)
+- [Thanx Domain Security](https://apis.io/security/thanx/thanx-domain-security/)
+- [Thanx Trust Center](https://apis.io/security/thanx/thanx-trust-center/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Thanx Scopes](https://apis.io/scopes/thanx/thanx-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Thanx Plans Pricing](https://apis.io/plans/thanx/thanx-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Thanx Rate Limits](https://apis.io/rate-limits/thanx/thanx-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Thanx Finops](https://apis.io/finops/thanx/thanx-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.thanx.com/)
-- [Developer Portal](https://docs.thanx.com/overview)
 - [Documentation](https://docs.thanx.com/overview)
-- [Getting Started](https://docs.thanx.com/overview/integrating)
+- [Getting started](https://docs.thanx.com/overview/integrating)
+- [API reference](https://docs.thanx.com/consumer/overview)
 - [Pricing](https://www.thanx.com/pricing)
-- [GitHub Organization](https://github.com/thanx)
-- [L L Ms Txt](https://docs.thanx.com/llms.txt)
+- [Sign up](https://www.thanx.com/talk-to-sales)
+- [Support](https://help.thanx.com/hc/en-us)
 - [Changelog](https://docs.thanx.com/data/changelog)
-- [Best Practices](https://docs.thanx.com/consumer/best-practices/design)
-- [Errors](https://docs.thanx.com/consumer/usage/errors)
-- [Documentation](https://docs.thanx.com/webhooks/overview)
-- [Documentation](https://docs.thanx.com/data/overview)
-- [Tools](https://docs.thanx.com/mcp)
-- [Documentation](https://docs.thanx.com/ai/overview)
-- [Tools](https://github.com/thanx/thanx-agent-starter)
-- [Code Examples](https://docs.thanx.com/overview/api_collections)
-- [Spectral Rules](rules/thanx-spectral-rules.yml)
-- [Vocabulary](vocabulary/thanx-vocabulary.yaml)
-- [Plans](plans/thanx-plans-pricing.yml)
-- [Rate Limits](rate-limits/thanx-rate-limits.yml)
-- [Fin Ops](finops/thanx-finops.yml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [Blog](https://www.thanx.com/blog)
+- [Terms of service](https://dashboard.thanx.com/terms)
+- [Privacy policy](https://dashboard.thanx.com/privacy)
+- [GitHub](https://github.com/thanx)
+- [Status](https://status.thanx.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 74.4** — exemplar · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 75.8 |
+| Contract governance | 45.5 |
+| Operational transparency | 86.8 |
+| Developer ergonomics | 84.5 |
+| Access clarity | 60.5 |
+
+**Agent readiness 41.2** — agent-native
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | mostly (partial credit) |
+
+**Regulatory alignment 31.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/thanx/](https://apis.io/providers/thanx/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Thanx: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/thanx/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
